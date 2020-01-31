@@ -2,43 +2,59 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Place = db.define('place', {
-  //   name: {
-  //     type: Sequelize.STRING,
-  //     allowNull: false,
-  //     validate: {
-  //       notEmpty: true
-  //     }
-  //   },
-  //   price: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     validate: {
-  //       notEmpty: true
-  //     }
-  //   },
-  //   inventoryQty: {
-  //     type: Sequelize.INTEGER,
-  //     allowNull: false,
-  //     validate: {
-  //       notEmpty: true
-  //     }
-  //   },
-  //   description: {
-  //     type: Sequelize.TEXT,
-  //     allowNull: false,
-  //     validate: {
-  //       notEmpty: true
-  //     }
-  //   },
-  //   image: {
-  //     type: Sequelize.TEXT,
-  //     allowNull: false,
-  //     validate: {
-  //       isURL: true
-  //     },
-  //     defaultValue:
-  //       'https://9to5mac.com/wp-content/uploads/sites/6/2019/11/apple_kawasaki_coming_soon.jpg?quality=82&strip=all&w=1600'
-  //   }
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  rating: {
+    type: Sequelize.FLOAT
+    //DO WE NEED TO ALLOWNULL:FALSE??
+  },
+  openingHours: {
+    type: Sequelize.ARRAY(Sequelize.JSON)
+  },
+  formattedAddress: {
+    type: Sequelize.STRING
+  },
+  city: {
+    //COMES AS AN ARRAY from address components, NEED TO CONVERT IN BACK END
+    type: Sequelize.STRING
+  },
+  latitude: {
+    type: Sequelize.FLOAT
+  },
+  longitude: {
+    type: Sequelize.FLOAT
+  },
+  interestType: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  utc: {
+    type: Sequelize.INTEGER
+  },
+  website: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
+  },
+  phoneNumber: {
+    type: Sequelize.STRING
+  },
+  priceLevel: {
+    type: Sequelize.INTEGER
+  },
+  photoUrl: {
+    //COMES AS AN ARRAY, NEED TO CONVERT IN BACK END
+    //need to use photo reference & place photos API
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
+  }
 })
 
 module.exports = Place
