@@ -1,4 +1,5 @@
 const User = require('./user')
+const Itinerary = require('./itinerary')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,5 +19,6 @@ Itinerary.belongsToMany(Place, {through: ItineraryPlace})
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Itinerary
 }
