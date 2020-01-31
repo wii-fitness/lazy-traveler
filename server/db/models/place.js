@@ -2,6 +2,9 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Place = db.define('place', {
+  googlePlaceId: {
+    type: Sequelize.STRING
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -9,15 +12,8 @@ const Place = db.define('place', {
       notEmpty: true
     }
   },
-  rating: {
-    type: Sequelize.FLOAT
-    //DO WE NEED TO ALLOWNULL:FALSE??
-  },
-  openingHours: {
-    type: Sequelize.ARRAY(Sequelize.JSON)
-  },
-  formattedAddress: {
-    type: Sequelize.STRING
+  interestType: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   },
   city: {
     //COMES AS AN ARRAY from address components, NEED TO CONVERT IN BACK END
@@ -29,8 +25,21 @@ const Place = db.define('place', {
   longitude: {
     type: Sequelize.FLOAT
   },
-  interestType: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+  formattedAddress: {
+    type: Sequelize.STRING
+  },
+  phoneNumber: {
+    type: Sequelize.STRING
+  },
+  rating: {
+    type: Sequelize.FLOAT
+    //DO WE NEED TO ALLOWNULL:FALSE??
+  },
+  priceLevel: {
+    type: Sequelize.INTEGER
+  },
+  openingHours: {
+    type: Sequelize.ARRAY(Sequelize.JSON)
   },
   utc: {
     type: Sequelize.INTEGER
@@ -40,12 +49,6 @@ const Place = db.define('place', {
     validate: {
       isUrl: true
     }
-  },
-  phoneNumber: {
-    type: Sequelize.STRING
-  },
-  priceLevel: {
-    type: Sequelize.INTEGER
   },
   photoUrl: {
     //COMES AS AN ARRAY, NEED TO CONVERT IN BACK END
