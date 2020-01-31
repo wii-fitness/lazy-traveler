@@ -6,7 +6,11 @@ const User = require('./user')
  *
  *    BlogPost.belongsTo(User)
  */
+Itinerary.belongsTo(User)
+User.hasMany(Itinerary)
 
+Place.belongsToMany(Itinerary, {through: ItineraryPlace})
+Itinerary.belongsToMany(Place, {through: ItineraryPlace})
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
