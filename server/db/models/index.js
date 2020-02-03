@@ -2,6 +2,7 @@ const User = require('./user')
 const Itinerary = require('./itinerary')
 const Place = require('./place')
 const ItineraryPlace = require('./itinerary-place')
+const OpenClose = require('./openclose')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -12,6 +13,7 @@ const ItineraryPlace = require('./itinerary-place')
 Itinerary.belongsTo(User)
 User.hasMany(Itinerary)
 
+Place.belongsTo(OpenClose)
 Place.belongsToMany(Itinerary, {through: ItineraryPlace})
 Itinerary.belongsToMany(Place, {through: ItineraryPlace})
 /**
@@ -24,5 +26,6 @@ module.exports = {
   User,
   Itinerary,
   Place,
-  ItineraryPlace
+  ItineraryPlace,
+  OpenClose
 }
