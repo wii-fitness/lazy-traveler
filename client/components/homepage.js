@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {getPlaces} from '../store/places'
 
 class Home extends React.Component {
   constructor() {
@@ -21,8 +22,9 @@ class Home extends React.Component {
     })
   }
 
-  handleSubmit() {
-    //THUNK CREATOR, GET PLACES
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.getPlaces(this.state.location)
   }
 
   render() {
@@ -65,4 +67,19 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+// const mapStateToProps = function() {
+
+// }
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    getPlaces: function(places) {
+      const action = getPlaces(places)
+      dispatch(action)
+    }
+  }
+}
+
+const HomeContainer = connect(null, mapDispatchToProps)(Home)
+
+export default HomeContainer
