@@ -2,11 +2,12 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const ItineraryPlace = db.define('itinerary_place', {
-  timestamp: {
+  // timestamp should be more understandable
+  timeIndicator: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
     validate: {
-      notEmpty: true
+      // notEmpty: true
     }
   }
 })

@@ -1,7 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Place, Itinerary, ItineraryPlace} = require('../server/db/models')
+const {
+  User,
+  Place,
+  Itinerary,
+  ItineraryPlace,
+  OpenClose
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -37,7 +43,7 @@ async function seed() {
       city: 'New York City',
       longitude: 40.769,
       latitude: 73.9845,
-      interestType: ['museum', 'tourist_attraction'],
+      // interestType: ['museum', 'tourist_attraction'],
       utc: -300,
       website: 'timessquarenyc.org',
       phoneNumber: '(732)-940-9999',
@@ -53,7 +59,7 @@ async function seed() {
       city: 'New York City',
       longitude: 45.769,
       latitude: 72.9845,
-      interestType: ['museum', 'art_gallery'],
+      // interestType: ['museum', 'art_gallery'],
       utc: -300,
       website: 'moma.org',
       phoneNumber: '(732)-940-8888',
@@ -69,7 +75,7 @@ async function seed() {
       city: 'New York City',
       longitude: 43.769,
       latitude: 72.9845,
-      interestType: ['museum', 'art_gallery'],
+      // interestType: ['museum', 'art_gallery'],
       utc: -300,
       website: 'met.org',
       phoneNumber: '(732)-940-7777',
@@ -81,13 +87,22 @@ async function seed() {
 
   const itinerary = await Promise.all([
     Itinerary.create({
-      userId: 1
+      userId: 1,
+      arrival: '2019-11-01',
+      departure: '2019-11-02',
+      timeOfStay: 1
     }),
     Itinerary.create({
-      userId: 2
+      userId: 2,
+      arrival: '2019-11-01',
+      departure: '2019-11-02',
+      timeOfStay: 1
     }),
     Itinerary.create({
-      userId: 3
+      userId: 3,
+      arrival: '2019-11-01',
+      departure: '2019-11-02',
+      timeOfStay: 1
     })
   ])
 
@@ -109,6 +124,50 @@ async function seed() {
     })
   ])
 
+  const openClose = await Promise.all([
+    OpenClose.create({
+      placeId: 1,
+      day: 1,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 2,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 3,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 4,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 5,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 6,
+      open: '20:00:00',
+      close: '20:00:00'
+    }),
+    OpenClose.create({
+      placeId: 1,
+      day: 7,
+      open: '20:00:00',
+      close: '20:00:00'
+    })
+  ])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

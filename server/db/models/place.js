@@ -12,9 +12,9 @@ const Place = db.define('place', {
       notEmpty: true
     }
   },
-  interestType: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-  },
+  // interestType: {
+  //   type: Sequelize.ARRAY(Sequelize.STRING) //MAKE DIFFERENT TABLE
+  // },
   city: {
     //COMES AS AN ARRAY from address components, NEED TO CONVERT IN BACK END
     type: Sequelize.STRING
@@ -37,9 +37,6 @@ const Place = db.define('place', {
   },
   priceLevel: {
     type: Sequelize.INTEGER
-  },
-  openingHours: {
-    type: Sequelize.ARRAY(Sequelize.JSON)
   },
   utc: {
     type: Sequelize.INTEGER

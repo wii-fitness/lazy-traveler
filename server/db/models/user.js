@@ -4,12 +4,10 @@ const db = require('../db')
 
 const User = db.define('user', {
   firstName: {
-    type: Sequelize.STRING,
-    unique: true
+    type: Sequelize.STRING
   },
   lastName: {
-    type: Sequelize.STRING,
-    unique: true
+    type: Sequelize.STRING
   },
   email: {
     type: Sequelize.STRING,
@@ -18,12 +16,10 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    // MIGHT NEED TO UNCOMMENT OUT
     get() {
       return () => this.getDataValue('password')
     }
   },
-  // MIGHT NEED TO UNCOMMENT OUT
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
