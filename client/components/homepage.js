@@ -10,7 +10,8 @@ class Home extends React.Component {
       location: '',
       startDate: '',
       endDate: '',
-      interests: []
+      interests: [],
+      places: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,7 +25,10 @@ class Home extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.getPlaces(this.state.location)
+    let places = this.props.getPlaces(this.state.location)
+    this.setState({places: places})
+    // make sure that what we get back is an arraY******
+    // also, how do we redirect to next view??
   }
 
   render() {
