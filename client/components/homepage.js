@@ -50,9 +50,8 @@ class Home extends React.Component {
   handleSubmit() {
     event.preventDefault()
     this.props.getPlaces(this.state)
-    //this.setState({places: places})
-    // make sure that what we get back is an arraY******
-    // also, how do we redirect to next view??
+
+    this.props.history.push('/builder')
   }
 
   render() {
