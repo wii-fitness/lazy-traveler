@@ -38,7 +38,7 @@ export const getPlaces = formData => {
 /**
  * REDUCER
  */
-export function placesReducer(state = initialPlaces, action) {
+export default function(state = initialPlaces, action) {
   switch (action.type) {
     case GET_PLACES:
       return action.places
