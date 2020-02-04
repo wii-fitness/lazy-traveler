@@ -50,7 +50,7 @@ class Home extends React.Component {
   handleSubmit() {
     event.preventDefault()
     this.props.getPlaces(this.state)
-
+    // need to check if req was successful
     this.props.history.push('/builder')
   }
 
