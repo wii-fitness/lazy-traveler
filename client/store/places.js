@@ -9,7 +9,7 @@ const GET_PLACES = 'GET_PLACES'
 /**
  * INITIAL STATE
  */
-const places = []
+const initialPlaces = []
 
 /**
  * ACTION CREATORS
@@ -23,7 +23,8 @@ const gotPlaces = places => ({type: GET_PLACES, places})
 export const getPlaces = location => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/places/${location}`)
+      console.log('In Thunk', location)
+      const {data} = await axios.post(`/api/places/`, {location: location})
       dispatch(gotPlaces(data))
     } catch (error) {
       console.error(error)
@@ -34,7 +35,7 @@ export const getPlaces = location => {
 /**
  * REDUCER
  */
-export function placesReducer(state = places, action) {
+export function placesReducer(state = initialPlaces, action) {
   switch (action.type) {
     case GET_PLACES:
       return action.places

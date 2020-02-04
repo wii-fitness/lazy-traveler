@@ -23,10 +23,10 @@ class Home extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     event.preventDefault()
-    let places = this.props.getPlaces(this.state.location)
-    this.setState({places: places})
+    this.props.getPlaces(this.state.location)
+    //this.setState({places: places})
     // make sure that what we get back is an arraY******
     // also, how do we redirect to next view??
   }
@@ -65,6 +65,10 @@ class Home extends React.Component {
           <input type="checkbox" name="nature" value="nature" />
           <label htmlFor="culture">Culture</label>
           <input type="checkbox" name="culture" value="culture" />
+
+          <button type="submit" onClick={this.handleSubmit}>
+            Submit
+          </button>
         </form>
       </div>
     )
@@ -77,8 +81,8 @@ class Home extends React.Component {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    getPlaces: function(places) {
-      const action = getPlaces(places)
+    getPlaces: function(location) {
+      const action = getPlaces(location)
       dispatch(action)
     }
   }
