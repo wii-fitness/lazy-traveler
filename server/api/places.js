@@ -3,15 +3,26 @@ const {Place} = require('../db/models')
 const {Op} = require('sequelize')
 module.exports = router
 
-router.get('/:location', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  try {
+    const places = await Place.findAll({
+      order: [['rating', 'DESC']]
+    })
+    res.json(places)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:placeId', async (req, res, next) => {
   try {
     const places = await Place.findAll({
       where: {
-        city: req.params.location
+        id: req.params.placeId
       },
       order: [['rating', 'DESC']]
     })
-    console.log(req.params.location)
+    // console.log(req.params.location)
     res.json(places)
   } catch (err) {
     next(err)
