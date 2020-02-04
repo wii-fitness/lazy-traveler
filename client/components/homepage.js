@@ -15,12 +15,39 @@ class Home extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  handleCheckbox(event) {
+    var eventName = event.target.name
+    if (event.target.checked) {
+      // using a callback function in this.setState to avoid referencing previous state (caused linter error)
+      // first interests is copied to interestsCopy, then the checkbox item in question is added or removed to the copy
+      // finally the interests on state is set to the modified copy
+      this.setState(prevState => {
+        var interestsCopy = [...prevState.interests]
+        console.log('interestsCopy', interestsCopy)
+        console.log('eventName', eventName)
+        interestsCopy = interestsCopy.concat(eventName)
+        console.log('new interestsCopy', interestsCopy)
+        return {interests: interestsCopy}
+      })
+    } else {
+      this.setState(prevState => {
+        var interestsCopy = [...prevState.interests]
+        interestsCopy = interestsCopy.filter(item => {
+          return item !== eventName
+        })
+        return {interests: interestsCopy}
+      })
+    }
+    console.log(this.state.interests)
   }
 
   handleSubmit() {
@@ -58,17 +85,35 @@ class Home extends React.Component {
           />
 
           <label htmlFor="arts">Arts</label>
-          <input type="checkbox" name="arts" value="arts" />
+          <input
+            type="checkbox"
+            name="arts"
+            value="arts"
+            onChange={this.handleCheckbox}
+          />
           <label htmlFor="shopping">Shopping</label>
-          <input type="checkbox" name="shopping" value="shopping" />
+          <input
+            type="checkbox"
+            name="shopping"
+            value="shopping"
+            onChange={this.handleCheckbox}
+          />
           <label htmlFor="nature">Nature</label>
-          <input type="checkbox" name="nature" value="nature" />
+          <input
+            type="checkbox"
+            name="nature"
+            value="nature"
+            onChange={this.handleCheckbox}
+          />
           <label htmlFor="culture">Culture</label>
-          <input type="checkbox" name="culture" value="culture" />
+          <input
+            type="checkbox"
+            name="culture"
+            value="culture"
+            onChange={this.handleCheckbox}
+          />
 
-          <button type="submit" onClick={this.handleSubmit}>
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     )
