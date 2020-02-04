@@ -10,20 +10,20 @@ const googleMapsClient = maps.createClient({
 })
 
 var interestsMap = {
-  museum: ['museum'],
+  museums: ['museum'],
   arts: ['art_gallery'],
   nightlife: ['casino', 'bar', 'nightclub'],
   shopping: ['shopping_mall', 'department_store'],
   family: ['aquarium', 'zoo', 'amusement_park', 'park'],
-  fine_dining: ['restaurant', 'cafe'],
-  tourist_attractions: ['tourist_attraction']
+  fineDining: ['restaurant', 'cafe'],
+  touristAttractions: ['tourist_attraction']
 }
 
 router.post('/', async (req, res, next) => {
   var suggestedLocations = []
   console.log(req.body.location)
   var coords = []
-  var geocodeResponse = await googleMapsClient
+  await googleMapsClient
     .geocode({address: req.body.location})
     .asPromise()
     .then(response => {
@@ -36,15 +36,14 @@ router.post('/', async (req, res, next) => {
       console.log(err)
     })
   console.log('COORDS', coords)
-  var interests = ['tourist_attractions']
-  for (var interest of interests) {
+  for (var interest of req.body.interests) {
     for (var type of interestsMap[interest]) {
-      googleMapsClient
+      await googleMapsClient
         .placesNearby({
           location: coords,
           type: type,
           rankby: 'prominence',
-          radius: 50000
+          radius: 25000
         })
         .asPromise()
         .then(response => {
@@ -56,6 +55,7 @@ router.post('/', async (req, res, next) => {
         })
     }
   }
+  console.log('Length', suggestedLocations.length)
   res.json(suggestedLocations)
 })
 

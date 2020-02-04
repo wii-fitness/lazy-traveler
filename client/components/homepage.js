@@ -10,8 +10,7 @@ class Home extends React.Component {
       location: '',
       startDate: '',
       endDate: '',
-      interests: [],
-      places: []
+      interests: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,16 +25,14 @@ class Home extends React.Component {
 
   handleCheckbox(event) {
     var eventName = event.target.name
+    console.log('Checked?', event.target.checked)
     if (event.target.checked) {
       // using a callback function in this.setState to avoid referencing previous state (caused linter error)
       // first interests is copied to interestsCopy, then the checkbox item in question is added or removed to the copy
       // finally the interests on state is set to the modified copy
       this.setState(prevState => {
         var interestsCopy = [...prevState.interests]
-        console.log('interestsCopy', interestsCopy)
-        console.log('eventName', eventName)
         interestsCopy = interestsCopy.concat(eventName)
-        console.log('new interestsCopy', interestsCopy)
         return {interests: interestsCopy}
       })
     } else {
@@ -44,15 +41,15 @@ class Home extends React.Component {
         interestsCopy = interestsCopy.filter(item => {
           return item !== eventName
         })
+        console.log('Within setstate', interestsCopy)
         return {interests: interestsCopy}
       })
     }
-    console.log(this.state.interests)
   }
 
   handleSubmit() {
     event.preventDefault()
-    this.props.getPlaces(this.state.location)
+    this.props.getPlaces(this.state)
     //this.setState({places: places})
     // make sure that what we get back is an arraY******
     // also, how do we redirect to next view??
@@ -91,28 +88,41 @@ class Home extends React.Component {
             value="arts"
             onChange={this.handleCheckbox}
           />
-          <label htmlFor="shopping">Shopping</label>
+          <label htmlFor="shopping">Museums</label>
+          <input
+            type="checkbox"
+            name="museums"
+            value="museums"
+            onChange={this.handleCheckbox}
+          />
+          <label htmlFor="nature">Shopping</label>
           <input
             type="checkbox"
             name="shopping"
             value="shopping"
             onChange={this.handleCheckbox}
           />
-          <label htmlFor="nature">Nature</label>
+          <label htmlFor="culture">Family</label>
           <input
             type="checkbox"
-            name="nature"
-            value="nature"
+            name="family"
+            value="family"
             onChange={this.handleCheckbox}
           />
-          <label htmlFor="culture">Culture</label>
+          <label htmlFor="arts">Nightlife</label>
           <input
             type="checkbox"
-            name="culture"
-            value="culture"
+            name="nightlife"
+            value="nightlife"
             onChange={this.handleCheckbox}
           />
-
+          <label htmlFor="arts">Fine Dining</label>
+          <input
+            type="checkbox"
+            name="fineDining"
+            value="fineDining"
+            onChange={this.handleCheckbox}
+          />
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -126,8 +136,8 @@ class Home extends React.Component {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    getPlaces: function(location) {
-      const action = getPlaces(location)
+    getPlaces: function(formData) {
+      const action = getPlaces(formData)
       dispatch(action)
     }
   }

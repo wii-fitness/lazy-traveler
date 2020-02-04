@@ -20,11 +20,14 @@ const gotPlaces = places => ({type: GET_PLACES, places})
  * THUNK CREATORS
  */
 
-export const getPlaces = location => {
+export const getPlaces = formData => {
   return async dispatch => {
     try {
-      console.log('In Thunk', location)
-      const {data} = await axios.post(`/api/places/`, {location: location})
+      console.log('In Thunk', formData)
+      const {data} = await axios.post(`/api/places/`, {
+        location: formData.location,
+        interests: formData.interests
+      })
       dispatch(gotPlaces(data))
     } catch (error) {
       console.error(error)
