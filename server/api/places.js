@@ -59,16 +59,16 @@ router.post('/', async (req, res, next) => {
   res.json(suggestedLocations)
 })
 
-router.get('/', async (req, res, next) => {
-  try {
-    const places = await Place.findAll({
-      order: [['rating', 'DESC']]
-    })
-    res.json(places)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const places = await Place.findAll({
+//       order: [['rating', 'DESC']]
+//     })
+//     res.json(places)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.get('/:placeId', async (req, res, next) => {
   try {
