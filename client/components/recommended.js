@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import Card from './card'
 
 class Recommended extends React.Component {
   constructor() {
@@ -26,13 +27,7 @@ class Recommended extends React.Component {
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div>
             {this.props.places.slice(0, 6).map(place => {
-              return (
-                <div>
-                  <h4>{place.name}</h4>
-                  <img src={place.photoUrl} />
-                  <h5>need place description!!</h5>
-                </div>
-              )
+              return <Card key={place.id} place={place} />
             })}
           </div>
         </div>
