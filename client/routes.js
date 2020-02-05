@@ -23,7 +23,7 @@ class Routes extends Component {
         <Route path="/recommended" component={Recommended} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-
+        <Route path="/builder" component={Recommended} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

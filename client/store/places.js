@@ -9,7 +9,7 @@ const GET_PLACES = 'GET_PLACES'
 /**
  * INITIAL STATE
  */
-const places = []
+const initialPlaces = []
 
 /**
  * ACTION CREATORS
@@ -20,10 +20,14 @@ const gotPlaces = places => ({type: GET_PLACES, places})
  * THUNK CREATORS
  */
 
-export const getPlaces = location => {
+export const getPlaces = formData => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/places/${location}`)
+      console.log('In Thunk', formData)
+      const {data} = await axios.post(`/api/places/`, {
+        location: formData.location,
+        interests: formData.interests
+      })
       dispatch(gotPlaces(data))
     } catch (error) {
       console.error(error)
@@ -34,7 +38,7 @@ export const getPlaces = location => {
 /**
  * REDUCER
  */
-export function placesReducer(state = places, action) {
+export default function(state = initialPlaces, action) {
   switch (action.type) {
     case GET_PLACES:
       return action.places

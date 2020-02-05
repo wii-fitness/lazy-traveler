@@ -1,18 +1,74 @@
 const router = require('express').Router()
 const {Place} = require('../db/models')
 const {Op} = require('sequelize')
+const maps = require('@google/maps')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
-  try {
-    const places = await Place.findAll({
-      order: [['rating', 'DESC']]
-    })
-    res.json(places)
-  } catch (err) {
-    next(err)
-  }
+const googleMapsClient = maps.createClient({
+  key: process.env.API_KEY,
+  Promise: Promise
 })
+
+var interestsMap = {
+  museums: ['museum'],
+  arts: ['art_gallery'],
+  nightlife: ['casino', 'bar', 'nightclub'],
+  shopping: ['shopping_mall', 'department_store'],
+  family: ['aquarium', 'zoo', 'amusement_park', 'park'],
+  fineDining: ['restaurant', 'cafe'],
+  touristAttractions: ['tourist_attraction']
+}
+
+router.post('/', async (req, res, next) => {
+  var suggestedLocations = []
+  console.log(req.body.location)
+  var coords = []
+  await googleMapsClient
+    .geocode({address: req.body.location})
+    .asPromise()
+    .then(response => {
+      console.log('GEOCODE', response.json.results)
+      console.log('GEOMETRY', response.json.results[0].geometry)
+      coords[0] = response.json.results[0].geometry.location.lat
+      coords[1] = response.json.results[0].geometry.location.lng
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  console.log('COORDS', coords)
+  for (var interest of req.body.interests) {
+    for (var type of interestsMap[interest]) {
+      await googleMapsClient
+        .placesNearby({
+          location: coords,
+          type: type,
+          rankby: 'prominence',
+          radius: 25000
+        })
+        .asPromise()
+        .then(response => {
+          console.log(response.json.results)
+          suggestedLocations = suggestedLocations.concat(response.json.results)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+  console.log('Length', suggestedLocations.length)
+  res.json(suggestedLocations)
+})
+
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const places = await Place.findAll({
+//       order: [['rating', 'DESC']]
+//     })
+//     res.json(places)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.get('/:placeId', async (req, res, next) => {
   try {
