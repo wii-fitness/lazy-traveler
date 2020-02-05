@@ -1,6 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
+import Target from './target'
+import HTML5Backend from 'react-dnd-html5-backend'
+import {DndProvider} from 'react-dnd'
 
 class Recommended extends React.Component {
   constructor() {
@@ -17,9 +21,13 @@ class Recommended extends React.Component {
     }
   }
 
-  componentDidMount() {
-    let six = this.state.receivedPlaces.slice(0, 6)
-    this.setState({queuedSix: six})
+  async componentDidMount() {
+    const {data} = await axios.get('/api/places')
+    this.setState({
+      receivedPlaces: data
+    })
+    // let six = this.state.receivedPlaces.slice(0, 6)
+    // this.setState({queuedSix: six})
     // don't know if this is supposed to go in componentDidMount
   }
 
@@ -51,10 +59,16 @@ class Recommended extends React.Component {
           </div>
         </div>
         <div id="left-side">
+          <Target />
           <div>drag&drop itinerary</div>
           <button>Generate an Itinerary</button>
+          <DndProvider backend={HTML5Backend}>
+            <div>Hello world</div>
+          </DndProvider>
         </div>
       </div>
     )
   }
 }
+
+export default Recommended
