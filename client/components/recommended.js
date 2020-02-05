@@ -9,12 +9,41 @@ class Recommended extends React.Component {
     this.state = {
       interests: []
     }
+    this.orderRecommendations = this.orderRecommendations.bind(this)
   }
 
-  populate() {
-    //   if()
-    //   let six = this.props.places.slice(0,7)
-    //   return
+  orderRecommendations() {
+    // WIP
+    console.log('Ordering recommendations')
+    console.log('This.props.places:', this.props.places)
+    var orderedArray = []
+    // count # of places
+    var count = 0
+    for (var interest of Object.keys(this.props.places)) {
+      for (var type of Object.keys(this.props.places[interest])) {
+        console.log('interest', interest)
+        console.log('type', type)
+        console.log('Array', this.props.places[interest][type])
+        for (var place of this.props.places[interest][type]) {
+          count++
+        }
+      }
+    }
+
+    // push one element from each places array into the orderedArray until all the elements are in
+    var i = 0
+    while (orderedArray.length < count) {
+      for (var interest2 of Object.keys(this.props.places)) {
+        for (var type2 of Object.keys(this.props.places[interest2])) {
+          if (this.props.places[interest2][type2][i]) {
+            orderedArray.push(this.props.places[interest2][type2][i])
+          }
+        }
+      }
+      i++
+    }
+    console.log('Final ordered array:', orderedArray)
+    return orderedArray
   }
 
   render() {
@@ -26,9 +55,11 @@ class Recommended extends React.Component {
         <div id="right-side">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div>
-            {this.props.places.slice(0, 6).map(place => {
-              return <Card key={place.id} place={place} />
-            })}
+            {this.orderRecommendations()
+              .slice(0, 7)
+              .map(place => {
+                return <Card key={place.id} place={place} />
+              })}
           </div>
         </div>
         <div id="left-side">
