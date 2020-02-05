@@ -1,60 +1,55 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import Card from './card'
 
 class Recommended extends React.Component {
   constructor() {
     super()
     this.state = {
-      location: '',
-      startDate: '',
-      endDate: '',
-      interests: [],
-      receivedPlaces: [],
-      queuedSix: [],
-      chosen: [],
-      rejected: []
+      interests: []
     }
   }
 
-  componentDidMount() {
-    let six = this.state.receivedPlaces.slice(0, 6)
-    this.setState({queuedSix: six})
-    // don't know if this is supposed to go in componentDidMount
-  }
-
-  refreshCards() {
-    // when click refresh, in the 6, if not in state.chosen, then PUSH(?) to state.rejected
-    // and then slice again!
-    // BUT!!! if they're not chosen, are they necessarily rejected?
-    // should they just be recycled?
-    // should we have reject(I don't like this) button?
+  populate() {
+    //   if()
+    //   let six = this.props.places.slice(0,7)
+    //   return
   }
 
   render() {
-    // when someone drags chosen to the right, need to setState on chosen
-
+    // when someone drags chosen to the right, need to autopopulate a new place
+    console.log('THIS.PROPS:', this.props)
     return (
       <div>
+        <h1>HELLO</h1>
         <div id="right-side">
-          <button onClick={this.refreshCards}>Refresh</button>
+          <button onClick={this.buttonRefresh}>Refresh</button>
           <div>
-            {this.state.receivedPlaces.map(place => {
-              return (
-                <div>
-                  <h4>{place.name}</h4>
-                  <img src={place.photoUrl} />
-                  <h5>need place description!!</h5>
-                </div>
-              )
+            {this.props.places.slice(0, 6).map(place => {
+              return <Card key={place.id} place={place} />
             })}
           </div>
         </div>
         <div id="left-side">
-          <div>drag&drop itinerary</div>
+          <div>dragdrop itinerary</div>
           <button>Generate an Itinerary</button>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    places: state.places,
+    selected: state.selected
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {}
+}
+
+const RecommendedContainer = connect(mapStateToProps)(Recommended)
+export default RecommendedContainer

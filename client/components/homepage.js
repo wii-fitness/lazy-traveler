@@ -13,11 +13,11 @@ class Home extends React.Component {
       location: '',
       startDate: '',
       endDate: '',
-      interests: [],
-      places: []
+      interests: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCheckbox = this.handleCheckbox.bind(this)
   }
 
   handleChange(event) {
@@ -26,12 +26,35 @@ class Home extends React.Component {
     })
   }
 
+  handleCheckbox(event) {
+    var eventName = event.target.name
+    console.log('Checked?', event.target.checked)
+    if (event.target.checked) {
+      // using a callback function in this.setState to avoid referencing previous state (caused linter error)
+      // first interests is copied to interestsCopy, then the checkbox item in question is added or removed to the copy
+      // finally the interests on state is set to the modified copy
+      this.setState(prevState => {
+        var interestsCopy = [...prevState.interests]
+        interestsCopy = interestsCopy.concat(eventName)
+        return {interests: interestsCopy}
+      })
+    } else {
+      this.setState(prevState => {
+        var interestsCopy = [...prevState.interests]
+        interestsCopy = interestsCopy.filter(item => {
+          return item !== eventName
+        })
+        console.log('Within setstate', interestsCopy)
+        return {interests: interestsCopy}
+      })
+    }
+  }
+
   handleSubmit() {
     event.preventDefault()
-    this.props.getPlaces(this.state.location)
-    //this.setState({places: places})
-    // make sure that what we get back is an arraY******
-    // also, how do we redirect to next view??
+    this.props.getPlaces(this.state)
+    // need to check if req was successful
+    this.props.history.push('/builder')
   }
 
   render() {
@@ -58,7 +81,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className="planning-form-col">
+      <div className="planning-form-col">
             <div className="planning-form">
               <form id="planning-form" onSubmit={this.handleSubmit}>
                 <div className="steps">
@@ -95,27 +118,51 @@ class Home extends React.Component {
                   </div>
                   <div className="interests">
                     <div className="interest-column">
-                      <input type="checkbox" name="arts" value="arts" />
                       <label htmlFor="arts">Arts</label>
-                    </div>
-
-                    <div className="interest-column">
-                      <input type="checkbox" name="shopping" value="shopping" />
-                      <label htmlFor="shopping">Shopping</label>
-                    </div>
-
-                    <div className="interest-column">
-                      <input type="checkbox" name="nature" value="nature" />
-                      <label htmlFor="nature">Nature</label>
-                    </div>
-
-                    <div className="interest-column">
-                      <input type="checkbox" name="culture" value="culture" />
-                      <label htmlFor="culture">Culture</label>
-                    </div>
+                      <input
+                        type="checkbox"
+                        name="arts"
+                        value="arts"
+                        onChange={this.handleCheckbox}
+                      />
+                      <label htmlFor="shopping">Museums</label>
+                      <input
+                        type="checkbox"
+                        name="museums"
+                        value="museums"
+                        onChange={this.handleCheckbox}
+                      />
+                      <label htmlFor="nature">Shopping</label>
+                      <input
+                        type="checkbox"
+                        name="shopping"
+                        value="shopping"
+                        onChange={this.handleCheckbox}
+                      />
+                      <label htmlFor="culture">Family</label>
+                      <input
+                        type="checkbox"
+                        name="family"
+                        value="family"
+                        onChange={this.handleCheckbox}
+                      />
+                      <label htmlFor="arts">Nightlife</label>
+                      <input
+                        type="checkbox"
+                        name="nightlife"
+                        value="nightlife"
+                        onChange={this.handleCheckbox}
+                      />
+                      <label htmlFor="arts">Fine Dining</label>
+                      <input
+                        type="checkbox"
+                        name="fineDining"
+                        value="fineDining"
+                        onChange={this.handleCheckbox}
+                      />
                   </div>
 
-                  <button type="submit" onClick={this.handleSubmit}>
+                  <button type="submit" onClick>
                     Submit
                   </button>
                 </div>
@@ -134,8 +181,8 @@ class Home extends React.Component {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    getPlaces: function(location) {
-      const action = getPlaces(location)
+    getPlaces: function(formData) {
+      const action = getPlaces(formData)
       dispatch(action)
     }
   }
