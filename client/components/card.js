@@ -1,14 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-const Card = props => {
-  return (
-    <div>
-      <h4>{place.name}</h4>
-      <img src={place.photoUrl} />
-      <h5>need place description!!</h5>
-    </div>
-  )
+class Card extends React.Component {
+  render() {
+    return (
+      <div>
+        <h4>{this.props.place.name}</h4>
+        <img src={this.props.place.photoUrl} />
+        <h5>need place description!!</h5>
+      </div>
+    )
+  }
 }
 
 export default Card
