@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom'
 import DndTest from './DndTest'
 // import HTML5Backend from 'react-dnd-html5-backend'
 // import { DndProvider } from 'react-dnd'
+import styled from 'styled-components'
 import Card from './card'
+import Droppable from './Droppable'
 
 class Recommended extends React.Component {
   constructor() {
@@ -22,24 +24,52 @@ class Recommended extends React.Component {
 
   render() {
     // when someone drags chosen to the right, need to autopopulate a new place
+    const Wrapper = styled.div`
+      width: 100%;
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+    `
+
+    const Item = styled.div`
+      flex-grow: 2;
+      padding: 8px;
+      color: #555;
+      background-color: white;
+      border-radius: 3px;
+    `
+
+    const droppableStyle = {
+      backgroundColor: '#555',
+      width: '300px',
+      height: '800px',
+      margin: '32px'
+    }
     console.log('THIS.PROPS:', this.props)
     return (
       <div>
-        <h1>HELLO</h1>
-        <div id="right-side">
-          <button onClick={this.buttonRefresh}>Refresh</button>
-          <div>
-            {this.props.places.slice(0, 6).map(place => {
-              return <Card key={place.id} place={place} />
+        <Wrapper>
+          <Droppable id="dr1" style={droppableStyle}>
+            {this.props.places.slice(0, 6).map((place, index) => {
+              return (
+                <Card
+                  id={`item1${index}`}
+                  style={{margin: '8px'}}
+                  key={place.id}
+                  place={place}
+                >
+                  <Item>
+                    <h4>{place.name}</h4>
+                    <img src={place.photoUrl} />
+                    <h5>need place description!!</h5>
+                  </Item>
+                </Card>
+              )
             })}
-          </div>
-        </div>
-        <div id="left-side">
-          <Target />
-          <div>drag&drop itinerary</div>
-          <button>Generate an Itinerary</button>
-          <DndTest />
-        </div>
+          </Droppable>
+          <br />
+          <Droppable id="dr2" style={droppableStyle} />
+        </Wrapper>
       </div>
     )
   }

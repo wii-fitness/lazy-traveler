@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, {withTheme} from 'styled-components'
-import Draggable from './Draggable'
+import Card from './card'
 import Droppable from './Droppable'
 
 const Wrapper = styled.div`
@@ -29,12 +29,12 @@ export default class DndTest extends React.Component {
     return (
       <Wrapper>
         <Droppable id="dr1" style={droppableStyle}>
-          <Draggable id="item1" style={{margin: '8px'}}>
+          <Card id="item1" style={{margin: '8px'}}>
             <Item>Some Text</Item>
-          </Draggable>
-          <Draggable id="item2">
+          </Card>
+          <Card id="item2">
             <Item>Some Other Text</Item>
-          </Draggable>
+          </Card>
         </Droppable>
         <Droppable id="dr2" style={droppableStyle} />
       </Wrapper>

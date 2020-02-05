@@ -53,6 +53,7 @@ class Home extends React.Component {
   handleSubmit() {
     event.preventDefault()
     this.props.getPlaces(this.state)
+    console.log('State-->', this.state)
     // need to check if req was successful
     this.props.history.push('/builder')
   }
@@ -162,9 +163,7 @@ class Home extends React.Component {
                       />
                     </div>
 
-                    <button type="submit" onClick>
-                      Submit
-                    </button>
+                    <button type="submit">Submit</button>
                   </div>
                 </div>
               </form>

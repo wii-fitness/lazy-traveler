@@ -23,7 +23,6 @@ const gotPlaces = places => ({type: GET_PLACES, places})
 export const getPlaces = formData => {
   return async dispatch => {
     try {
-      console.log('In Thunk', formData)
       const {data} = await axios.post(`/api/places/`, {
         location: formData.location,
         interests: formData.interests
