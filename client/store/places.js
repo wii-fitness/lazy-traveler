@@ -35,7 +35,7 @@ export const getPlaces = formData => {
 }
 
 /**
- * REDUCER
+ * REDUCERS
  */
 export default function(state = initialPlaces, action) {
   switch (action.type) {

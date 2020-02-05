@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class Droppable extends React.Component {
+  //RIGHT
   drop = event => {
     event.preventDefault()
     const data = event.dataTransfer.getData('transfer')
@@ -27,7 +28,7 @@ class Droppable extends React.Component {
 }
 
 Droppable.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   style: PropTypes.object,
   children: PropTypes.node
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import DndTest from './DndTest'
 // import HTML5Backend from 'react-dnd-html5-backend'
 // import { DndProvider } from 'react-dnd'
 import styled from 'styled-components'
 import Card from './card'
 import Droppable from './Droppable'
+import Dropzone from './Dropzone'
 
 class Recommended extends React.Component {
   constructor() {
@@ -53,7 +53,7 @@ class Recommended extends React.Component {
             {this.props.places.slice(0, 6).map((place, index) => {
               return (
                 <Card
-                  id={`item1${index}`}
+                  id={index}
                   style={{margin: '8px'}}
                   key={place.id}
                   place={place}
@@ -68,7 +68,11 @@ class Recommended extends React.Component {
             })}
           </Droppable>
           <br />
-          <Droppable id="dr2" style={droppableStyle} />
+          <Dropzone
+            id="dr2"
+            style={droppableStyle}
+            places={this.props.places}
+          />
         </Wrapper>
       </div>
     )
