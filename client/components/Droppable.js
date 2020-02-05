@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Droppable extends React.Component {
+class Droppable extends React.Component {
   drop = event => {
     event.preventDefault()
     const data = event.dataTransfer.getData('transfer')
@@ -31,3 +31,5 @@ Droppable.propTypes = {
   style: PropTypes.object,
   children: PropTypes.node
 }
+
+export default Droppable

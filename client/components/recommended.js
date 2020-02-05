@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Target from './target'
-import HTML5Backend from 'react-dnd-html5-backend'
-import {DndProvider} from 'react-dnd'
+import DndTest from './DndTest'
+// import HTML5Backend from 'react-dnd-html5-backend'
+// import { DndProvider } from 'react-dnd'
 
 class Recommended extends React.Component {
   constructor() {
@@ -62,9 +63,7 @@ class Recommended extends React.Component {
           <Target />
           <div>drag&drop itinerary</div>
           <button>Generate an Itinerary</button>
-          <DndProvider backend={HTML5Backend}>
-            <div>Hello world</div>
-          </DndProvider>
+          <DndTest />
         </div>
       </div>
     )
