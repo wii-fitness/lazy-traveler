@@ -81,7 +81,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-      <div className="planning-form-col">
+          <div className="planning-form-col">
             <div className="planning-form">
               <form id="planning-form" onSubmit={this.handleSubmit}>
                 <div className="steps">
@@ -160,11 +160,12 @@ class Home extends React.Component {
                         value="fineDining"
                         onChange={this.handleCheckbox}
                       />
-                  </div>
+                    </div>
 
-                  <button type="submit" onClick>
-                    Submit
-                  </button>
+                    <button type="submit" onClick>
+                      Submit
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
