@@ -46,7 +46,7 @@ class Recommended extends React.Component {
   //   console.log('Final ordered array:', orderedArray)
   //   return orderedArray
   // }
-  
+
   //only one that is required.
   //responsibility of this function to synchronously update state to reflect drag/drop result.
   onDragEnd = result => {}
@@ -60,7 +60,7 @@ class Recommended extends React.Component {
         <div id="right-side">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <Column orderRecommendations={this.orderRecommendations()} />
+            <Column />
           </DragDropContext>
         </div>
         <div id="left-side">
