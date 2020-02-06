@@ -6,8 +6,9 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   margin: 8pm;
-  border: 1px solid lightgrey;
+  border: 3px solid lightgrey;
   border-radius: 2px;
+  width: 50%;
 `
 const Title = styled.h3`
   padding: 8px;
@@ -28,7 +29,7 @@ class Column extends React.Component {
     console.log('droppable', Droppable)
     return (
       <Container>
-        <Title>Column</Title>
+        <Title>Recommended Places</Title>
         <Droppable droppableId="left-side">
           {provided => (
             <LeftList ref={provided.innerRef} {...provided.droppableProps}>
