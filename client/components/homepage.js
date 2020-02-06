@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {getPlaces} from '../store/places'
 import LocationSearch from './search'
 import {Form} from 'react-bootstrap'
+import {daysConverter} from '../utilities/utilities'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
@@ -13,6 +14,7 @@ class Home extends React.Component {
       location: '',
       startDate: '',
       endDate: '',
+      days: 0,
       interests: []
     }
     this.handleChange = this.handleChange.bind(this)
@@ -57,7 +59,7 @@ class Home extends React.Component {
       coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
     })
     // need to check if req was successful
-    this.props.history.push('/builder')
+    // this.props.history.push('/builder')
   }
 
   render() {
