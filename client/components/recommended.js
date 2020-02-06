@@ -63,9 +63,9 @@ class Recommended extends React.Component {
     console.log('in ondragEnd:', result)
     let {source, destination} = result
     var newPlaces = Array.from(this.props.places)
-    let placeholder = newPlaces[destination.index]
-    newPlaces[destination.index] = newPlaces[source.index]
-    newPlaces[source.index] = placeholder
+    let placeholder = newPlaces[source.index]
+    newPlaces.splice(source.index, 1)
+    newPlaces.splice(destination.index, 0, placeholder)
     this.props.updatePlaces(newPlaces)
   }
 
