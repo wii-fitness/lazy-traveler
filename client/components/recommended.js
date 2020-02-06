@@ -4,12 +4,22 @@ import {Link} from 'react-router-dom'
 import Card from './card'
 import Column from './column'
 import {DragDropContext} from 'react-beautiful-dnd'
+import {updatePlaces} from '../store/places'
 
 class Recommended extends React.Component {
   constructor() {
     super()
     this.state = {
       interests: []
+      // columns: {
+      //   leftColumn: {
+      //     id: 'left-column',
+      //     title: 'Recommended For You',
+      //     cardIds: this.props.places.map(place => {
+      //       return place.id
+      //     })
+      //   }
+      // }
     }
     //this.orderRecommendations = this.orderRecommendations.bind(this)
   }
@@ -49,21 +59,32 @@ class Recommended extends React.Component {
 
   //only one that is required.
   //responsibility of this function to synchronously update state to reflect drag/drop result.
-  onDragEnd = result => {}
+  onDragEnd = result => {
+    console.log('in ondragEnd:', result)
+    let {source, destination} = result
+    var newPlaces = Array.from(this.props.places)
+    let placeholder = newPlaces[source.index]
+    newPlaces.splice(source.index, 1)
+    newPlaces.splice(destination.index, 0, placeholder)
+    this.props.updatePlaces(newPlaces)
+  }
 
   render() {
-    // when someone drags chosen to the right, need to autopopulate a new place
+    // const cards = this.state.columns['leftColumn'].cardIds.map((cardId) => {
+    //   if (cardId === this.props.places.id) return(
+
+    // ))
     console.log('THIS.PROPS:', this.props)
     return (
       <div>
         <h1>HELLO</h1>
-        <div id="right-side">
+        <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <Column />
+            <Column columnId="left-column" />
           </DragDropContext>
         </div>
-        <div id="left-side">
+        <div id="right-div">
           <button>Generate an Itinerary</button>
         </div>
       </div>
@@ -79,10 +100,14 @@ const mapStateToProps = function(state) {
 }
 
 const mapDispatchToProps = function(dispatch) {
-  return {}
+  return {
+    updatePlaces: places => dispatch(updatePlaces(places))
+  }
 }
 
-const RecommendedContainer = connect(mapStateToProps)(Recommended)
+const RecommendedContainer = connect(mapStateToProps, mapDispatchToProps)(
+  Recommended
+)
 export default RecommendedContainer
 
 // {this.orderRecommendations()

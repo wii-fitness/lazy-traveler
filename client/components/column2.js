@@ -6,9 +6,8 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   margin: 8pm;
-  border: 3px solid lightgrey;
+  border: 1px solid lightgrey;
   border-radius: 2px;
-  width: 50%;
 `
 const Title = styled.h3`
   padding: 8px;
@@ -23,21 +22,16 @@ const LeftList = styled.div`
 //provided object has function, innerRef, used to supply dom node of your component to react dnd.  Styled componet has a callback prop named innerref, which returns dom node of component.
 //insert placeholder, which is element used to increase available space during drag when needed.
 
-class Column extends React.Component {
+class Column2 extends React.Component {
   render() {
     console.log('THIS.PROPS.PLACES:', this.props.places)
     console.log('droppable', Droppable)
     return (
       <Container>
-        <Title>Recommended Places</Title>
+        <Title>Column</Title>
         <Droppable droppableId="left-side">
           {provided => (
-            <LeftList ref={provided.innerRef} {...provided.droppableProps}>
-              {this.props.places.slice(0, 6).map((place, index) => {
-                return <Card key={place.id} place={place} index={index} />
-              })}
-              {provided.placeholder}
-            </LeftList>
+            <RightList ref={provided.innerRef} {...provided.droppableProps} />
           )}
         </Droppable>
       </Container>
@@ -55,5 +49,5 @@ const mapStateToProps = function(state) {
 
 // }
 
-const ColumnContainer = connect(mapStateToProps)(Column)
-export default ColumnContainer
+const Column2Container = connect(mapStateToProps)(Column2)
+export default Column2Container
