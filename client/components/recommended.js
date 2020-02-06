@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Card from './card'
+import Column from './column'
+import {DragDropContext} from 'react-beautiful-dnd'
 
 class Recommended extends React.Component {
   constructor() {
@@ -45,6 +47,9 @@ class Recommended extends React.Component {
     console.log('Final ordered array:', orderedArray)
     return orderedArray
   }
+  //only one that is required.
+  //responsibility of this function to synchronously update state to reflect drag/drop result.
+  onDragEnd = result => {}
 
   render() {
     // when someone drags chosen to the right, need to autopopulate a new place
@@ -54,16 +59,11 @@ class Recommended extends React.Component {
         <h1>HELLO</h1>
         <div id="right-side">
           <button onClick={this.buttonRefresh}>Refresh</button>
-          <div>
-            {this.orderRecommendations()
-              .slice(0, 7)
-              .map(place => {
-                return <Card key={place.id} place={place} />
-              })}
-          </div>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Column orderRecommendations={this.orderRecommendations()} />
+          </DragDropContext>
         </div>
         <div id="left-side">
-          <div>dragdrop itinerary</div>
           <button>Generate an Itinerary</button>
         </div>
       </div>
@@ -84,3 +84,9 @@ const mapDispatchToProps = function(dispatch) {
 
 const RecommendedContainer = connect(mapStateToProps)(Recommended)
 export default RecommendedContainer
+
+// {this.orderRecommendations()
+//   .slice(0, 7)
+//   .map(place => {
+//     return <Card key={place.id} place={place} />
+//   })}
