@@ -27,7 +27,7 @@ class Column extends React.Component {
     console.log('THIS.PROPS.PLACES:', this.props.places)
     console.log('droppable', Droppable)
     return (
-      <Container id="left-side">
+      <Container>
         <Title>Column</Title>
         <Droppable droppableId="left-side">
           {provided => (
