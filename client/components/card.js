@@ -5,10 +5,21 @@ import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 8px;
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid lightgrey;
+  border-radius: 8px;
+  padding: 10px;
+  width: 95%;
+`
+const Title = styled.h4`
+  position: relative;
+  line-height: 1.1;
+`
+const Description = styled.h5`
+  position: relative;
+  font-weight: 500;
+  line-height: 1.1;
 `
 
 class Card extends React.Component {
@@ -35,8 +46,8 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log('draggable', Draggable)
-    console.log('THIS.STATE.PHOTO', this.state.photo)
+    // console.log('draggable', Draggable)
+    // console.log('THIS.STATE.PHOTO', this.state.photo)
     return (
       <Draggable draggableId={this.props.place.id} index={this.props.index}>
         {provided => (
@@ -45,9 +56,16 @@ class Card extends React.Component {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <h4>{this.props.place.name}</h4>
-            <img src={'https://' + this.state.photo} />
-            <h5>need place description!!</h5>
+            <div className="container-div">
+              <div className="pic-container">
+                <img src={'https://' + this.state.photo} />
+              </div>
+              <div className="description-container">
+                <Title>{this.props.place.name}</Title>
+                {/* <Description>{this.props.place.rating}</Description> */}
+                <Description>need place description!!</Description>
+              </div>
+            </div>
           </Container>
         )}
       </Draggable>

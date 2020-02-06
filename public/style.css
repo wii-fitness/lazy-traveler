@@ -178,3 +178,19 @@ label {
   margin-right: 15px;
   width: 100px;
 }
+
+.container-div {
+  display: flex;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  border-radius: 18px;
+  height: 75px;
+  width: 75px;
+  padding: 10px;
+}
