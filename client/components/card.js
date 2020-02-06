@@ -1,6 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import styled from 'styled-components'
+import {Draggable} from 'react-beautiful-dnd'
+
+const Container = styled.div`
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 8px;
+`
 
 class Card extends React.Component {
   constructor() {
@@ -26,13 +35,22 @@ class Card extends React.Component {
   }
 
   render() {
+    console.log('draggable', Draggable)
     console.log('THIS.STATE.PHOTO', this.state.photo)
     return (
-      <div>
-        <h4>{this.props.place.name}</h4>
-        <img src={'https://' + this.state.photo} />
-        <h5>need place description!!</h5>
-      </div>
+      <Draggable draggableId={this.props.place.id} index={this.props.index}>
+        {provided => (
+          <Container
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <h4>{this.props.place.name}</h4>
+            <img src={'https://' + this.state.photo} />
+            <h5>need place description!!</h5>
+          </Container>
+        )}
+      </Draggable>
     )
   }
 }
