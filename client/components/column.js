@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './card'
+import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
@@ -21,7 +22,7 @@ const LeftList = styled.div`
 //provided object has function, innerRef, used to supply dom node of your component to react dnd.  Styled componet has a callback prop named innerref, which returns dom node of component.
 //insert placeholder, which is element used to increase available space during drag when needed.
 
-export default class Column extends React.Component {
+class Column extends React.Component {
   render() {
     console.log('THIS.PROPS.PLACES:', this.props.places)
     console.log('droppable', Droppable)
@@ -31,11 +32,9 @@ export default class Column extends React.Component {
         <Droppable droppableId="left-side">
           {provided => (
             <LeftList ref={provided.innerRef} {...provided.droppableProps}>
-              {this.props.orderRecommendations
-                .slice(0, 6)
-                .map((place, index) => {
-                  return <Card key={place.id} place={place} index={index} />
-                })}
+              {this.props.places.slice(0, 6).map((place, index) => {
+                return <Card key={place.id} place={place} index={index} />
+              })}
               {provided.placeholder}
             </LeftList>
           )}
@@ -44,3 +43,16 @@ export default class Column extends React.Component {
     )
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    places: state.places
+  }
+}
+
+// const mapDispatchToProps = function(dispatch) {
+
+// }
+
+const ColumnContainer = connect(mapStateToProps)(Column)
+export default ColumnContainer
