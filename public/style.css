@@ -154,6 +154,11 @@ form {
   color: inherit;
 }
 
+.planning-form .interests {
+  display: flex;
+  flex-flow: column wrap;
+}
+
 .planning-form .interest_column {
   display: flex;
   float: left;

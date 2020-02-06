@@ -2,13 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getPlaces} from '../store/places'
-import Search from './search'
+import LocationSearch from './search'
 import {Form} from 'react-bootstrap'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       location: '',
       startDate: '',
@@ -52,12 +52,16 @@ class Home extends React.Component {
 
   handleSubmit() {
     event.preventDefault()
-    this.props.getPlaces(this.state)
+    this.props.getPlaces({
+      ...this.state,
+      coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
+    })
     // need to check if req was successful
     this.props.history.push('/builder')
   }
 
   render() {
+    console.log(this.props.coordinates)
     return (
       <div className="homeImage">
         {/* <div className= "home-content-1">
@@ -72,7 +76,7 @@ class Home extends React.Component {
           </Form.Group>
           </Form>
           </div> */}
-        {/* <Search /> */}
+
         <div className="home-content-1">
           <div className="home-content">
             <div className="home-title">
@@ -88,13 +92,13 @@ class Home extends React.Component {
                   <div className="title">Itinerary Planner</div>
                   <div className="destination">
                     <label htmlFor="location">Location:</label>
-
-                    <input
+                    <LocationSearch />
+                    {/* <input
                       type="text"
                       name="location"
                       value={this.state.location}
                       onChange={this.handleChange}
-                    />
+                    /> */}
                   </div>
                   <div>
                     <label htmlFor="start">Start Date:</label>
@@ -125,6 +129,8 @@ class Home extends React.Component {
                         value="arts"
                         onChange={this.handleCheckbox}
                       />
+                    </div>
+                    <div className="interest-column">
                       <label htmlFor="shopping">Museums</label>
                       <input
                         type="checkbox"
@@ -132,6 +138,8 @@ class Home extends React.Component {
                         value="museums"
                         onChange={this.handleCheckbox}
                       />
+                    </div>
+                    <div className="interest-column">
                       <label htmlFor="nature">Shopping</label>
                       <input
                         type="checkbox"
@@ -139,6 +147,8 @@ class Home extends React.Component {
                         value="shopping"
                         onChange={this.handleCheckbox}
                       />
+                    </div>
+                    <div className="interest-column">
                       <label htmlFor="culture">Family</label>
                       <input
                         type="checkbox"
@@ -146,6 +156,8 @@ class Home extends React.Component {
                         value="family"
                         onChange={this.handleCheckbox}
                       />
+                    </div>
+                    <div className="interest-column">
                       <label htmlFor="arts">Nightlife</label>
                       <input
                         type="checkbox"
@@ -153,6 +165,8 @@ class Home extends React.Component {
                         value="nightlife"
                         onChange={this.handleCheckbox}
                       />
+                    </div>
+                    <div className="interest-column">
                       <label htmlFor="arts">Fine Dining</label>
                       <input
                         type="checkbox"
@@ -176,9 +190,11 @@ class Home extends React.Component {
   }
 }
 
-// const mapStateToProps = function() {
-
-// }
+const mapStateToProps = state => {
+  return {
+    coordinates: state.coordinates
+  }
+}
 
 const mapDispatchToProps = function(dispatch) {
   return {
@@ -189,6 +205,6 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const HomeContainer = connect(null, mapDispatchToProps)(Home)
+const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
 
 export default HomeContainer

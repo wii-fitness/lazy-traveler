@@ -1,57 +1,66 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {getCoordinates} from '../store/coordinates'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete'
-import Axios from 'axios'
 
-// if(process.env !== 'development') {
-//   require('../secrets')
-// }
-
-// const apiKey = process.env.GOOGLEAPIKEY
-
-export default function Search() {
-  const [address, setAddress] = React.useState('')
-  const [coordinates, setCoordinates] = React.useState({
-    lat: null,
-    lng: null
-  })
-
-  const handleSelect = async value => {
-    const results = await geocodeByAddress(value)
-    const latLng = await getLatLng(results[0])
-    setAddress(value)
-    setCoordinates(latLng)
+class LocationSearch extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {address: ''}
   }
 
-  return (
-    <div>
+  handleChange = address => {
+    this.setState({address})
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      // sets coordinates for location
+      .then(latLng => this.props.getCoordinates(latLng))
+  }
+
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error))
+  }
+
+  render() {
+    return (
       <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
+        value={this.state.address}
+        onChange={this.handleChange}
+        onSelect={this.handleSelect}
       >
         {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
           <div>
-            {/* <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p> */}
-
             <input
-              {...getInputProps({placeholder: 'Type in your destination'})}
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input'
+              })}
             />
-
-            <div>
-              {loading ? <div>...loading</div> : null}
-
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? '#41b6e6' : '#fff'
-                }
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item'
 
+                const style = suggestion.active
+                  ? {backgroundColor: '#fafafa', cursor: 'pointer'}
+                  : {backgroundColor: '#ffffff', cursor: 'pointer'}
                 return (
-                  <div {...getSuggestionItemProps(suggestion, {style})}>
-                    {suggestion.description}
+                  <div
+                    key={suggestion.id}
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
                   </div>
                 )
               })}
@@ -59,6 +68,20 @@ export default function Search() {
           </div>
         )}
       </PlacesAutocomplete>
-    </div>
-  )
+    )
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    coordinates: state.coordinates
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCoordinates: coordinates => dispatch(getCoordinates(coordinates))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSearch)

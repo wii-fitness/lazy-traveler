@@ -24,21 +24,25 @@ var interestsMap = {
 router.post('/', async (req, res, next) => {
   var suggestedLocations = {}
   console.log(req.body.location)
-  var coords = []
+
+  var coords = req.body.coordinates
+  // console.log(req.body)
+
+  // await googleMapsClient
+  //   .geocode({address: req.body.location})
+  //   .asPromise()
+  //   .then(response => {
+  //     console.log('GEOCODE', response.json.results)
+  //     console.log('GEOMETRY', response.json.results[0].geometry)
+  //     coords[0] = response.json.results[0].geometry.location.lat
+  //     coords[1] = response.json.results[0].geometry.location.lng
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+//    var coords = []
 
   // geocoding the text string provided by the user to Lat/Long coordinates
-  await googleMapsClient
-    .geocode({address: req.body.location})
-    .asPromise()
-    .then(response => {
-      console.log('GEOCODE', response.json.results)
-      console.log('GEOMETRY', response.json.results[0].geometry)
-      coords[0] = response.json.results[0].geometry.location.lat
-      coords[1] = response.json.results[0].geometry.location.lng
-    })
-    .catch(err => {
-      console.log(err)
-    })
 
   console.log('COORDS', coords)
 
