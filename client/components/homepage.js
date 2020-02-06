@@ -53,14 +53,21 @@ class Home extends React.Component {
   }
 
   handleSubmit() {
-    console.log(daysConverter(this.state.startDate, this.state.endDate))
     event.preventDefault()
-    const start = new Date(this.state.startDate)
-    const end = new Date(this.state.endDate)
-    var diff = end.getTime() - start.getTime()
-    var days = Math.abs(diff / (1000 * 3600 * 24))
-    console.log('days', days)
 
+    // const start = new Date(this.state.startDate)
+    // const end = new Date(this.state.endDate)
+    // var diff = end.getTime() - start.getTime()
+    // var days = Math.abs(diff / (1000 * 3600 * 24))
+    const days = daysConverter(this.state.startDate, this.state.endDate)
+    this.setState(state => {
+      return {
+        ...state,
+        days: 5
+      }
+    })
+    console.log('days', days)
+    console.log(this.state)
     this.props.getPlaces({
       ...this.state,
       coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
