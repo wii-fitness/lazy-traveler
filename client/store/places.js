@@ -5,6 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_PLACES = 'GET_PLACES'
+const UPDATE_PLACES = 'UPDATE_PLACES'
 
 /**
  * INITIAL STATE
@@ -15,6 +16,7 @@ const initialPlaces = []
  * ACTION CREATORS
  */
 const gotPlaces = places => ({type: GET_PLACES, places})
+export const updatePlaces = places => ({type: UPDATE_PLACES, places})
 
 /**
  * THUNK CREATORS
@@ -76,6 +78,8 @@ export const getPlaces = formData => {
 export default function(state = initialPlaces, action) {
   switch (action.type) {
     case GET_PLACES:
+      return action.places
+    case UPDATE_PLACES:
       return action.places
     default:
       return state
