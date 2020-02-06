@@ -9,6 +9,7 @@ const googleMapsClient = maps.createClient({
   Promise: Promise
 })
 
+// table for converting Interests to Google Places Types
 var interestsMap = {
   museums: ['museum'],
   arts: ['art_gallery'],
@@ -19,9 +20,11 @@ var interestsMap = {
   touristAttractions: ['tourist_attraction']
 }
 
+// route handling homepage form
 router.post('/', async (req, res, next) => {
-  var suggestedLocations = []
+  var suggestedLocations = {}
   console.log(req.body.location)
+
   var coords = req.body.coordinates
   // console.log(req.body)
 
@@ -37,9 +40,21 @@ router.post('/', async (req, res, next) => {
   //   .catch(err => {
   //     console.log(err)
   //   })
+//    var coords = []
+
+  // geocoding the text string provided by the user to Lat/Long coordinates
+
   console.log('COORDS', coords)
+
+  // looping over each interest checked by the user
   for (var interest of req.body.interests) {
+    //initializing an object with the interest as key on the suggestedLocations object (this will contain arrays corresponding to each type searched under that interest)
+    suggestedLocations[interest] = {}
+    // looping over each type corresponding to each interest
     for (var type of interestsMap[interest]) {
+      //setting type as a key on the interest object with an empty array as its value (this will contain all the places returned from searching for that type)
+      suggestedLocations[interest][type] = []
+      // making a nearby search API request for each type
       await googleMapsClient
         .placesNearby({
           location: coords,
@@ -50,7 +65,8 @@ router.post('/', async (req, res, next) => {
         .asPromise()
         .then(response => {
           console.log(response.json.results)
-          suggestedLocations = suggestedLocations.concat(response.json.results)
+          // adding locations from response to the suggestedLocations array to be sent to the client
+          suggestedLocations[interest][type] = response.json.results
         })
         .catch(err => {
           console.log(err)
@@ -58,7 +74,28 @@ router.post('/', async (req, res, next) => {
     }
   }
   console.log('Length', suggestedLocations.length)
+  // sending back a response to the client with the suggestedLocations object
   res.json(suggestedLocations)
+})
+
+router.post('/photo', async (req, res, next) => {
+  const photoreference = req.body.photoreference
+  var photo
+  await googleMapsClient
+    .placesPhoto({
+      photoreference: photoreference,
+      maxwidth: 200
+    })
+    .asPromise()
+    .then(response => {
+      console.log('PHOTOBJ', response)
+      console.log('PHOTO', response.req.socket._host + response.req.path)
+      photo = response
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  res.send(photo.req.socket._host + photo.req.path)
 })
 
 // router.get('/', async (req, res, next) => {
