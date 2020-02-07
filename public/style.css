@@ -194,3 +194,7 @@ img {
   width: 75px;
   padding: 10px;
 }
+
+.columns {
+  display: flex;
+}

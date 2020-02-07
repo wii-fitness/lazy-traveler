@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import places from './places'
 import coordinates from './coordinates'
+import selected from './selectplaces'
 
-const reducer = combineReducers({user, places, coordinates})
+const reducer = combineReducers({user, places, coordinates, selected})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

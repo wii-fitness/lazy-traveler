@@ -6,13 +6,14 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   margin: 8pm;
-  border: 1px solid lightgrey;
+  border: 3px solid lightgrey;
   border-radius: 2px;
+  width: 50%;
 `
 const Title = styled.h3`
   padding: 8px;
 `
-const LeftList = styled.div`
+const RightList = styled.div`
   padding: 8px;
 `
 //DROPPABLE has one required parameter, droppableId.  Needs to be unique w/in drag/drop context.
@@ -28,10 +29,15 @@ class Column2 extends React.Component {
     console.log('droppable', Droppable)
     return (
       <Container>
-        <Title>Column</Title>
-        <Droppable droppableId="left-side">
+        <Title>Selected Itinerary</Title>
+        <Droppable droppableId="right-side">
           {provided => (
-            <RightList ref={provided.innerRef} {...provided.droppableProps} />
+            <RightList ref={provided.innerRef} {...provided.droppableProps}>
+              {this.props.selected.map((place, index) => {
+                return <Card key={place.id} place={place} index={index} />
+              })}
+              {provided.placeholder}
+            </RightList>
           )}
         </Droppable>
       </Container>
@@ -41,7 +47,8 @@ class Column2 extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-    places: state.places
+    places: state.places,
+    selected: state.selected
   }
 }
 

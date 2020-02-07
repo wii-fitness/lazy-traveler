@@ -3,8 +3,10 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Card from './card'
 import Column from './column'
+import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces} from '../store/places'
+import {updateSelectPlaces} from '../store/selectplaces'
 
 class Recommended extends React.Component {
   constructor() {
@@ -62,11 +64,60 @@ class Recommended extends React.Component {
   onDragEnd = result => {
     console.log('in ondragEnd:', result)
     let {source, destination} = result
-    var newPlaces = Array.from(this.props.places)
-    let placeholder = newPlaces[source.index]
-    newPlaces.splice(source.index, 1)
-    newPlaces.splice(destination.index, 0, placeholder)
-    this.props.updatePlaces(newPlaces)
+
+    if (source.droppableId === destination.droppableId) {
+      const newPlaces = Array.from(this.props.places)
+      let placeholder = newPlaces[source.index]
+      newPlaces.splice(source.index, 1)
+      newPlaces.splice(destination.index, 0, placeholder)
+      this.props.updatePlaces(newPlaces)
+    }
+
+    if (
+      source.droppableId === 'left-side' &&
+      destination.droppableId === 'right-side'
+    ) {
+      // creates a new copy of places generated
+      const newPlaces = Array.from(this.props.places)
+
+      // holds the copy of the item for removal
+      let placeholder = newPlaces[source.index]
+
+      // creates a new copy of selected places, is empty at first
+      const newSelectedPlaces = Array.from(this.props.selected)
+      // push the copy of the item into selected places
+      newSelectedPlaces.splice(destination.index, 0, placeholder)
+      // updates store for selected places
+      this.props.updateSelectPlaces(newSelectedPlaces)
+
+      // updates the copy with the removed place
+      newPlaces.splice(source.index, 1)
+      this.props.updatePlaces(newPlaces)
+    }
+
+    if (
+      destination.droppableId === 'left-side' &&
+      source.droppableId === 'right-side'
+    ) {
+      // creates a new copy of selected places
+      const newSelectedPlaces = Array.from(this.props.selected)
+
+      // holds the copy of the item for removal
+      let placeholder = newSelectedPlaces[source.index]
+
+      // creates a new copy of places generated
+      const newPlaces = Array.from(this.props.places)
+
+      // push the copy of the item into selected places
+      newPlaces.splice(destination.index, 0, placeholder)
+
+      // updates the copy with the removed place
+      newSelectedPlaces.splice(source.index, 1)
+      this.props.updatePlaces(newPlaces)
+
+      // updates store for selected places
+      this.props.updateSelectPlaces(newSelectedPlaces)
+    }
   }
 
   render() {
@@ -80,9 +131,12 @@ class Recommended extends React.Component {
         <h1>HELLO</h1>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Column columnId="left-column" />
-          </DragDropContext>
+          <div className="columns">
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              <Column columnId="left-column" />
+              <Column2 columnId="right-column" />
+            </DragDropContext>
+          </div>
         </div>
         <div id="right-div">
           <button>Generate an Itinerary</button>
@@ -101,7 +155,8 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    updatePlaces: places => dispatch(updatePlaces(places))
+    updatePlaces: places => dispatch(updatePlaces(places)),
+    updateSelectPlaces: places => dispatch(updateSelectPlaces(places))
   }
 }
 
@@ -109,9 +164,3 @@ const RecommendedContainer = connect(mapStateToProps, mapDispatchToProps)(
   Recommended
 )
 export default RecommendedContainer
-
-// {this.orderRecommendations()
-//   .slice(0, 7)
-//   .map(place => {
-//     return <Card key={place.id} place={place} />
-//   })}
