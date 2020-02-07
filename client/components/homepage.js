@@ -99,7 +99,7 @@ class Home extends React.Component {
                       onChange={this.handleChange}
                     /> */}
                   </div>
-                  <div>
+                  {/*<div>
                     <label htmlFor="start">Start Date:</label>
                     <input
                       type="date"
@@ -114,7 +114,7 @@ class Home extends React.Component {
                       value={this.state.endDate}
                       onChange={this.handleChange}
                     />
-                  </div>
+                  </div>*/}
                   <div className="preference-title">
                     Activities preferences
                     <span className="optional"> (optional)</span>

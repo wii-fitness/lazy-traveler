@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
+  background: radial-gradient(rgb(235, 235, 235), white);
   display: flex;
   flex-direction: column;
   border: 3px solid lightgrey;
@@ -12,14 +13,14 @@ const Container = styled.div`
   padding: 10px;
   width: 95%;
 `
-const Title = styled.h4`
+const Title = styled.h2`
   position: relative;
-  line-height: 1.1;
+  line-height: 0;
 `
 const Description = styled.h5`
   position: relative;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 0;
 `
 
 class ItineraryCard extends React.Component {
@@ -49,12 +50,15 @@ class ItineraryCard extends React.Component {
       <Container>
         <div className="container-div">
           <div className="pic-container">
-            <img src={'https://' + this.state.photo} />
+            <img src={'https://' + this.state.photo} className="photo" />
           </div>
           <div className="description-container">
             <Title>{this.props.place.name}</Title>
-            {/* <Description>{this.props.place.rating}</Description> */}
-            <Description>need place description!!</Description>
+            <Description>
+              Rating:{' '}
+              {this.props.place.rating ? this.props.place.rating : 'N/A'}
+            </Description>
+            <Description>Address: {this.props.place.vicinity}</Description>
           </div>
         </div>
       </Container>
