@@ -1,4 +1,4 @@
-const place = [
+const places = [
   {
     geometry: {
       location: {
@@ -842,4 +842,4 @@ const place = [
   }
 ]
 
-export default place
+export default places
