@@ -198,3 +198,8 @@ img {
 .columns {
   display: flex;
 }
+
+.final-intinerary-container {
+  display: flex;
+  flex-direction: column;
+}

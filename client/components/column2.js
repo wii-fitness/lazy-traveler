@@ -6,15 +6,18 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   margin: 8pm;
-  border: 3px solid lightgrey;
-  border-radius: 2px;
-  width: 50%;
+  justify-content: center;
+  width: 45%;
+  min-height: 400px;
 `
 const Title = styled.h3`
   padding: 8px;
 `
 const RightList = styled.div`
   padding: 8px;
+  min-height: 775px;
+  background-color: skyblue;
+  flex-grow: 1;
 `
 //DROPPABLE has one required parameter, droppableId.  Needs to be unique w/in drag/drop context.
 //Error: children is not a function

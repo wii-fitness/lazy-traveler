@@ -6,7 +6,6 @@ import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
-import SimpleMap from './map'
 
 class Recommended extends React.Component {
   constructor() {
@@ -127,9 +126,6 @@ class Recommended extends React.Component {
     // ))
     return (
       <div>
-        <div style={{width: '28%', height: '25%'}}>
-          <SimpleMap />
-        </div>
         <h1>HELLO</h1>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
