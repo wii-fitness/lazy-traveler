@@ -30,7 +30,6 @@ class Home extends React.Component {
 
   handleCheckbox(event) {
     var eventName = event.target.name
-    console.log('Checked?', event.target.checked)
     if (event.target.checked) {
       // using a callback function in this.setState to avoid referencing previous state (caused linter error)
       // first interests is copied to interestsCopy, then the checkbox item in question is added or removed to the copy
@@ -46,7 +45,6 @@ class Home extends React.Component {
         interestsCopy = interestsCopy.filter(item => {
           return item !== eventName
         })
-        console.log('Within setstate', interestsCopy)
         return {interests: interestsCopy}
       })
     }
@@ -63,7 +61,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.coordinates)
     return (
       <div className="homeImage">
         {/* <div className= "home-content-1">

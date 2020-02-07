@@ -46,7 +46,6 @@ class Card extends React.Component {
   }
 
   async getPhoto() {
-    // console.log('photo', this.props.place.photos)
     if (this.props.place.photos) {
       const {data} = await axios.post('/api/places/photo', {
         photoreference: this.props.place.photos[0].photo_reference
@@ -56,8 +55,6 @@ class Card extends React.Component {
   }
 
   render() {
-    // console.log('draggable', Draggable)
-    // console.log('THIS.STATE.PHOTO', this.state.photo)
     return (
       <Draggable draggableId={this.props.place.id} index={this.props.index}>
         {provided => (

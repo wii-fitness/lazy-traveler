@@ -40,7 +40,7 @@ router.post('/', async (req, res, next) => {
   //   .catch(err => {
   //     console.log(err)
   //   })
-//    var coords = []
+  //    var coords = []
 
   // geocoding the text string provided by the user to Lat/Long coordinates
 
