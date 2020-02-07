@@ -6,7 +6,6 @@ import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
-import SimpleMap from './map'
 
 class Recommended extends React.Component {
   constructor() {

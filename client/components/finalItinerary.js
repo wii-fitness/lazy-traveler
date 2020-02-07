@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
+import SimpleMap from './map'
 import places from '../dummyData/dummy' //DUMMY DATA MUST DELETE AND REPLACE!
 
 const Container = styled.div`
@@ -29,28 +30,40 @@ class FinalItinerary extends React.Component {
 
   render() {
     return (
-      <DragDropContext>
-        <Container>
-          <Title>Final Itinerary</Title>
-          <Droppable droppableId="final-itinerary">
-            {provided => (
-              <LeftList ref={provided.innerRef} {...provided.droppableProps}>
-                {this.props.selected.map((place, index) => {
-                  return (
-                    <ItineraryCard
-                      key={place.id}
-                      place={place}
-                      index={index}
-                      draggable="false"
-                    />
-                  )
-                })}
-                {provided.placeholder}
-              </LeftList>
-            )}
-          </Droppable>
-        </Container>
-      </DragDropContext>
+      // <div style={display: 'flex'}>
+      <div className="final-itinerary-container">
+        <div>
+          <DragDropContext>
+            <Container>
+              <Title>Final Itinerary</Title>
+              <Droppable droppableId="final-itinerary">
+                {provided => (
+                  <LeftList
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {this.props.selected.map((place, index) => {
+                      return (
+                        <ItineraryCard
+                          key={place.id}
+                          place={place}
+                          index={index}
+                          draggable="false"
+                        />
+                      )
+                    })}
+                    {provided.placeholder}
+                  </LeftList>
+                )}
+              </Droppable>
+            </Container>
+          </DragDropContext>
+        </div>
+        {/* </div> */}
+        <div style={{width: '28%', height: '25%'}} className="map">
+          <SimpleMap />
+        </div>
+      </div>
     )
   }
 }

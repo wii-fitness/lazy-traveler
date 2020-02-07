@@ -219,6 +219,11 @@ img {
   display: flex;
 }
 
+.final-intinerary-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .recommended-view {
   background: rgb(255, 255, 255);
   height: 100%;
@@ -236,4 +241,11 @@ img {
 
 .place-description {
   font-size: xx-small;
+}
+
+.map {
+  position: relative;
+  right: 10%;
+  width: 200%;
+  height: 25%;
 }
