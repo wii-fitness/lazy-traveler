@@ -127,8 +127,6 @@ class Recommended extends React.Component {
     return (
       <div className="recommended-view">
         <h1>Create your itinerary here</h1>
-      <div>
-        <h1>HELLO</h1>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
