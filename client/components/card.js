@@ -32,11 +32,21 @@ class Card extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({photo: await this.getPhoto()})
+    const photo = localStorage.getItem(this.props.place.id)
+    console.log('PHOTOOOOOOO: ', photo)
+    if (photo) {
+      this.setState({photo: photo})
+    } else {
+      this.setState({photo: await this.getPhoto()})
+    }
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem(this.props.place.id, this.state.photo)
   }
 
   async getPhoto() {
-    console.log('photo', this.props.place.photos)
+    // console.log('photo', this.props.place.photos)
     if (this.props.place.photos) {
       const {data} = await axios.post('/api/places/photo', {
         photoreference: this.props.place.photos[0].photo_reference
