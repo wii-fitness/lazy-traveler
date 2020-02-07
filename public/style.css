@@ -203,6 +203,10 @@ img {
   display: flex;
 }
 
+.final-intinerary-container {
+  display: flex;
+  flex-direction: column;
+
 .recommended-view {
   background: rgb(255, 255, 255);
   height: 100%;
