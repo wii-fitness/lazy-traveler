@@ -12,6 +12,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const places = req.body.places
+    for (place of places) {
+      Place.findOrCreate(place.id)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:userId', async (req, res, next) => {
   try {
     const itinerary = await Itinerary.findAll({

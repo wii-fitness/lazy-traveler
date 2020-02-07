@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom'
 import Column from './column'
 import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
-import {updatePlaces} from '../store/places'
+import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
+import SimpleMap from './map'
 
 class Recommended extends React.Component {
   constructor() {
@@ -22,6 +23,7 @@ class Recommended extends React.Component {
       //   }
       // }
     }
+    this.buttonRefresh = this.buttonRefresh.bind(this)
     //this.orderRecommendations = this.orderRecommendations.bind(this)
   }
 
@@ -54,6 +56,7 @@ class Recommended extends React.Component {
 
   //only one that is required.
   //responsibility of this function to synchronously update state to reflect drag/drop result.
+
   onDragEnd = result => {
     let {source, destination} = result
 
@@ -63,9 +66,7 @@ class Recommended extends React.Component {
       newPlaces.splice(source.index, 1)
       newPlaces.splice(destination.index, 0, placeholder)
       this.props.updatePlaces(newPlaces)
-    }
-
-    if (
+    } else if (
       source.droppableId === 'left-side' &&
       destination.droppableId === 'right-side'
     ) {
@@ -85,9 +86,7 @@ class Recommended extends React.Component {
       // updates the copy with the removed place
       newPlaces.splice(source.index, 1)
       this.props.updatePlaces(newPlaces)
-    }
-
-    if (
+    } else if (
       destination.droppableId === 'left-side' &&
       source.droppableId === 'right-side'
     ) {
@@ -112,6 +111,15 @@ class Recommended extends React.Component {
     }
   }
 
+  buttonRefresh() {
+    //need to put counter, when to hit API to refresh places
+    let placesCopy = Array.from(this.props.places)
+    let placeholder = placesCopy.slice(0, 6)
+    placesCopy.splice(0, 6)
+    placesCopy = [...placesCopy, ...placeholder]
+    this.props.refreshAll(placesCopy)
+  }
+
   render() {
     // const cards = this.state.columns['leftColumn'].cardIds.map((cardId) => {
     //   if (cardId === this.props.places.id) return(
@@ -120,10 +128,17 @@ class Recommended extends React.Component {
     return (
       <div className="recommended-view">
         <h1>Create your itinerary here</h1>
+      <div>
+        <div style={{width: '28%', height: '25%'}}>
+          <SimpleMap />
+        </div>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
-            <DragDropContext onDragEnd={this.onDragEnd}>
+            <DragDropContext
+              // onDragStart={this.onDragStart}
+              onDragEnd={this.onDragEnd}
+            >
               <Column columnId="left-column" />
               <Column2 columnId="right-column" />
             </DragDropContext>
@@ -149,7 +164,8 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
   return {
     updatePlaces: places => dispatch(updatePlaces(places)),
-    updateSelectPlaces: places => dispatch(updateSelectPlaces(places))
+    updateSelectPlaces: places => dispatch(updateSelectPlaces(places)),
+    refreshAll: places => dispatch(refreshAll(places))
   }
 }
 
