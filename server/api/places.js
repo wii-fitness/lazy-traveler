@@ -124,22 +124,6 @@ router.get('/:placeId', async (req, res, next) => {
   }
 })
 
-router.get('/:placeId', async (req, res, next) => {
-  //MUST DELETE
-  try {
-    const places = await Place.findAll({
-      where: {
-        id: req.params.placeId
-      },
-      order: [['rating', 'DESC']]
-    })
-    // console.log(req.params.location)
-    res.json(places)
-  } catch (err) {
-    next(err)
-  }
-})
-
 // router.get(
 //   '/:location',
 //   async (req, res, next) => {
