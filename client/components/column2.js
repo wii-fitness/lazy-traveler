@@ -25,8 +25,7 @@ const RightList = styled.div`
 
 class Column2 extends React.Component {
   render() {
-    console.log('THIS.PROPS.PLACES:', this.props.places)
-    console.log('droppable', Droppable)
+    console.log(this.props.selected)
     return (
       <Container>
         <Title>Selected Itinerary</Title>

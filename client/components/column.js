@@ -25,8 +25,6 @@ const LeftList = styled.div`
 
 class Column extends React.Component {
   render() {
-    console.log('THIS.PROPS.PLACES:', this.props.places)
-    console.log('droppable', Droppable)
     return (
       <Container>
         <Title>Recommended Places</Title>

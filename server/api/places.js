@@ -40,7 +40,7 @@ router.post('/', async (req, res, next) => {
   //   .catch(err => {
   //     console.log(err)
   //   })
-//    var coords = []
+  //    var coords = []
 
   // geocoding the text string provided by the user to Lat/Long coordinates
 
@@ -110,6 +110,22 @@ router.post('/photo', async (req, res, next) => {
 // })
 
 router.get('/:placeId', async (req, res, next) => {
+  try {
+    const places = await Place.findAll({
+      where: {
+        id: req.params.placeId
+      },
+      order: [['rating', 'DESC']]
+    })
+    // console.log(req.params.location)
+    res.json(places)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:placeId', async (req, res, next) => {
+  //MUST DELETE
   try {
     const places = await Place.findAll({
       where: {

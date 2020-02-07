@@ -22,7 +22,7 @@ const Description = styled.h5`
   line-height: 1.1;
 `
 
-class Card extends React.Component {
+class ItineraryCard extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -46,28 +46,20 @@ class Card extends React.Component {
 
   render() {
     return (
-      <Draggable draggableId={this.props.place.id} index={this.props.index}>
-        {provided => (
-          <Container
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-          >
-            <div className="container-div">
-              <div className="pic-container">
-                <img src={'https://' + this.state.photo} />
-              </div>
-              <div className="description-container">
-                <Title>{this.props.place.name}</Title>
-                {/* <Description>{this.props.place.rating}</Description> */}
-                <Description>need place description!!</Description>
-              </div>
-            </div>
-          </Container>
-        )}
-      </Draggable>
+      <Container>
+        <div className="container-div">
+          <div className="pic-container">
+            <img src={'https://' + this.state.photo} />
+          </div>
+          <div className="description-container">
+            <Title>{this.props.place.name}</Title>
+            {/* <Description>{this.props.place.rating}</Description> */}
+            <Description>need place description!!</Description>
+          </div>
+        </div>
+      </Container>
     )
   }
 }
 
-export default Card
+export default ItineraryCard

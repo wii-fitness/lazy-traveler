@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import Card from './card'
 import Column from './column'
 import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
@@ -28,16 +27,11 @@ class Recommended extends React.Component {
 
   // orderRecommendations() {
   //   // WIP
-  //   console.log('Ordering recommendations')
-  //   console.log('This.props.places:', this.props.places)
   //   var orderedArray = []
   //   // count # of places
   //   var count = 0
   //   for (var interest of Object.keys(this.props.places)) {
-  //     for (var type of Object.keys(this.props.places[interest])) {
-  //       console.log('interest', interest)
-  //       console.log('type', type)
-  //       console.log('Array', this.props.places[interest][type])
+  //     for (var type of Object.keys(this.props.places[interest])) {[type])
   //       for (var place of this.props.places[interest][type]) {
   //         count++
   //       }
@@ -55,14 +49,12 @@ class Recommended extends React.Component {
   //     }
   //     i++
   //   }
-  //   console.log('Final ordered array:', orderedArray)
   //   return orderedArray
   // }
 
   //only one that is required.
   //responsibility of this function to synchronously update state to reflect drag/drop result.
   onDragEnd = result => {
-    console.log('in ondragEnd:', result)
     let {source, destination} = result
 
     if (source.droppableId === destination.droppableId) {
@@ -125,7 +117,6 @@ class Recommended extends React.Component {
     //   if (cardId === this.props.places.id) return(
 
     // ))
-    console.log('THIS.PROPS:', this.props)
     return (
       <div>
         <h1>HELLO</h1>
@@ -139,7 +130,9 @@ class Recommended extends React.Component {
           </div>
         </div>
         <div id="right-div">
-          <button>Generate an Itinerary</button>
+          <Link to="/itinerary">
+            <button>Generate an Itinerary</button>
+          </Link>
         </div>
       </div>
     )
