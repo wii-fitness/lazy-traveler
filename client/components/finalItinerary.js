@@ -35,7 +35,7 @@ class FinalItinerary extends React.Component {
           <Droppable droppableId="final-itinerary">
             {provided => (
               <LeftList ref={provided.innerRef} {...provided.droppableProps}>
-                {places.slice(0, 6).map((place, index) => {
+                {this.props.selected.map((place, index) => {
                   return (
                     <ItineraryCard
                       key={place.id}
