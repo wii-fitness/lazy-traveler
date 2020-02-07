@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import Column from './column'
 import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
-import {updatePlaces} from '../store/places'
+import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
 
 class Recommended extends React.Component {
@@ -22,6 +22,7 @@ class Recommended extends React.Component {
       //   }
       // }
     }
+    this.buttonRefresh = this.buttonRefresh.bind(this)
     //this.orderRecommendations = this.orderRecommendations.bind(this)
   }
 
@@ -63,9 +64,7 @@ class Recommended extends React.Component {
       newPlaces.splice(source.index, 1)
       newPlaces.splice(destination.index, 0, placeholder)
       this.props.updatePlaces(newPlaces)
-    }
-
-    if (
+    } else if (
       source.droppableId === 'left-side' &&
       destination.droppableId === 'right-side'
     ) {
@@ -85,9 +84,7 @@ class Recommended extends React.Component {
       // updates the copy with the removed place
       newPlaces.splice(source.index, 1)
       this.props.updatePlaces(newPlaces)
-    }
-
-    if (
+    } else if (
       destination.droppableId === 'left-side' &&
       source.droppableId === 'right-side'
     ) {
@@ -110,6 +107,15 @@ class Recommended extends React.Component {
       // updates store for selected places
       this.props.updateSelectPlaces(newSelectedPlaces)
     }
+  }
+
+  buttonRefresh() {
+    //need to put counter, when to hit API to refresh places
+    let placesCopy = Array.from(this.props.places)
+    let placeholder = placesCopy.slice(0, 6)
+    placesCopy.splice(0, 6)
+    placesCopy = [...placesCopy, ...placeholder]
+    this.props.refreshAll(placesCopy)
   }
 
   render() {
@@ -149,7 +155,8 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
   return {
     updatePlaces: places => dispatch(updatePlaces(places)),
-    updateSelectPlaces: places => dispatch(updateSelectPlaces(places))
+    updateSelectPlaces: places => dispatch(updateSelectPlaces(places)),
+    refreshAll: places => dispatch(refreshAll(places))
   }
 }
 

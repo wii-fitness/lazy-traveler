@@ -32,7 +32,17 @@ class Card extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({photo: await this.getPhoto()})
+    const photo = localStorage.getItem(this.props.place.id)
+    console.log('PHOTOOOOOOO: ', photo)
+    if (photo) {
+      this.setState({photo: photo})
+    } else {
+      this.setState({photo: await this.getPhoto()})
+    }
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem(this.props.place.id, this.state.photo)
   }
 
   async getPhoto() {
