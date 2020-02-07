@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_PLACES = 'GET_PLACES'
 const UPDATE_PLACES = 'UPDATE_PLACES'
+const REFRESH_ALL = 'REFRESH_ALL'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const initialPlaces = []
  */
 const gotPlaces = places => ({type: GET_PLACES, places})
 export const updatePlaces = places => ({type: UPDATE_PLACES, places})
+export const refreshAll = places => ({type: REFRESH_ALL, places})
 
 /**
  * THUNK CREATORS
@@ -80,6 +82,8 @@ export default function(state = initialPlaces, action) {
     case GET_PLACES:
       return action.places
     case UPDATE_PLACES:
+      return action.places
+    case REFRESH_ALL:
       return action.places
     default:
       return state
