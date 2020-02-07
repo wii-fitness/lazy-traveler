@@ -7,6 +7,7 @@ import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
+import SimpleMap from './map'
 
 class Recommended extends React.Component {
   constructor() {
@@ -62,6 +63,7 @@ class Recommended extends React.Component {
 
   //only one that is required.
   //responsibility of this function to synchronously update state to reflect drag/drop result.
+
   onDragEnd = result => {
     console.log('in ondragEnd:', result)
     let {source, destination} = result
@@ -134,11 +136,17 @@ class Recommended extends React.Component {
     console.log('THIS.PROPS:', this.props)
     return (
       <div>
+        <div style={{width: '28%', height: '25%'}}>
+          <SimpleMap />
+        </div>
         <h1>HELLO</h1>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
-            <DragDropContext onDragEnd={this.onDragEnd}>
+            <DragDropContext
+              // onDragStart={this.onDragStart}
+              onDragEnd={this.onDragEnd}
+            >
               <Column columnId="left-column" />
               <Column2 columnId="right-column" />
             </DragDropContext>
