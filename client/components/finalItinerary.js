@@ -60,7 +60,7 @@ class FinalItinerary extends React.Component {
           </DragDropContext>
         </div>
         {/* </div> */}
-        <div style={{width: '28%', height: '25%'}}>
+        <div style={{width: '28%', height: '25%'}} className="map">
           <SimpleMap />
         </div>
       </div>
