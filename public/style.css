@@ -34,6 +34,8 @@ nav a {
 nav {
   display: flex;
   flex-direction: row;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 form {
@@ -47,6 +49,20 @@ form {
   justify-content: center;
 } */
 
+.navbar {
+  background: black;
+  margin-top: -10px;
+  margin-bottom: -20px;
+  padding: 10px;
+  padding-left: 15px;
+  position: relative;
+  right: 1%;
+  width: 99.64%;
+}
+
+.navbar h1 {
+  color: white;
+}
 .homeImage {
   background-image: url(https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   height: 100%;
@@ -56,6 +72,7 @@ form {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
+  right: 0%;
   /* left: 0;
   right: 0;
   top: 0;
@@ -64,7 +81,6 @@ form {
 
 .home-content {
   display: flex;
-  margin-top: auto;
   margin-right: 0px;
   margin-bottom: auto;
   margin: 0px;
@@ -77,6 +93,7 @@ form {
 }
 
 .home-content .home-title {
+  padding-left: 15px;
   color: #fff;
   text-align: center;
 }
@@ -111,6 +128,14 @@ form {
 
 .planning-form {
   display: flex;
+  background: radial-gradient(white, #c0f1fc);
+  box-shadow: 2.5px 2.5px rgba(0, 0, 0, 0.35);
+  width: 88%;
+  padding: 27.4px;
+  position: relative;
+  top: 20%;
+  right: 20%;
+  border-radius: 20px;
   background: #fbfbfb;
   width: 100%;
   padding: 29px;
@@ -197,6 +222,25 @@ img {
 
 .columns {
   display: flex;
+}
+
+.recommended-view {
+  background: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.photo {
+  width: 150px;
+  height: 100px;
+}
+
+.place-description {
+  font-size: xx-small;
 }
 
 .final-intinerary-container {

@@ -16,6 +16,7 @@ const Title = styled.h3`
 const LeftList = styled.div`
   padding: 8px;
 `
+
 //DROPPABLE has one required parameter, droppableId.  Needs to be unique w/in drag/drop context.
 //Error: children is not a function
 //Droppable utilizes renderProp patent and expects its child to be a function that returns a react component.

@@ -130,10 +130,7 @@ class Recommended extends React.Component {
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
-            <DragDropContext
-              // onDragStart={this.onDragStart}
-              onDragEnd={this.onDragEnd}
-            >
+            <DragDropContext onDragEnd={this.onDragEnd}>
               <Column columnId="left-column" />
               <Column2 columnId="right-column" />
             </DragDropContext>
