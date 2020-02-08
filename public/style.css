@@ -248,8 +248,9 @@ img {
 }
 
 .map {
-  position: relative;
-  right: 10%;
+  position: absolute;
+  left: 60%;
+  bottom: 55%;
   width: 28%;
   height: 25%;
 }
