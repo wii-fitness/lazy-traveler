@@ -14,16 +14,13 @@ class LocationSearch extends React.Component {
 
   handleChange = address => {
     this.setState({address})
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      // sets coordinates for location
-      .then(latLng => this.props.getCoordinates(latLng))
   }
 
   handleSelect = address => {
     this.setState({address})
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
+      .then(latLng => this.props.getCoordinates(latLng))
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error))
   }
