@@ -13,6 +13,7 @@ const Container = styled.div`
   border-radius: 2px;
   width: 50%;
   position: absolute;
+  bottom: 67%;
   left: 2%;
 `
 const Title = styled.h3`
@@ -30,9 +31,8 @@ class FinalItinerary extends React.Component {
 
   render() {
     return (
-      // <div style={display: 'flex'}>
-      <div className="final-itinerary-container">
-        <div>
+      <div style={{display: 'flex'}}>
+        <div className="final-itinerary-container">
           <DragDropContext>
             <Container>
               <Title>Final Itinerary</Title>
@@ -59,8 +59,7 @@ class FinalItinerary extends React.Component {
             </Container>
           </DragDropContext>
         </div>
-        {/* </div> */}
-        <div style={{width: '28%', height: '25%'}} className="map">
+        <div className="map">
           <SimpleMap />
         </div>
       </div>
@@ -75,9 +74,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+// const mapDispatchToProps = dispatch => {
+//   return {}
+// }
 
 export default connect(mapStateToProps)(FinalItinerary)
 

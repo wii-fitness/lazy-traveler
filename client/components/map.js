@@ -3,25 +3,29 @@ import {connect} from 'react-redux'
 import GoogleMapReact from 'google-map-react'
 
 const AnyReactComponent = () => (
-  <img src="https://lakelandescaperoom.com/wp-content/uploads/2019/11/google-map-marker-red-peg-png-image-red-pin-icon-png-clipart-pins-on-a-map-png-880_1360.jpg" />
+  <img
+    src="https://vectorified.com/images/map-marker-icon-png-9.jpg"
+    style={{height: '25px', width: '25px'}}
+  />
 )
+
+const apiKey = process.env.API_KEY
 
 class SimpleMap extends Component {
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33
+      lat: '',
+      lng: ''
     },
     zoom: 11
   }
 
   render() {
-    console.log(this.props.coordinates)
     return (
       // Important! Always set the container height explicitly
       <div style={{height: '50vh', width: '100%'}}>
         <GoogleMapReact
-          bootstrapURLKeys={{key: 'AIzaSyDI48TDEG3kjhmQ6f9KiClbRmKePuYYqHw'}}
+          bootstrapURLKeys={{key: apiKey}}
           defaultCenter={{
             lat: this.props.coordinates.lat,
             lng: this.props.coordinates.lng

@@ -14,8 +14,6 @@ class LocationSearch extends React.Component {
 
   handleChange = address => {
     this.setState({address})
-    geocodeByAddress(address).then(results => getLatLng(results[0]))
-    // sets coordinates for location
   }
 
   handleSelect = address => {
