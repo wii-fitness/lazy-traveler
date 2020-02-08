@@ -18,7 +18,6 @@ a {
 }
 
 nav a {
-  background-color: linear-gradient(lightblue, white);
   float: left;
   display: flex;
   justify-content: space-evenly;
@@ -34,9 +33,10 @@ nav a {
 }
 
 nav {
-  background-color: linear-gradient(lightblue, white);
   display: flex;
   flex-direction: row;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 form {
@@ -51,7 +51,27 @@ form {
 } */
 
 .navbar {
-  background: linear-gradient(rgb(236, 236, 236), rgb(152, 209, 228));
+  background: black;
+  margin-top: -10px;
+  padding: 10px;
+  padding-left: 15px;
+  position: relative;
+  right: 1%;
+  width: 99.64%;
+}
+
+.navbar h1 {
+  background: black;
+  margin-top: -10px;
+  padding: 10px;
+  padding-left: 15px;
+  position: relative;
+  right: 1%;
+  width: 99.64%;
+}
+
+.navbar h1 {
+  color: white;
 }
 
 .homeImage {
@@ -63,6 +83,7 @@ form {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
+  left: 0%;
   /* left: 0;
   right: 0;
   top: 0;
@@ -71,7 +92,6 @@ form {
 
 .home-content {
   display: flex;
-  margin-top: auto;
   margin-right: 0px;
   margin-bottom: auto;
   margin: 0px;
@@ -84,6 +104,7 @@ form {
 }
 
 .home-content .home-title {
+  padding-left: 15px;
   color: #fff;
   text-align: center;
 }
@@ -118,9 +139,15 @@ form {
 
 .planning-form {
   display: flex;
-  background: linear-gradient(lightblue, white);
-  width: 100%;
-  padding: 29px;
+  background: radial-gradient(white, #c0f1fc);
+  box-shadow: 2.5px 2.5px rgba(0, 0, 0, 0.35);
+  width: 88%;
+  padding: 27.4px;
+  position: relative;
+  top: 20%;
+  right: 20%;
+  /* border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px; */
   border-radius: 20px;
   z-index: 1;
   /* box-shadow: 0 20px 0 rgba(0,0,0,0.1); */
