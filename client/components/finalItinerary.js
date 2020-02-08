@@ -13,6 +13,7 @@ const Container = styled.div`
   border-radius: 2px;
   width: 50%;
   position: absolute;
+  bottom: 67%;
   left: 2%;
 `
 const Title = styled.h3`

@@ -53,6 +53,7 @@ form {
 .navbar {
   background: black;
   margin-top: -10px;
+  margin-bottom: -20px;
   padding: 10px;
   padding-left: 15px;
   position: relative;
@@ -236,4 +237,12 @@ img {
 
 .place-description {
   font-size: xx-small;
+}
+
+.map {
+  width: '28%';
+  height: '25%';
+  position: absolute;
+  bottom: 55%;
+  left: 60%;
 }
