@@ -61,19 +61,8 @@ form {
 }
 
 .navbar h1 {
-  background: black;
-  margin-top: -10px;
-  padding: 10px;
-  padding-left: 15px;
-  position: relative;
-  right: 1%;
-  width: 99.64%;
-}
-
-.navbar h1 {
   color: white;
 }
-
 .homeImage {
   background-image: url(https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   height: 100%;
@@ -83,7 +72,7 @@ form {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
-  left: 0%;
+  right: 0%;
   /* left: 0;
   right: 0;
   top: 0;
@@ -230,11 +219,6 @@ img {
   display: flex;
 }
 
-.final-intinerary-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .recommended-view {
   background: rgb(255, 255, 255);
   height: 100%;
@@ -252,11 +236,4 @@ img {
 
 .place-description {
   font-size: xx-small;
-}
-
-.map {
-  position: relative;
-  right: 10%;
-  width: 200%;
-  height: 25%;
 }
