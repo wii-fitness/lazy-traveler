@@ -254,3 +254,8 @@ img {
   width: 28%;
   height: 25%;
 }
+
+.itinerary-title {
+  position: relative;
+  left: 22%;
+}

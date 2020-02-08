@@ -13,7 +13,6 @@ const Container = styled.div`
   border-radius: 2px;
   width: 50%;
   position: absolute;
-  bottom: 67%;
   left: 2%;
 `
 const Title = styled.h3`
@@ -32,7 +31,8 @@ class FinalItinerary extends React.Component {
   render() {
     return (
       <div style={{display: 'flex'}}>
-        <div className="final-itinerary-container">
+        <div>
+          <h1 className="itinerary-title">YOUR FINAL ITINERARY</h1>
           <DragDropContext>
             <Container>
               <Title>Final Itinerary</Title>
