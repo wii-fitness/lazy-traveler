@@ -84,22 +84,22 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className="planning-form-col">
-            <div className="planning-form">
-              <form id="planning-form" onSubmit={this.handleSubmit}>
-                <div className="steps">
-                  <div className="title">Itinerary Planner</div>
-                  <div className="destination">
-                    <label htmlFor="location">Location:</label>
-                    <LocationSearch />
-                    {/* <input
+          <form id="planning-form" onSubmit={this.handleSubmit}>
+            <div className="steps">
+              <div className="title">Itinerary Planner</div>
+              <div className="destination">
+                <label htmlFor="location">Location:</label>
+                <div className="auto-search-container">
+                  <LocationSearch />
+                </div>
+                {/* <input
                       type="text"
                       name="location"
                       value={this.state.location}
                       onChange={this.handleChange}
                     /> */}
-                  </div>
-                  {/*<div>
+              </div>
+              {/*<div>
                     <label htmlFor="start">Start Date:</label>
                     <input
                       type="date"
@@ -115,72 +115,69 @@ class Home extends React.Component {
                       onChange={this.handleChange}
                     />
                   </div>*/}
-                  <div className="preference-title">
-                    Activities preferences
-                    <span className="optional"> (optional)</span>
-                  </div>
-                  <div className="interests">
-                    <div className="interest-column">
-                      <label htmlFor="arts">Arts</label>
-                      <input
-                        type="checkbox"
-                        name="arts"
-                        value="arts"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-                    <div className="interest-column">
-                      <label htmlFor="shopping">Museums</label>
-                      <input
-                        type="checkbox"
-                        name="museums"
-                        value="museums"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-                    <div className="interest-column">
-                      <label htmlFor="nature">Shopping</label>
-                      <input
-                        type="checkbox"
-                        name="shopping"
-                        value="shopping"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-                    <div className="interest-column">
-                      <label htmlFor="culture">Family</label>
-                      <input
-                        type="checkbox"
-                        name="family"
-                        value="family"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-                    <div className="interest-column">
-                      <label htmlFor="arts">Nightlife</label>
-                      <input
-                        type="checkbox"
-                        name="nightlife"
-                        value="nightlife"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-                    <div className="interest-column">
-                      <label htmlFor="arts">Fine Dining</label>
-                      <input
-                        type="checkbox"
-                        name="fineDining"
-                        value="fineDining"
-                        onChange={this.handleCheckbox}
-                      />
-                    </div>
-
-                    <button type="submit">Submit</button>
-                  </div>
+              <div className="preference-title">
+                Activities preferences
+                <span className="optional"> (optional)</span>
+              </div>
+              <div className="interests">
+                <div className="interest-column">
+                  <label htmlFor="arts">Arts</label>
+                  <input
+                    type="checkbox"
+                    name="arts"
+                    value="arts"
+                    onChange={this.handleCheckbox}
+                  />
                 </div>
-              </form>
+                <div className="interest-column">
+                  <label htmlFor="shopping">Museums</label>
+                  <input
+                    type="checkbox"
+                    name="museums"
+                    value="museums"
+                    onChange={this.handleCheckbox}
+                  />
+                </div>
+                <div className="interest-column">
+                  <label htmlFor="nature">Shopping</label>
+                  <input
+                    type="checkbox"
+                    name="shopping"
+                    value="shopping"
+                    onChange={this.handleCheckbox}
+                  />
+                </div>
+                <div className="interest-column">
+                  <label htmlFor="culture">Family</label>
+                  <input
+                    type="checkbox"
+                    name="family"
+                    value="family"
+                    onChange={this.handleCheckbox}
+                  />
+                </div>
+                <div className="interest-column">
+                  <label htmlFor="arts">Nightlife</label>
+                  <input
+                    type="checkbox"
+                    name="nightlife"
+                    value="nightlife"
+                    onChange={this.handleCheckbox}
+                  />
+                </div>
+                <div className="interest-column">
+                  <label htmlFor="arts">Fine Dining</label>
+                  <input
+                    type="checkbox"
+                    name="fineDining"
+                    value="fineDining"
+                    onChange={this.handleCheckbox}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
     )
