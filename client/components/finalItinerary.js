@@ -70,12 +70,4 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {}
-// }
-
 export default connect(mapStateToProps)(FinalItinerary)
-
-// {places.map(place => {//DUMMY DATA
-//   return <ItineraryCard key={place.id} place={place} />
-// })}
