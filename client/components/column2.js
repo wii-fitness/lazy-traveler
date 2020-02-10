@@ -16,6 +16,7 @@ const Title = styled.h3`
 const RightList = styled.div`
   padding: 8px;
   min-height: 775px;
+  background-color: white;
   flex-grow: 1;
 `
 

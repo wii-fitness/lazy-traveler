@@ -66,7 +66,7 @@ class Home extends React.Component {
         <div className="home-content-1">
           <div className="home-content">
             <div className="home-title">
-              <h1 className="title">Let us plan your trip</h1>
+              <h1 className="image-title">Let us plan your trip</h1>
               <h3>Create a fully customized itinerary</h3>
             </div>
           </div>
@@ -74,10 +74,12 @@ class Home extends React.Component {
           <form id="planning-form" onSubmit={this.handleSubmit}>
             <div className="steps">
               <div className="title">Itinerary Planner</div>
-              <div className="destination">
-                <label htmlFor="location">Location:</label>
-                <div className="auto-search-container">
-                  <LocationSearch />
+              <div className="destination-search">
+                <div className="destination">
+                  <label htmlFor="location" />
+                  <div className="auto-search-container">
+                    <LocationSearch />
+                  </div>
                 </div>
               </div>
               <div>

@@ -8,7 +8,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   // <div>
   <nav className="navbar">
     <Link to="/" style={{color: 'white'}}>
-      theLazyTraveler
+      <div className="nav-title">theLazyTraveler</div>
     </Link>
     {isLoggedIn ? (
       <div>

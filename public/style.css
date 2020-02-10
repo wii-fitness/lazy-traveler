@@ -95,6 +95,7 @@ nav {
 } */
 
 .home-content .home-title {
+  position: initial;
   padding-left: 15px;
   /* color: #fff; */
   text-align: center;
@@ -159,7 +160,7 @@ nav {
 }
 
 #planning-form .steps {
-  margin-bottom: 10px;
+  margin-bottom: 10%;
 }
 
 #planning-form .title {
@@ -182,7 +183,7 @@ nav {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  height: 22px;
+  /* height: 22px; */
 }
 
 #planning-form .preference-title {
@@ -224,6 +225,11 @@ nav {
   width: 33.33%;
 }
 
+.location {
+  position: static;
+  bottom: 10%;
+}
+
 /* #planning-form .interest-column .label {
   padding: 7px 0 7px 0;
   width: 33.33%;
@@ -250,6 +256,8 @@ label {
 .description-container {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  height: 100%;
 }
 
 img {
@@ -275,7 +283,7 @@ img {
 
 .photo {
   width: 150px;
-  height: 100px;
+  height: 90%;
 }
 
 .place-description {
@@ -292,7 +300,7 @@ img {
 
 .map {
   position: relative;
-  left: 59%;
+  left: 45%;
   top: 10px;
   width: 38%;
   height: 25%;
@@ -310,6 +318,8 @@ img {
 */
 
 .location-search-input {
+  border-radius: 10px;
+  padding: 5px;
   display: flex;
   position: absolute;
 }
@@ -334,5 +344,21 @@ img {
   font-size: 10px;
   line-height: 1.1px;
   position: absolute;
-  z-index: 1;
+  z-index: 5;
+}
+
+.title {
+  position: relative;
+  left: 1.5%;
+  padding: 2px;
+}
+
+.image-title {
+  position: static;
+  left: 8%;
+  padding: 2px;
+}
+
+.nav-title {
+  font-size: 15.5px;
 }

@@ -15,9 +15,6 @@ const Container = styled.div`
   left: 2%;
 `
 
-const Title = styled.h3`
-  padding: 8px;
-`
 const LeftList = styled.div`
   padding: 8px;
 `
@@ -33,8 +30,8 @@ class FinalItinerary extends React.Component {
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">
           <DragDropContext>
+            <h1 className="title">Final Itinerary</h1>
             <Container>
-              <Title>Final Itinerary</Title>
               <Droppable droppableId="final-itinerary">
                 {provided => (
                   <LeftList

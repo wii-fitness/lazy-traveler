@@ -15,12 +15,12 @@ const Container = styled.div`
 `
 const Title = styled.h4`
   position: relative;
-  line-height: 0;
+  line-height: 1;
 `
 const Description = styled.h5`
   position: relative;
   font-weight: 500;
-  line-height: 0;
+  line-height: 1;
 `
 
 class Card extends React.Component {
