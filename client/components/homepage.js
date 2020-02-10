@@ -15,7 +15,8 @@ class Home extends React.Component {
       startDate: '',
       endDate: '',
       days: 0,
-      interests: []
+      interests: [],
+      coordinates: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)

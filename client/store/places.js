@@ -56,6 +56,7 @@ function orderRecommendations(placesObject) {
   console.log('Final ordered array:', orderedArray)
   return orderedArray
 }
+//change orderedArray.length to i, and then add (if !orderedArray.length.includes(placesObject[interest2][type2][i])) to line 49.
 
 export const getPlaces = formData => {
   return async dispatch => {

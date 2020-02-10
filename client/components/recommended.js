@@ -12,15 +12,6 @@ class Recommended extends React.Component {
     super()
     this.state = {
       interests: []
-      // columns: {
-      //   leftColumn: {
-      //     id: 'left-column',
-      //     title: 'Recommended For You',
-      //     cardIds: this.props.places.map(place => {
-      //       return place.id
-      //     })
-      //   }
-      // }
     }
     this.buttonRefresh = this.buttonRefresh.bind(this)
     //this.orderRecommendations = this.orderRecommendations.bind(this)
