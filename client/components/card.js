@@ -44,8 +44,10 @@ class Card extends React.Component {
 
   componentWillUnmount() {
     localStorage.setItem(this.props.place.id, this.state.photo)
+    //document bug-fix for rendering images
   }
 
+  //move to thunk
   async getPhoto() {
     if (this.props.place.photos) {
       const {data} = await axios.post('/api/places/photo', {

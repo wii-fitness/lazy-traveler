@@ -55,6 +55,9 @@ router.post('/', async (req, res, next) => {
       //setting type as a key on the interest object with an empty array as its value (this will contain all the places returned from searching for that type)
       suggestedLocations[interest][type] = []
       // making a nearby search API request for each type
+
+      //DON'T NEED AWAIT KEYWORD?
+      //can't use await and .then together
       await googleMapsClient
         .placesNearby({
           location: coords,

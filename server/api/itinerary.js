@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//return & await
 router.post('/', async (req, res, next) => {
   try {
     const places = req.body.places
