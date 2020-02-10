@@ -80,22 +80,22 @@ class Home extends React.Component {
                   <LocationSearch />
                 </div>
               </div>
-              {/*<div>
-                    <label htmlFor="start">Start Date:</label>
-                    <input
-                      type="date"
-                      name="startDate"
-                      value={this.state.startDate}
-                      onChange={this.handleChange}
-                    />
-                    <label htmlFor="end">End Date:</label>
-                    <input
-                      type="date"
-                      name="endDate"
-                      value={this.state.endDate}
-                      onChange={this.handleChange}
-                    />
-                  </div>*/}
+              <div>
+                <label htmlFor="start">Start Date:</label>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={this.state.startDate}
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="end">End Date:</label>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={this.state.endDate}
+                  onChange={this.handleChange}
+                />
+              </div>
               <div className="preference-title">
                 Activities preferences
                 <span className="optional"> (optional)</span>

@@ -32,13 +32,14 @@ function orderRecommendations(placesObject) {
   var count = 0
   var cache = {}
   var uniqueCache = {}
-  // var cache2 = {}
+
   for (var interest of Object.keys(placesObject)) {
     for (var type of Object.keys(placesObject[interest])) {
       console.log('interest', interest)
       console.log('type', type)
       console.log('Array', placesObject[interest][type])
 
+      //need to create a uniqueCache
       for (var place of placesObject[interest][type]) {
         if (!uniqueCache[place.id]) {
           count++
@@ -57,13 +58,13 @@ function orderRecommendations(placesObject) {
         if (placesObject[interest2][type2][i]) {
           // console.log('hello', cache)
 
-          //if it doesn't exist in hash, create it in hash and push to orderedArray
+          //checks for duplicates before updating cache
           if (!cache[placesObject[interest2][type2][i].id]) {
             cache[placesObject[interest2][type2][i].id] =
               placesObject[interest2][type2][i]
             console.log('CACHE: ', cache)
             console.log('blahhhhhh', orderedArray)
-
+            //pushes only unique places into array
             orderedArray.push(placesObject[interest2][type2][i])
           }
         }
