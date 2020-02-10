@@ -43,7 +43,7 @@ class FinalItinerary extends React.Component {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {this.props.selected.map((place, index) => {
+                    {this.props.itinerary.map((place, index) => {
                       return (
                         <ItineraryCard
                           key={place.id}
@@ -71,7 +71,7 @@ class FinalItinerary extends React.Component {
 const mapStateToProps = state => {
   return {
     places: state.places,
-    selected: state.selected
+    itinerary: state.itinerary
   }
 }
 

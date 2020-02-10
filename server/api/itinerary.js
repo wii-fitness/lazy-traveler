@@ -14,10 +14,10 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log('BODY', req.body)
     const places = req.body.places
-    for (place of places) {
-      Place.findOrCreate(place.id)
-    }
+    console.log('PLACES', places)
+    res.json(places)
   } catch (err) {
     next(err)
   }
