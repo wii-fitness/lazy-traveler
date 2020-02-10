@@ -7,14 +7,17 @@ import places from './places'
 import coordinates from './coordinates'
 import selected from './selectplaces'
 import itinerary from './itinerary'
+import dates from './dates'
 
 const reducer = combineReducers({
   user,
   places,
   coordinates,
   selected,
-  itinerary
+  itinerary,
+  dates
 })
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

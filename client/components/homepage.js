@@ -5,6 +5,7 @@ import {getPlaces} from '../store/places'
 import LocationSearch from './search'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
+import {getDates} from '../store/dates'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
@@ -56,6 +57,8 @@ class Home extends React.Component {
       ...this.state,
       coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
     })
+    console.log('Dates', this.state.startDate, this.state.endDate)
+    this.props.getDates(this.state.startDate, this.state.endDate)
     // need to check if req was successful
     this.props.history.push('/builder')
   }
@@ -99,22 +102,22 @@ class Home extends React.Component {
                       onChange={this.handleChange}
                     /> */}
               </div>
-              {/*<div>
-                    <label htmlFor="start">Start Date:</label>
-                    <input
-                      type="date"
-                      name="startDate"
-                      value={this.state.startDate}
-                      onChange={this.handleChange}
-                    />
-                    <label htmlFor="end">End Date:</label>
-                    <input
-                      type="date"
-                      name="endDate"
-                      value={this.state.endDate}
-                      onChange={this.handleChange}
-                    />
-                  </div>*/}
+              <div>
+                <label htmlFor="start">Start Date:</label>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={this.state.startDate}
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="end">End Date:</label>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={this.state.endDate}
+                  onChange={this.handleChange}
+                />
+              </div>
               <div className="preference-title">
                 Activities preferences
                 <span className="optional"> (optional)</span>
@@ -195,6 +198,11 @@ const mapDispatchToProps = function(dispatch) {
     getPlaces: function(formData) {
       const action = getPlaces(formData)
       dispatch(action)
+    },
+    getDates: function(start, end) {
+      console.log('getting dates', start, end)
+      const dates = {start: start, end: end}
+      dispatch(getDates(dates))
     }
   }
 }
