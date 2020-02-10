@@ -17,18 +17,28 @@ class SimpleMap extends Component {
       lat: '',
       lng: ''
     },
-    zoom: 11
+    zoom: 12.5
   }
 
   render() {
+    let avgLat =
+      this.props.selected.reduce(function(accumulator, place) {
+        return place.geometry.location.lat + accumulator
+      }, 0) / this.props.selected.length
+
+    let avgLng =
+      this.props.selected.reduce(function(accumulator, place) {
+        return place.geometry.location.lng + accumulator
+      }, 0) / this.props.selected.length
+
     return (
       // Important! Always set the container height explicitly
-      <div style={{height: '50vh', width: '100%'}}>
+      <div style={{height: '75vh', width: '100%'}}>
         <GoogleMapReact
           bootstrapURLKeys={{key: apiKey}}
           defaultCenter={{
-            lat: this.props.coordinates.lat,
-            lng: this.props.coordinates.lng
+            lat: avgLat,
+            lng: avgLng
           }}
           defaultZoom={this.props.zoom}
         >

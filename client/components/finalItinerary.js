@@ -15,7 +15,7 @@ const Container = styled.div`
   position: absolute;
   left: 2%;
 `
-// bottom: 67%;
+// bottom: 67%; not sure why this was there
 
 const Title = styled.h3`
   padding: 8px;

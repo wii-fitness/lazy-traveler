@@ -48,7 +48,11 @@ class LocationSearch extends React.Component {
                   : 'suggestion-item'
 
                 const style = suggestion.active
-                  ? {backgroundColor: '#fafafa', cursor: 'pointer'}
+                  ? {
+                      backgroundColor: '#88cfe3',
+                      opacity: '.75',
+                      cursor: 'pointer'
+                    }
                   : {backgroundColor: '#ffffff', cursor: 'pointer'}
                 return (
                   <div
