@@ -17,7 +17,7 @@ class Recommended extends React.Component {
   }
 
   onDragEnd = result => {
-    let {source, destination} = result
+    const {source, destination} = result
 
     if (source.droppableId === destination.droppableId) {
       const newPlaces = Array.from(this.props.places)
