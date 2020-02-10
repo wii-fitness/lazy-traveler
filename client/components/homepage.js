@@ -63,19 +63,6 @@ class Home extends React.Component {
   render() {
     return (
       <div className="homeImage">
-        {/* <div className= "home-content-1">
-        <Form>
-          <Form.Group controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          </Form>
-          </div> */}
-
         <div className="home-content-1">
           <div className="home-content">
             <div className="home-title">
@@ -92,12 +79,6 @@ class Home extends React.Component {
                 <div className="auto-search-container">
                   <LocationSearch />
                 </div>
-                {/* <input
-                      type="text"
-                      name="location"
-                      value={this.state.location}
-                      onChange={this.handleChange}
-                    /> */}
               </div>
               {/*<div>
                     <label htmlFor="start">Start Date:</label>

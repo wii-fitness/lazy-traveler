@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
-import places from '../dummyData/dummy' //DUMMY DATA MUST DELETE AND REPLACE!
 
 const Container = styled.div`
   margin: 8pm;
@@ -15,7 +14,6 @@ const Container = styled.div`
   position: absolute;
   left: 2%;
 `
-// bottom: 67%; not sure why this was there
 
 const Title = styled.h3`
   padding: 8px;
@@ -75,12 +73,4 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {}
-// }
-
 export default connect(mapStateToProps)(FinalItinerary)
-
-// {places.map(place => {//DUMMY DATA
-//   return <ItineraryCard key={place.id} place={place} />
-// })}
