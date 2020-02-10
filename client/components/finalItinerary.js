@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
-import places from '../dummyData/dummy' //DUMMY DATA MUST DELETE AND REPLACE!
 
 const Container = styled.div`
   margin: 8pm;
@@ -15,11 +14,7 @@ const Container = styled.div`
   position: absolute;
   left: 2%;
 `
-// bottom: 67%; not sure why this was there
 
-const Title = styled.h3`
-  padding: 8px;
-`
 const LeftList = styled.div`
   padding: 8px;
 `
@@ -35,8 +30,8 @@ class FinalItinerary extends React.Component {
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">
           <DragDropContext>
+            <h1 className="title">Final Itinerary</h1>
             <Container>
-              <Title>Final Itinerary</Title>
               <Droppable droppableId="final-itinerary">
                 {provided => (
                   <LeftList
