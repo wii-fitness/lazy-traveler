@@ -30,11 +30,13 @@ class FinalItinerary extends React.Component {
   // saves itinerary by userId
   async userSaveItinerary() {
     try {
-      const userId = '3'
+      const userId = this.props.user.id
       // this.props.userId
       await Axios.post(`/api/itinerary/${userId}`, {
         places: this.props.selected
       })
+      // NEED TO REDIRECT TO HOME ONCE THEY CLICK
+      // this.props.history.push('/home')
     } catch (err) {
       console.error(err)
     }
@@ -84,6 +86,7 @@ class FinalItinerary extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     places: state.places,
     selected: state.selected
   }

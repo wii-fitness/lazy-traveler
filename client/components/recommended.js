@@ -83,6 +83,11 @@ class Recommended extends React.Component {
     return (
       <div className="recommended-view">
         <h1>Create your itinerary here</h1>
+        <div id="right-div">
+          <Link to="/itinerary">
+            <button>Generate an Itinerary</button>
+          </Link>
+        </div>
         <div id="left-div">
           <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
@@ -91,11 +96,6 @@ class Recommended extends React.Component {
               <Column2 columnId="right-column" />
             </DragDropContext>
           </div>
-        </div>
-        <div id="right-div">
-          <Link to="/itinerary">
-            <button>Generate an Itinerary</button>
-          </Link>
         </div>
       </div>
     )

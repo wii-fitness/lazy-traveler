@@ -10,40 +10,26 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="homeImage">
-      <div className="home-content-1">
-        <div className="home-content">
-          <div className="auth-title">
-            <h1 className="auth-image-title">Let us plan your trip</h1>
-            <h3 className="auth-image-title-2">
-              Create a fully customized itinerary
-            </h3>
-          </div>
+    <div>
+      <form onSubmit={handleSubmit} name={name}>
+        <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
         </div>
-        <form className="auth-form" onSubmit={handleSubmit} name={name}>
-          <div className="auth-title-2">{displayName}</div>
-          <div className="auto-search-container">
-            <div>
-              <label htmlFor="email">
-                <div>Email:</div>
-              </label>
-              <input name="email" type="text" className="auth-email" />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <div>Password:</div>
-              </label>
-              <input name="password" type="password" className="auth-email" />
-            </div>
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-          <a href="/auth/google">{displayName} with Google</a>
-        </form>
-      </div>
-  
+        <div>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </div>
+        <div>{/* <button type="submit">{displayName}</button> */}</div>
+        {error && error.response && <div> {error.response.data} </div>}
+      </form>
+      <a href="/auth/google">
+        <button type="button">{displayName} with Google</button>
+      </a>
     </div>
   )
 }

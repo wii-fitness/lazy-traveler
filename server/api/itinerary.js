@@ -29,7 +29,8 @@ router.get('/:userId', async (req, res, next) => {
     const itinerary = await Itinerary.findAll({
       where: {
         userId: req.params.userId
-      }
+      },
+      include: [{model: Place}]
     })
     res.json(itinerary)
   } catch (err) {
@@ -41,7 +42,7 @@ router.get('/:userId', async (req, res, next) => {
 router.post('/:userId', async (req, res, next) => {
   try {
     const data = req.body.places
-    // console.log('req.body.place', data)
+    console.log('req.body.place', data)
 
     // creates new instance in the Itinerary table
     const itinerary = await Itinerary.create({

@@ -1,22 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {getPastItineraries} from '../store/itineraryhistory'
+import PastItinerary from './pastItinerary'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends React.Component {
+  componentDidMount() {
+    this.props.getPastItineraries(this.props.user.id)
+  }
 
-  return (
-    <div>
-      <h2>Welcome, {email}</h2>
+  render() {
+    return (
       <div>
-        <h3>Saved Itineraries:</h3>
-        {}
+        <h2>Welcome, {this.props.user.email}</h2>
+        <div>
+          <h3>Saved Itineraries:</h3>
+          {this.props.itineraryHistory.map(itinerary => {
+            return <PastItinerary itinerary={itinerary} key={itinerary.id} />
+          })}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 /**
@@ -24,12 +33,18 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email,
-    user: state.user
+    user: state.user,
+    itineraryHistory: state.itineraryHistory
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatchToProps = function(dispatch) {
+  return {
+    getPastItineraries: userId => dispatch(getPastItineraries(userId))
+  }
+}
+
+export default connect(mapState, mapDispatchToProps)(UserHome)
 
 /**
  * PROP TYPES
