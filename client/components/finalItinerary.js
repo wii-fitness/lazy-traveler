@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
+import Axios from 'axios'
 
 const Container = styled.div`
   margin: 8pm;
@@ -23,12 +24,30 @@ class FinalItinerary extends React.Component {
   constructor() {
     super()
     this.state = {}
+    this.userSaveItinerary = this.userSaveItinerary.bind(this)
+  }
+
+  // saves itinerary by userId
+  async userSaveItinerary() {
+    try {
+      const userId = '1'
+      // this.props.userId
+      await Axios.post(`/api/itinerary/${userId}`, {
+        places: this.props.selected
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   render() {
+    console.log('this.props', this.props.selected)
     return (
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">
+          <button type="button" onClick={this.userSaveItinerary}>
+            Save Itinerary
+          </button>
           <DragDropContext>
             <h1 className="title">Final Itinerary</h1>
             <Container>
@@ -70,4 +89,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(FinalItinerary)
+export default connect(mapStateToProps, null)(FinalItinerary)

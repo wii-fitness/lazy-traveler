@@ -9,7 +9,7 @@ const AnyReactComponent = () => (
   />
 )
 
-const apiKey = process.env.MAP_API_KEY
+const apiKey = process.env.API_KEY
 
 class SimpleMap extends Component {
   static defaultProps = {
@@ -17,7 +17,7 @@ class SimpleMap extends Component {
       lat: '',
       lng: ''
     },
-    zoom: 10.5
+    zoom: 12.5
   }
 
   render() {
@@ -48,7 +48,7 @@ class SimpleMap extends Component {
                 key={place.id}
                 lat={place.geometry.location.lat}
                 lng={place.geometry.location.lng}
-                text="my marker"
+                // text="my marker"
               />
             )
           })}
