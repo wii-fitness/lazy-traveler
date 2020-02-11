@@ -60,9 +60,7 @@ class FinalItinerary extends React.Component {
             </Container>
           </DragDropContext>
         </div>
-        <div className="map">
-          <SimpleMap />
-        </div>
+        <div className="map">{/* <SimpleMap /> */}</div>
       </div>
     )
   }

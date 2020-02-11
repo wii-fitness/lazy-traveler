@@ -19,11 +19,12 @@ const createdItinerary = itinerary => ({type: CREATE_ITINERARY, itinerary})
  * THUNK CREATORS
  */
 
-export const createItinerary = places => {
+export const createItinerary = (places, dates) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/itinerary/`, {
-        places: places
+        places: places,
+        dates: dates
       })
       dispatch(createdItinerary(data))
     } catch (err) {

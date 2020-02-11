@@ -123,7 +123,10 @@ class Recommended extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const itinerary = this.props.createItinerary(this.props.selected)
+    const itinerary = this.props.createItinerary(
+      this.props.selected,
+      this.props.dates
+    )
     console.log(itinerary)
     this.props.history.push('/itinerary')
   }
@@ -156,7 +159,8 @@ class Recommended extends React.Component {
 const mapStateToProps = function(state) {
   return {
     places: state.places,
-    selected: state.selected
+    selected: state.selected,
+    dates: state.dates
   }
 }
 
@@ -165,7 +169,7 @@ const mapDispatchToProps = function(dispatch) {
     updatePlaces: places => dispatch(updatePlaces(places)),
     updateSelectPlaces: places => dispatch(updateSelectPlaces(places)),
     refreshAll: places => dispatch(refreshAll(places)),
-    createItinerary: places => dispatch(createItinerary(places))
+    createItinerary: (places, dates) => dispatch(createItinerary(places, dates))
   }
 }
 

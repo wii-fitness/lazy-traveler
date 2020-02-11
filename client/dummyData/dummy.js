@@ -1,4 +1,4 @@
-const places = [
+const dummyPlaces = [
   {
     geometry: {
       location: {
@@ -842,4 +842,4 @@ const places = [
   }
 ]
 
-export default places
+module.exports = dummyPlaces
