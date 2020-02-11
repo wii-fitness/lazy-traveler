@@ -5,6 +5,7 @@ import {getPlaces} from '../store/places'
 import LocationSearch from './search'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
+import Navbar from './navbar'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
