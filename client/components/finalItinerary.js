@@ -30,7 +30,7 @@ class FinalItinerary extends React.Component {
   // saves itinerary by userId
   async userSaveItinerary() {
     try {
-      const userId = '1'
+      const userId = '3'
       // this.props.userId
       await Axios.post(`/api/itinerary/${userId}`, {
         places: this.props.selected
@@ -41,7 +41,7 @@ class FinalItinerary extends React.Component {
   }
 
   render() {
-    console.log('this.props', this.props.selected)
+    console.log('this.props', this.props)
     return (
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">

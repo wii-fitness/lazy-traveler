@@ -2,8 +2,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Place = db.define('place', {
-  googlePlaceId: {
-    type: Sequelize.STRING
+  // using GoogleId
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   name: {
     type: Sequelize.STRING,

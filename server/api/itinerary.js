@@ -38,33 +38,47 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 // route that saves a user's itinerary
-// post (city,location and userId) in itinerary table
-// post in itineraryplaces table (itineraryId = itineraryId, placeId = google.id)
-// do we need to post in the places table?
 router.post('/:userId', async (req, res, next) => {
   try {
     const data = req.body.places
-    let googlePlaceId = []
-
-    // need to fix db to use googleId (string vs integer)
-    for (let i = 0; i < data.length; i++) {
-      googlePlaceId.push(data[i].id)
-    }
+    // console.log('req.body.place', data)
 
     // creates new instance in the Itinerary table
-    await Itinerary.create({
+    const itinerary = await Itinerary.create({
       city: 'need to update',
       arrival: '2020-02-20',
       departure: '2020-02-20',
       timeOfStay: 2,
       userId: req.params.userId
-    }).then(insertedItinerary => {
-      ItineraryPlace.bulkCreate([
-        {
-          itineraryId: insertedItinerary.dataValues.id,
-          placeId: 1
+    })
+
+    // takes array of selected places and updates
+    // (i) findsorCreates places in places table
+    // (ii) Itinerary Places table with itineraryId and placesId
+    data.forEach(async place => {
+      // console.log('place.name', place.name)
+      await Place.findOrCreate({
+        where: {
+          id: place.id
+        },
+        defaults: {
+          id: place.id,
+          name: place.name,
+          city: 'Default',
+          latitude: place.geometry.location.lat,
+          longitude: place.geometry.location.lng,
+          formattedAddress: place.vicinity,
+          rating: place.rating,
+          priceLevel: place.price_level,
+          utc: -300,
+          website: 'default.com',
+          photoUrl: 'default.url'
         }
-      ])
+      })
+      await ItineraryPlace.create({
+        itineraryId: itinerary.dataValues.id,
+        placeId: place.id
+      })
     })
     res.status(201)
   } catch (err) {
