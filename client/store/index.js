@@ -6,8 +6,15 @@ import user from './user'
 import places from './places'
 import coordinates from './coordinates'
 import selected from './selectplaces'
+import itineraryHistory from './itineraryhistory'
 
-const reducer = combineReducers({user, places, coordinates, selected})
+const reducer = combineReducers({
+  user,
+  places,
+  coordinates,
+  selected,
+  itineraryHistory
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
