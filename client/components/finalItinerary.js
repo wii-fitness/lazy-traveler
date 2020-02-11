@@ -43,16 +43,21 @@ class FinalItinerary extends React.Component {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {this.props.itinerary.map((place, index) => {
-                      return (
-                        <ItineraryCard
-                          key={place.id}
-                          place={place}
-                          index={index}
-                          draggable="false"
-                        />
-                      )
-                    })}
+                    {Object.keys(this.props.itinerary).map(
+                      (placekey, index) => {
+                        return (
+                          <div>
+                            <h1>{placekey}</h1>
+                            <ItineraryCard
+                              key={this.props.itinerary[placekey].id}
+                              place={this.props.itinerary[placekey]}
+                              index={index}
+                              draggable="false"
+                            />
+                          </div>
+                        )
+                      }
+                    )}
                     {provided.placeholder}
                   </LeftList>
                 )}

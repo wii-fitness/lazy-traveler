@@ -69,6 +69,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const places = req.body.places
+    console.log('PLACES', req.body.places)
     const dates = req.body.dates
     const startDate = dates.start
     const endDate = dates.end
@@ -109,9 +110,19 @@ router.post('/', async (req, res, next) => {
         console.log('in inner loop')
         if (place.hours) {
           console.log('in first condition')
+          console.log('Time', parseInt(times[i]))
+          console.log('Open', parseInt(place.hours[0].open.time))
+          //console.log('Close', parseInt(place.hours[0].close.time))
+          if (!place.hours[0].close) {
+            var startTime = times[i]
+            var endTime = times[i + 2]
+            i += 2
+            itinerary[startTime + '-' + endTime] = place
+            break
+          }
           if (
-            parseInt(times[i], 8) >= parseInt(place.hours[0].open.time, 8) &&
-            parseInt(times[i], 8) < parseInt(place.hours[0].close.time, 8)
+            parseInt(times[i]) >= parseInt(place.hours[0].open.time) &&
+            parseInt(times[i]) < parseInt(place.hours[0].close.time)
           ) {
             console.log('in second condition')
             var startTime = times[i]
