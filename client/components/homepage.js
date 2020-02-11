@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getPlaces} from '../store/places'
 import LocationSearch from './search'
+import PropTypes from 'prop-types'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -61,8 +62,10 @@ class Home extends React.Component {
   }
 
   render() {
+    const {email} = this.props
     return (
       <div className="homeImage">
+        <h3 className="welcome">{email ? `Welcome, ${email}` : ''}</h3>
         <div className="home-content-1">
           <div className="home-content">
             <div className="home-title">
@@ -169,7 +172,8 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    coordinates: state.coordinates
+    coordinates: state.coordinates,
+    email: state.user.email
   }
 }
 
@@ -183,5 +187,9 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
+
+HomeContainer.propTypes = {
+  email: PropTypes.string
+}
 
 export default HomeContainer

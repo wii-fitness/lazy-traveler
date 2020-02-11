@@ -14,15 +14,19 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       <div>
         {/* The navbar will show these links after you log in */}
         <Link to="/home">Home</Link>
-        {/* <a href="#" onClick={handleClick}>
-            Logout
-          </a> */}
+        <a href="#" onClick={handleClick} className="logout">
+          Logout
+        </a>
       </div>
     ) : (
       <div>
         {/* The navbar will show these links before you log in */}
-        {/*<Link to="/login"></Link> 
-          <Link to="/signup"></Link>*/}
+        <Link to="/login" className="login-nav">
+          Login
+        </Link>
+        <Link to="/signup" className="signup-nav">
+          Signup
+        </Link>
       </div>
     )}
   </nav>

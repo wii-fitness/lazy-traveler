@@ -362,3 +362,79 @@ img {
 .nav-title {
   font-size: 15.5px;
 }
+
+.login-nav {
+  color: white;
+}
+
+.signup-nav {
+  color: white;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(white, #c0f1fc);
+  box-shadow: 2.5px 2.5px rgba(0, 0, 0, 0.35);
+  /* padding: 27.4px; */
+  position: absolute;
+  right: 3.5%;
+  top: 2.5%;
+  border-radius: 20px;
+  background: #fbfbfb;
+  width: 30%;
+  padding: 29px;
+  z-index: 1;
+  margin-top: 15px;
+  border: solid 1px #f5f5f5;
+
+  /* transform: none;
+  margin: 0;
+  position: relative;
+  top: auto;
+  left: auto;
+  height: 100px;
+   */
+}
+
+.auth-title {
+  position: absolute;
+  top: 19%;
+  padding-left: 15px;
+  /* color: #fff; */
+  text-align: center;
+}
+
+.auth-image-title {
+  position: relative;
+  left: 0%;
+  padding: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.auth-image-title-2 {
+}
+
+.logout {
+  color: white;
+}
+
+.welcome {
+  position: relative;
+  left: 15px;
+}
+
+.auth-email {
+  border-radius: 5px;
+  width: 90%;
+  position: relative;
+}
+
+.auth-title-2 {
+  font-weight: bolder;
+  font-size: 25px;
+  text-transform: uppercase;
+  position: relative;
+  left: 37%;
+}
