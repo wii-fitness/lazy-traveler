@@ -36,6 +36,7 @@ async function seed() {
 
   const place = await Promise.all([
     Place.create({
+      id: '1233abd123',
       name: 'Times Square',
       rating: 4.7,
       openingHours: [{date: new Date()}],
@@ -52,6 +53,7 @@ async function seed() {
       googlePlaceId: 'abcd123'
     }),
     Place.create({
+      id: 'qwertt123',
       name: 'MOMA',
       rating: 5,
       openingHours: [{date: new Date()}],
@@ -68,6 +70,7 @@ async function seed() {
       googlePlaceId: 'abcd234'
     }),
     Place.create({
+      id: 'lazytraveler123',
       name: 'The Metropolitan Museum of Art',
       rating: 5,
       openingHours: [{date: new Date()}],
@@ -87,39 +90,42 @@ async function seed() {
 
   const itinerary = await Promise.all([
     Itinerary.create({
-      userId: 1,
+      id: 1,
       arrival: '2019-11-01',
       departure: '2019-11-02',
-      timeOfStay: 1
+      timeOfStay: 1,
+      userId: 1
     }),
     Itinerary.create({
-      userId: 2,
+      id: 2,
       arrival: '2019-11-01',
       departure: '2019-11-02',
-      timeOfStay: 1
+      timeOfStay: 1,
+      userId: 3
     }),
     Itinerary.create({
-      userId: 3,
+      id: 3,
       arrival: '2019-11-01',
       departure: '2019-11-02',
-      timeOfStay: 1
+      timeOfStay: 1,
+      userId: 3
     })
   ])
 
   const itineraryPlace = await Promise.all([
     ItineraryPlace.create({
       itineraryId: 1,
-      placeId: 1,
+      placeId: 'lazytraveler123',
       timestamp: 1
     }),
     ItineraryPlace.create({
       itineraryId: 1,
-      placeId: 2,
+      placeId: 'qwertt123',
       timestamp: 2
     }),
     ItineraryPlace.create({
       itineraryId: 1,
-      placeId: 3,
+      placeId: '1233abd123',
       timestamp: 2
     })
   ])

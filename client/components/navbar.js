@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
+
   // <div>
   <nav className="navbar">
     <Link to="/" style={{color: 'white'}}>
@@ -32,6 +33,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   </nav>
   /* <hr /> */
   // </div>
+
 )
 
 /**

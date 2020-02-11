@@ -6,6 +6,7 @@ import LocationSearch from './search'
 import PropTypes from 'prop-types'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
+import Navbar from './navbar'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
