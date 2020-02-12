@@ -7,6 +7,7 @@ import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
 import Axios from 'axios'
 import history from '../history'
+import {saveItineraryThunk} from '../store/selectplaces'
 
 const Container = styled.div`
   margin: 8pm;
@@ -25,27 +26,29 @@ class FinalItinerary extends React.Component {
   constructor() {
     super()
     this.state = {}
-    this.userSaveItinerary = this.userSaveItinerary.bind(this)
+    this.saveItinerary = this.saveItinerary.bind(this)
   }
 
   // saves itinerary by userId
-  async userSaveItinerary(event) {
-    event.preventDefault()
-    try {
-      const userId = this.props.user.id
+  // async userSaveItinerary(event) {
+  //   try {
+  //     const userId = this.props.user.id
 
-      // this.props.userId
-      let result = await Axios.post(`/api/itinerary/${userId}`, {
-        places: this.props.selected
-      })
+  //     // this.props.userId
+  //     await Axios.post(`/api/itinerary/${userId}`, {
+  //       places: this.props.selected
+  //     })
 
-      if (result) {
-        //try props.history.push
-        this.props.history.push('/home')
-      }
-    } catch (err) {
-      console.error(err)
-    }
+  //     //try props.history.push
+  //     this.props.history.push('/home')
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
+
+  saveItinerary() {
+    this.props.saveItinerary(this.props.selected, this.props.user.id)
+    this.props.history.push('./home')
   }
 
   render() {
@@ -53,9 +56,14 @@ class FinalItinerary extends React.Component {
     return (
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">
-          <button type="button" onClick={this.userSaveItinerary}>
-            Save Itinerary
-          </button>
+          {this.props.isLoggedIn ? (
+            <button type="button" onClick={this.saveItinerary}>
+              Save Itinerary
+            </button>
+          ) : (
+            <h3>Please Login to Save Itinerary</h3>
+          )}
+
           <DragDropContext>
             <h1 className="title">Final Itinerary</h1>
             <Container>
@@ -94,8 +102,16 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     places: state.places,
-    selected: state.selected
+    selected: state.selected,
+    isLoggedIn: !!state.user.id
   }
 }
 
-export default connect(mapStateToProps, null)(FinalItinerary)
+const mapDispatchToProps = function(dispatch) {
+  return {
+    saveItinerary: (selected, userId) =>
+      dispatch(saveItineraryThunk(selected, userId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FinalItinerary)
