@@ -22,9 +22,9 @@ class Navbar extends React.Component {
           <div className="nav-title">theLazyTraveler</div>
         </Link>
         {this.props.isLoggedIn ? (
-          <div>
+          <div className="nav-button-after-login">
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
+            <Link to="/home">My Itineraries</Link>
             <a href="#" onClick={this.handleClick} className="logout">
               Logout
             </a>

@@ -21,7 +21,7 @@ nav a {
   float: left;
   display: flex;
   justify-content: space-evenly;
-  color: black;
+  color: white;
   text-align: center;
   padding: 20px;
   padding-left: 60px;
@@ -484,4 +484,8 @@ img {
 }
 ul {
   padding-inline-start: 0px;
+}
+
+.nav-button-after-login {
+  color: white;
 }
