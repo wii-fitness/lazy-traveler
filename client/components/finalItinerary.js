@@ -36,7 +36,9 @@ class FinalItinerary extends React.Component {
 
       // this.props.userId
       let result = await Axios.post(`/api/itinerary/${userId}`, {
-        places: this.props.selected
+        places: this.props.itinerary,
+        dates: this.props.dates,
+        selected: this.props.selected
       })
 
       if (result) {
@@ -93,7 +95,10 @@ class FinalItinerary extends React.Component {
             </Container>
           </DragDropContext>
         </div>
-        <div className="map">{/* <SimpleMap /> */}</div>
+        <div className="map">
+          {' '}
+          <SimpleMap />{' '}
+        </div>
       </div>
     )
   }
@@ -103,7 +108,9 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     places: state.places,
-    itinerary: state.itinerary
+    selected: state.selected,
+    itinerary: state.itinerary,
+    dates: state.dates
   }
 }
 

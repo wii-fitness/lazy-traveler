@@ -355,46 +355,82 @@ router.get('/:userId', async (req, res, next) => {
 router.post('/:userId', async (req, res, next) => {
   try {
     const data = req.body.places
+    const selected = req.body.selected
+    console.log('ITINERARY (API)', req.body.places)
     console.log('req.body.place', data)
     console.log('req.params.userId', req.params.userId)
 
+    const title = selected[0].name + ' and ' + selected.length + ' more...'
     // creates new instance in the Itinerary table
     const itinerary = await Itinerary.create({
-      city: 'need to update',
-      arrival: '2020-02-20',
-      departure: '2020-02-20',
-      timeOfStay: 2,
+      city: title,
+      arrival: req.body.dates.start,
+      departure: req.body.dates.end,
+      // timeOfStay: null,
       userId: req.params.userId
     })
 
+    Object.keys(data).forEach(day => {
+      console.log('DAY IN API', day)
+      Object.keys(data[day]).forEach(async time => {
+        console.log('TIME IN API', time)
+        var place = data[day][time]
+        console.log('PLACE IN API', place)
+        await Place.findOrCreate({
+          where: {
+            id: place.id
+          },
+          defaults: {
+            id: place.id,
+            name: place.name,
+            city: 'Default',
+            latitude: place.geometry.location.lat,
+            longitude: place.geometry.location.lng,
+            formattedAddress: place.vicinity,
+            rating: place.rating,
+            priceLevel: place.price_level,
+            utc: -300,
+            website: 'default.com',
+            photoUrl:
+              'https://st3.depositphotos.com/2001403/15338/i/1600/depositphotos_153386640-stock-photo-vacation-background-with-pineapple.jpg'
+          }
+        })
+        await ItineraryPlace.create({
+          itineraryId: itinerary.dataValues.id,
+          placeId: place.id,
+          dayIndicator: day,
+          timeIndicator: time
+        })
+      })
+    })
     // takes array of selected places and updates
     // (i) findsorCreates places in places table
     // (ii) Itinerary Places table with itineraryId and placesId
-    data.forEach(async place => {
-      // console.log('place.name', place.name)
-      await Place.findOrCreate({
-        where: {
-          id: place.id
-        },
-        defaults: {
-          id: place.id,
-          name: place.name,
-          city: 'Default',
-          latitude: place.geometry.location.lat,
-          longitude: place.geometry.location.lng,
-          formattedAddress: place.vicinity,
-          rating: place.rating,
-          priceLevel: place.price_level,
-          utc: -300,
-          website: 'default.com',
-          photoUrl: 'default.url'
-        }
-      })
-      await ItineraryPlace.create({
-        itineraryId: itinerary.dataValues.id,
-        placeId: place.id
-      })
-    })
+    // data.forEach(async place => {
+    //   // console.log('place.name', place.name)
+    //   await Place.findOrCreate({
+    //     where: {
+    //       id: place.id
+    //     },
+    //     defaults: {
+    //       id: place.id,
+    //       name: place.name,
+    //       city: 'Default',
+    //       latitude: place.geometry.location.lat,
+    //       longitude: place.geometry.location.lng,
+    //       formattedAddress: place.vicinity,
+    //       rating: place.rating,
+    //       priceLevel: place.price_level,
+    //       utc: -300,
+    //       website: 'default.com',
+    //       photoUrl: 'default.url'
+    //     }
+    //   })
+    //   await ItineraryPlace.create({
+    //     itineraryId: itinerary.dataValues.id,
+    //     placeId: place.id
+    //   })
+    // })
     res.status(201)
   } catch (err) {
     next(err)
