@@ -5,14 +5,14 @@ import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
+  background-color: white;
+  opacity: 0.9;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
   width: 50%;
 `
-const Title = styled.h3`
-  padding: 8px;
-`
+
 const LeftList = styled.div`
   padding: 8px;
 `
@@ -21,7 +21,6 @@ class Column extends React.Component {
   render() {
     return (
       <Container>
-        <Title>Recommended Places</Title>
         <Droppable droppableId="left-side">
           {provided => (
             <LeftList ref={provided.innerRef} {...provided.droppableProps}>

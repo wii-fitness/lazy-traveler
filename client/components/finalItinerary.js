@@ -8,6 +8,9 @@ import SimpleMap from './map'
 import Axios from 'axios'
 
 const Container = styled.div`
+  background-color: white;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
@@ -45,39 +48,47 @@ class FinalItinerary extends React.Component {
   render() {
     console.log('this.props', this.props)
     return (
-      <div className="itinerary-maps-container">
-        <div className="final-itinerary-container">
-          <button type="button" onClick={this.userSaveItinerary}>
-            Save Itinerary
-          </button>
-          <DragDropContext>
-            <h1 className="title">Final Itinerary</h1>
-            <Container>
-              <Droppable droppableId="final-itinerary">
-                {provided => (
-                  <LeftList
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    {this.props.selected.map((place, index) => {
-                      return (
-                        <ItineraryCard
-                          key={place.id}
-                          place={place}
-                          index={index}
-                          draggable="false"
-                        />
-                      )
-                    })}
-                    {provided.placeholder}
-                  </LeftList>
-                )}
-              </Droppable>
-            </Container>
-          </DragDropContext>
-        </div>
-        <div className="map">
-          <SimpleMap />
+      <div className="final-it">
+        <div className="itinerary-maps-container">
+          <div className="final-itinerary-container">
+            <DragDropContext>
+              <div className="final-flex">
+                <h1 className="it-title">Final Itinerary</h1>
+                <button
+                  type="button"
+                  onClick={this.userSaveItinerary}
+                  className="save"
+                >
+                  Save Itinerary
+                </button>
+              </div>
+              <Container>
+                <Droppable droppableId="final-itinerary">
+                  {provided => (
+                    <LeftList
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      {this.props.selected.map((place, index) => {
+                        return (
+                          <ItineraryCard
+                            key={place.id}
+                            place={place}
+                            index={index}
+                            draggable="false"
+                          />
+                        )
+                      })}
+                      {provided.placeholder}
+                    </LeftList>
+                  )}
+                </Droppable>
+              </Container>
+            </DragDropContext>
+          </div>
+          <div className="map">
+            <SimpleMap />
+          </div>
         </div>
       </div>
     )
