@@ -101,38 +101,100 @@ router.post('/', async (req, res, next) => {
     console.log('DUMMY LENGTH', dummyPlaces.length)
     console.log('PLACES LENGTH', placesWithHours.length)
 
-    var i = 0
     while (placesWithHours.length) {
-      console.log('In outer loop')
       var place = placesWithHours.pop()
+      var i = 0
+      console.log('Place', place)
       while (i < times.length) {
-        console.log('in inner loop')
-        if (place.hours) {
-          console.log('in first condition')
-          if (
-            parseInt(times[i], 8) >= parseInt(place.hours[0].open.time, 8) &&
-            parseInt(times[i], 8) < parseInt(place.hours[0].close.time, 8)
-          ) {
-            console.log('in second condition')
+        if (times[i] !== 'x') {
+          if (place.hours) {
+            if (place.hours[0].close) {
+              if (
+                parseInt(times[i]) >= parseInt(place.hours[0].open.time) &&
+                (parseInt(times[i]) < parseInt(place.hours[0].close.time) ||
+                  parseInt(place.hours[0].close.time) <= parseInt('0600'))
+              ) {
+                console.log('in third condition')
+                var startTime = times[i]
+                if (times[i + 2] && times[i + 2] !== 'x') {
+                  console.log('in fourth condition')
+                  console.log(startTime)
+                  var endTime = times[i + 2]
+                  console.log(endTime)
+                  itinerary[startTime + ' - ' + endTime] = place
+                  times[i] = 'x'
+                  times[i + 1] = 'x'
+                  times[i + 2] = 'x'
+                  break
+                }
+              }
+            } else if (parseInt(times[i]) >= parseInt(place.hours[0].open.time)) {
+                var startTime = times[i]
+                console.log('in divergence')
+                if (times[i + 2] && times[i + 2] !== 'x') {
+                  console.log('divergence condition')
+                  var endTime = times[i + 2]
+                  itinerary[startTime + ' - ' + endTime] = place
+                  times[i] = 'x'
+                  times[i + 1] = 'x'
+                  times[i + 2] = 'x'
+                  break
+                }
+              }
+          } else {
             var startTime = times[i]
-            var endTime = times[i + 2]
-            i += 2
-            itinerary[startTime + '-' + endTime] = place
-            break
+            console.log('in divergence')
+            if (times[i + 2] && times[i + 2] !== 'x') {
+              console.log('divergence condition')
+              var endTime = times[i + 2]
+              itinerary[startTime + ' - ' + endTime] = place
+              times[i] = 'x'
+              times[i + 1] = 'x'
+              times[i + 2] = 'x'
+              break
+            }
           }
-          i++
-        } else {
-          console.log('in third condition')
-          var startTime = times[i]
-          var endTime = times[i + 2]
-          i += 2
-          itinerary[startTime + '-' + endTime] = place
-          break
         }
+        console.log('Currenttime', times[i])
+        console.log('Hours', place.hours[0])
+        console.log(i)
+        console.log(times)
         i++
       }
     }
-    console.log('ITINERARY', itinerary)
+
+    // var i = 0
+    // while (placesWithHours.length) {
+    //   console.log('In outer loop')
+    //   var place = placesWithHours.pop()
+    //   while (i < times.length) {
+    //     console.log('in inner loop')
+    //     if (place.hours) {
+    //       console.log('in first condition')
+    //       if (
+    //         parseInt(times[i], 8) >= parseInt(place.hours[0].open.time, 8) &&
+    //         parseInt(times[i], 8) < parseInt(place.hours[0].close.time, 8)
+    //       ) {
+    //         console.log('in second condition')
+    //         var startTime = times[i]
+    //         var endTime = times[i + 2]
+    //         i += 2
+    //         itinerary[startTime + '-' + endTime] = place
+    //         break
+    //       }
+    //       i++
+    //     } else {
+    //       console.log('in third condition')
+    //       var startTime = times[i]
+    //       var endTime = times[i + 2]
+    //       i += 2
+    //       itinerary[startTime + '-' + endTime] = place
+    //       break
+    //     }
+    //     i++
+    //   }
+    // }
+    // console.log('ITINERARY', itinerary)
 
     //     while (i < times.length) {
     //       if (place.hours && place.hours[days[day]]) {
