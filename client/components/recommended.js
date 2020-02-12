@@ -96,11 +96,15 @@ class Recommended extends React.Component {
     return (
       <div className="recommended-view">
         <h1>Create your itinerary here</h1>
-        <div id="right-div">
-          <button onClick={this.handleSubmit}>Generate an Itinerary</button>
-        </div>
+        <div className="button-div" />
+        <button id="generate" onClick={this.handleSubmit}>
+          Generate an Itinerary
+        </button>
+        <button id="select" onClick={this.buttonRefresh}>
+          Refresh
+        </button>
+        <div id="right-div" />
         <div id="left-div">
-          <button onClick={this.buttonRefresh}>Refresh</button>
           <div className="columns">
             <DragDropContext onDragEnd={this.onDragEnd}>
               <Column columnId="left-column" />

@@ -44,6 +44,7 @@ router.post('/', async (req, res, next) => {
 
   console.log('COORDS', coords)
 
+  req.body.interests.push('touristAttractions')
   // looping over each interest checked by the user
   for (var interest of req.body.interests) {
     //initializing an object with the interest as key on the suggestedLocations object (this will contain arrays corresponding to each type searched under that interest)
