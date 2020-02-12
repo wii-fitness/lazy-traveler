@@ -32,8 +32,8 @@ class FinalItinerary extends React.Component {
   async userSaveItinerary(event) {
     event.preventDefault()
     try {
-      console.log('88888888888', this.props)
       const userId = this.props.user.id
+
       // this.props.userId
       let result = await Axios.post(`/api/itinerary/${userId}`, {
         places: this.props.selected
@@ -41,7 +41,7 @@ class FinalItinerary extends React.Component {
 
       if (result) {
         //try props.history.push
-        props.history.push('/home')
+        this.props.history.push('/home')
       }
     } catch (err) {
       console.error(err)
