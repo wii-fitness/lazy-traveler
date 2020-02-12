@@ -23,8 +23,6 @@ var interestsMap = {
 // route handling homepage form
 router.post('/', async (req, res, next) => {
   var suggestedLocations = {}
-  console.log(req.body.location)
-
   var coords = req.body.coordinates
   // console.log(req.body)
 
@@ -91,8 +89,6 @@ router.post('/photo', async (req, res, next) => {
     })
     .asPromise()
     .then(response => {
-      console.log('PHOTOBJ', response)
-      console.log('PHOTO', response.req.socket._host + response.req.path)
       photo = response
     })
     .catch(err => {
