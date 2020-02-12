@@ -59,6 +59,7 @@ class Home extends React.Component {
       coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
     })
     // need to check if req was successful
+    console.log('HISTORYYYY', this.props)
     this.props.history.push('/builder')
   }
 
