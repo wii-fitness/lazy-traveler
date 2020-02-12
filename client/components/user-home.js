@@ -15,14 +15,12 @@ class UserHome extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="user-home-container">
         <h2>Welcome, {this.props.user.email}</h2>
-        <div>
-          <h3>Saved Itineraries:</h3>
-          {this.props.itineraryHistory.map(itinerary => {
-            return <PastItinerary itinerary={itinerary} key={itinerary.id} />
-          })}
-        </div>
+        <h3>Saved Itineraries:</h3>
+        {this.props.itineraryHistory.map(itinerary => {
+          return <PastItinerary itinerary={itinerary} key={itinerary.id} />
+        })}
       </div>
     )
   }
