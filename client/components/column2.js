@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './card'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
+  background-color: white;
+  opacity: 0.9;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
   width: 50%;
 `
-const Title = styled.h3`
-  padding: 8px;
-`
+
 const RightList = styled.div`
   padding: 8px;
-  min-height: 1000px;
-  background-color: white;
+  min-height: 775px;
   flex-grow: 1;
 `
 
@@ -25,7 +25,6 @@ class Column2 extends React.Component {
     console.log(this.props.selected)
     return (
       <Container>
-        <Title>Selected Itinerary</Title>
         <Droppable droppableId="right-side">
           {provided => (
             <RightList ref={provided.innerRef} {...provided.droppableProps}>

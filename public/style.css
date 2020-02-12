@@ -4,13 +4,12 @@ html {
 }
 
 body {
+  background: rgb(219, 219, 219);
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.45;
   color: #333;
-
-  /* line-height: 1.42; */
 }
 
 a {
@@ -99,6 +98,7 @@ nav {
   padding-left: 15px;
   /* color: #fff; */
   text-align: center;
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .home-content .home-title .title {
@@ -267,7 +267,7 @@ label {
 .description-container {
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: relative;
   height: 100%;
 }
 
@@ -283,13 +283,18 @@ img {
 }
 
 .recommended-view {
-  background: rgb(255, 255, 255);
+  background-image: url(https://www.imore.com/sites/imore.com/files/styles/mediumplus/public/field/image/2017/02/airplane-flight-sunset.jpg?itok=8iUtkHU-);
   height: 100%;
   width: 100%;
-  opacity: 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 0.5%;
+  padding-right: 1%;
+  padding-left: 1%;
+  padding-bottom: 2%;
+  position: relative;
+  right: 1%;
 }
 
 .photo {
@@ -299,6 +304,10 @@ img {
 
 .place-description {
   font-size: xx-small;
+}
+
+.final-it {
+  height: 120%;
 }
 
 .itinerary-maps-container {
@@ -315,6 +324,7 @@ img {
   top: 10px;
   width: 38%;
   height: 25%;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.35);
 }
 
 #app {
@@ -356,12 +366,6 @@ img {
   line-height: 1.1px;
   position: absolute;
   z-index: 5;
-}
-
-.title {
-  position: relative;
-  left: 1.5%;
-  padding: 2px;
 }
 
 .image-title {
@@ -424,9 +428,6 @@ img {
   padding-top: 2px;
 }
 
-.auth-image-title-2 {
-}
-
 .logout {
   color: white;
 }
@@ -450,6 +451,86 @@ img {
   left: 37%;
 }
 
+.three {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.one {
+  text-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  font-weight: bold;
+  right: 9%;
+}
+
+.two {
+  text-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  font-weight: bold;
+  left: 1%;
+}
+
+.select {
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.35);
+  background-color: rgb(166, 176, 209);
+  position: relative;
+  right: 65%;
+  font-weight: bolder;
+  color: rgb(211, 57, 57);
+  border: rgb(190, 87, 87);
+  height: 22px;
+  border-radius: 5px;
+}
+
+.generate {
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.35);
+  position: relative;
+  right: 46%;
+}
+
+.generate button {
+  background-color: rgb(23, 37, 82);
+  font-weight: bolder;
+  color: rgb(190, 87, 87);
+  border: rgb(190, 87, 87);
+  height: 22px;
+  border-radius: 5px;
+}
+
+.create {
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.save {
+  position: absolute;
+  left: 45%;
+  top: 18%;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.35);
+  background-color: rgb(166, 176, 209);
+  font-weight: bolder;
+  color: white;
+  border: rgb(190, 87, 87);
+  height: 30px;
+  border-radius: 5px;
+}
+
+.it-title {
+  position: relative;
+  left: 10%;
+  bottom: 4%;
+  padding: 2px;
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.final-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.submit {
+  box-shadow: 5px 5px rgba(0, 0, 100, 0.05);
+  font-weight: bolder;
+  
 .user-home-container {
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -482,6 +563,7 @@ img {
   height: 90%;
   border-radius: 15px;
 }
+  
 ul {
   padding-inline-start: 0px;
 }

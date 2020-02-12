@@ -108,7 +108,7 @@ class Home extends React.Component {
               </div>
               <div className="preference-title">
                 Activities preferences
-                <span className="optional"> (optional)</span>
+                <span className="optional"> </span>
               </div>
               <div className="interests">
                 <div className="interest-column">
@@ -167,7 +167,9 @@ class Home extends React.Component {
                 </div>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit">
+              SUBMIT
+            </button>
           </form>
         </div>
       </div>

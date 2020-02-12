@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
-  background: radial-gradient(rgb(235, 235, 235), white);
+  background-color: white;
+  opacity: 1;
   display: flex;
   flex-direction: column;
   border: 3px solid lightgrey;
