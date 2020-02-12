@@ -456,7 +456,6 @@ img {
   font-size: 14px;
   color: #303942;
 }
-
 .itinerary-history-details-container {
   display: flex;
   flex-direction: column;
@@ -465,11 +464,9 @@ img {
   font-size: 14px;
   left: 5em;
 }
-
 .itinerary-history-details-container > h4 {
   text-decoration: underline;
 }
-
 .itinerary-details {
   display: flex;
   align-items: center;
@@ -480,13 +477,11 @@ img {
   width: auto;
   height: auto;
 }
-
 .itinerary-details > img {
   width: 10em;
   height: 90%;
   border-radius: 15px;
 }
-
 ul {
   padding-inline-start: 0px;
 }
