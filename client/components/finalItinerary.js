@@ -43,14 +43,25 @@ class FinalItinerary extends React.Component {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {this.props.itinerary.map((place, index) => {
+                    {Object.keys(this.props.itinerary).map(day => {
+                      console.log('DAY', day)
                       return (
-                        <ItineraryCard
-                          key={place.id}
-                          place={place}
-                          index={index}
-                          draggable="false"
-                        />
+                        <div>
+                          <h1>Day {parseInt(day) + 1}</h1>
+                          {Object.keys(this.props.itinerary[day]).map(time => {
+                            console.log('TIME', time)
+                            return (
+                              <div>
+                                <h2>{time}</h2>
+                                <ItineraryCard
+                                  key={this.props.itinerary[day][time].id}
+                                  place={this.props.itinerary[day][time]}
+                                  draggable="false"
+                                />
+                              </div>
+                            )
+                          })}
+                        </div>
                       )
                     })}
                     {provided.placeholder}

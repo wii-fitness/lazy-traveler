@@ -98,68 +98,88 @@ router.post('/', async (req, res, next) => {
 
     const itinerary = {}
 
-    console.log('DUMMY LENGTH', dummyPlaces.length)
-    console.log('PLACES LENGTH', placesWithHours.length)
+    const dayTimes = []
+
+    for (day of days) {
+      console.log(days)
+      console.log('day', day)
+      dayTimes.push(Array.from(times))
+    }
+    console.log('DAYTIMES', dayTimes)
 
     while (placesWithHours.length) {
       var place = placesWithHours.pop()
-      var i = 0
-      console.log('Place', place)
-      while (i < times.length) {
-        if (times[i] !== 'x') {
-          if (place.hours) {
-            if (place.hours[0].close) {
-              if (
-                parseInt(times[i]) >= parseInt(place.hours[0].open.time) &&
-                (parseInt(times[i]) < parseInt(place.hours[0].close.time) ||
-                  parseInt(place.hours[0].close.time) <= parseInt('0600'))
+      //console.log('Place', place)
+      var dayIdx = 0
+      outerloop: while (dayIdx < times.length) {
+        var i = 0
+        console.log('dayidx', dayIdx)
+        var time = dayTimes[dayIdx]
+        console.log('TIIIIIMEEE', time)
+        //console.log(time)
+        if (!itinerary[dayIdx]) {
+          itinerary[dayIdx] = {}
+        }
+        while (i < time.length) {
+          if (time[i] !== 'x') {
+            if (place.hours) {
+              if (place.hours[0].close) {
+                if (
+                  parseInt(time[i]) >= parseInt(place.hours[0].open.time) &&
+                  (parseInt(time[i]) < parseInt(place.hours[0].close.time) ||
+                    parseInt(place.hours[0].close.time) <= parseInt('0600'))
+                ) {
+                  //console.log('in third condition')
+                  var startTime = time[i]
+                  if (time[i + 2] && time[i + 2] !== 'x') {
+                    //console.log('in fourth condition')
+                    //console.log(startTime)
+                    var endTime = time[i + 2]
+                    console.log(endTime)
+                    itinerary[dayIdx][startTime + ' - ' + endTime] = place
+                    time[i] = 'x'
+                    time[i + 1] = 'x'
+                    time[i + 2] = 'x'
+                    break outerloop
+                  }
+                }
+              } else if (
+                parseInt(time[i]) >= parseInt(place.hours[0].open.time)
               ) {
-                console.log('in third condition')
-                var startTime = times[i]
-                if (times[i + 2] && times[i + 2] !== 'x') {
-                  console.log('in fourth condition')
-                  console.log(startTime)
-                  var endTime = times[i + 2]
-                  console.log(endTime)
-                  itinerary[startTime + ' - ' + endTime] = place
-                  times[i] = 'x'
-                  times[i + 1] = 'x'
-                  times[i + 2] = 'x'
-                  break
+                var startTime = time[i]
+                //console.log('in divergence')
+                if (time[i + 2] && time[i + 2] !== 'x') {
+                  //    console.log('divergence condition')
+                  var endTime = time[i + 2]
+                  itinerary[dayIdx][startTime + ' - ' + endTime] = place
+                  time[i] = 'x'
+                  time[i + 1] = 'x'
+                  time[i + 2] = 'x'
+                  break outerloop
                 }
               }
-            } else if (parseInt(times[i]) >= parseInt(place.hours[0].open.time)) {
-                var startTime = times[i]
-                console.log('in divergence')
-                if (times[i + 2] && times[i + 2] !== 'x') {
-                  console.log('divergence condition')
-                  var endTime = times[i + 2]
-                  itinerary[startTime + ' - ' + endTime] = place
-                  times[i] = 'x'
-                  times[i + 1] = 'x'
-                  times[i + 2] = 'x'
-                  break
-                }
+            } else {
+              var startTime = time[i]
+              //  console.log('in divergence')
+              if (time[i + 2] && time[i + 2] !== 'x') {
+                //  console.log('divergence condition')
+                var endTime = time[i + 2]
+                itinerary[dayIdx][startTime + ' - ' + endTime] = place
+                time[i] = 'x'
+                time[i + 1] = 'x'
+                time[i + 2] = 'x'
+                break outerloop
               }
-          } else {
-            var startTime = times[i]
-            console.log('in divergence')
-            if (times[i + 2] && times[i + 2] !== 'x') {
-              console.log('divergence condition')
-              var endTime = times[i + 2]
-              itinerary[startTime + ' - ' + endTime] = place
-              times[i] = 'x'
-              times[i + 1] = 'x'
-              times[i + 2] = 'x'
-              break
             }
           }
+          //console.log('Currenttime', time[i])
+          //console.log('ALLTIMES', times)
+          //console.log('Currentday', dayIdx)
+          // console.log(i)
+          //console.log(time)
+          i++
         }
-        console.log('Currenttime', times[i])
-        console.log('Hours', place.hours[0])
-        console.log(i)
-        console.log(times)
-        i++
+        dayIdx++
       }
     }
 

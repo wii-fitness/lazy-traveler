@@ -8,7 +8,7 @@ const CREATE_ITINERARY = 'CREATE_ITINERARY'
 /**
  * INITIAL STATE
  */
-const initialItinerary = []
+const initialItinerary = {}
 
 /**
  * ACTION CREATORS
