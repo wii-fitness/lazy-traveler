@@ -6,6 +6,7 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
 import Axios from 'axios'
+import history from '../history'
 
 const Container = styled.div`
   background-color: white;
@@ -31,15 +32,22 @@ class FinalItinerary extends React.Component {
   }
 
   // saves itinerary by userId
-  async userSaveItinerary() {
+  async userSaveItinerary(event) {
+    event.preventDefault()
     try {
       const userId = this.props.user.id
+
       // this.props.userId
-      await Axios.post(`/api/itinerary/${userId}`, {
-        places: this.props.selected
+      let result = await Axios.post(`/api/itinerary/${userId}`, {
+        places: this.props.itinerary,
+        dates: this.props.dates,
+        selected: this.props.selected
       })
-      // NEED TO REDIRECT TO HOME ONCE THEY CLICK
-      // this.props.history.push('/home')
+
+      if (result) {
+        //try props.history.push
+        this.props.history.push('/home')
+      }
     } catch (err) {
       console.error(err)
     }
@@ -69,16 +77,27 @@ class FinalItinerary extends React.Component {
                       ref={provided.innerRef}
                       {...provided.droppableProps}
                     >
-                      {this.props.selected.map((place, index) => {
-                        return (
-                          <ItineraryCard
-                            key={place.id}
-                            place={place}
-                            index={index}
-                            draggable="false"
-                          />
-                        )
-                      })}
+                 {Object.keys(this.props.itinerary).map(day => {
+                      console.log('DAY', day)
+                      return (
+                        <div>
+                          <h1>Day {parseInt(day) + 1}</h1>
+                          {Object.keys(this.props.itinerary[day]).map(time => {
+                            console.log('TIME', time)
+                            return (
+                              <div>
+                                <h2>{time}</h2>
+                                <ItineraryCard
+                                  key={this.props.itinerary[day][time].id}
+                                  place={this.props.itinerary[day][time]}
+                                  draggable="false"
+                                />
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })}
                       {provided.placeholder}
                     </LeftList>
                   )}
@@ -91,6 +110,7 @@ class FinalItinerary extends React.Component {
           </div>
         </div>
       </div>
+    </div>  
     )
   }
 }
@@ -99,7 +119,9 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     places: state.places,
-    selected: state.selected
+    selected: state.selected,
+    itinerary: state.itinerary,
+    dates: state.dates
   }
 }
 

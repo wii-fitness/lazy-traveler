@@ -17,7 +17,6 @@ const Container = styled.div`
 const RightList = styled.div`
   padding: 8px;
   min-height: 775px;
-
   flex-grow: 1;
 `
 

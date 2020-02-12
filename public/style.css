@@ -20,7 +20,7 @@ nav a {
   float: left;
   display: flex;
   justify-content: space-evenly;
-  color: black;
+  color: white;
   text-align: center;
   padding: 20px;
   padding-left: 60px;
@@ -530,4 +530,44 @@ img {
 .submit {
   box-shadow: 5px 5px rgba(0, 0, 100, 0.05);
   font-weight: bolder;
+  
+.user-home-container {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #303942;
+}
+.itinerary-history-details-container {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  left: 5em;
+}
+.itinerary-history-details-container > h4 {
+  text-decoration: underline;
+}
+.itinerary-details {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+}
+.itinerary-details > img {
+  width: 10em;
+  height: 90%;
+  border-radius: 15px;
+}
+  
+ul {
+  padding-inline-start: 0px;
+}
+
+.nav-button-after-login {
+  color: white;
 }

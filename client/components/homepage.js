@@ -6,6 +6,7 @@ import LocationSearch from './search'
 import PropTypes from 'prop-types'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
+import {getDates} from '../store/dates'
 import Navbar from './navbar'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -58,7 +59,10 @@ class Home extends React.Component {
       ...this.state,
       coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
     })
+    console.log('Dates', this.state.startDate, this.state.endDate)
+    this.props.getDates(this.state.startDate, this.state.endDate)
     // need to check if req was successful
+    console.log('HISTORYYYY', this.props)
     this.props.history.push('/builder')
   }
 
@@ -185,6 +189,11 @@ const mapDispatchToProps = function(dispatch) {
     getPlaces: function(formData) {
       const action = getPlaces(formData)
       dispatch(action)
+    },
+    getDates: function(start, end) {
+      console.log('getting dates', start, end)
+      const dates = {start: start, end: end}
+      dispatch(getDates(dates))
     }
   }
 }

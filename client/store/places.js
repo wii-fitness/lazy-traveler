@@ -50,7 +50,6 @@ function orderRecommendations(placesObject) {
   // console.log('FINAL COUNT', count)
   // push one element from each places array into the orderedArray until all the elements are in
   var i = 0
-  let newArrayCount = 0
   while (orderedArray.length < Object.keys(uniqueCache).length) {
     for (var interest2 of Object.keys(placesObject)) {
       for (var type2 of Object.keys(placesObject[interest2])) {

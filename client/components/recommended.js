@@ -6,6 +6,7 @@ import Column2 from './column2'
 import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
+import {createItinerary} from '../store/itinerary'
 
 class Recommended extends React.Component {
   constructor() {
@@ -14,6 +15,8 @@ class Recommended extends React.Component {
       interests: []
     }
     this.buttonRefresh = this.buttonRefresh.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    //this.orderRecommendations = this.orderRecommendations.bind(this)
   }
 
   onDragEnd = result => {
@@ -79,6 +82,16 @@ class Recommended extends React.Component {
     this.props.refreshAll(placesCopy)
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    const itinerary = this.props.createItinerary(
+      this.props.selected,
+      this.props.dates
+    )
+    console.log(itinerary)
+    this.props.history.push('/itinerary')
+  }
+
   render() {
     return (
       <div className="recommended-view">
@@ -115,7 +128,8 @@ class Recommended extends React.Component {
 const mapStateToProps = function(state) {
   return {
     places: state.places,
-    selected: state.selected
+    selected: state.selected,
+    dates: state.dates
   }
 }
 
@@ -123,7 +137,8 @@ const mapDispatchToProps = function(dispatch) {
   return {
     updatePlaces: places => dispatch(updatePlaces(places)),
     updateSelectPlaces: places => dispatch(updateSelectPlaces(places)),
-    refreshAll: places => dispatch(refreshAll(places))
+    refreshAll: places => dispatch(refreshAll(places)),
+    createItinerary: (places, dates) => dispatch(createItinerary(places, dates))
   }
 }
 
