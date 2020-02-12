@@ -6,6 +6,7 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
 import Axios from 'axios'
+import history from '../history'
 
 const Container = styled.div`
   margin: 8pm;
@@ -28,15 +29,20 @@ class FinalItinerary extends React.Component {
   }
 
   // saves itinerary by userId
-  async userSaveItinerary() {
+  async userSaveItinerary(event) {
+    event.preventDefault()
     try {
+      console.log('88888888888', this.props)
       const userId = this.props.user.id
       // this.props.userId
-      await Axios.post(`/api/itinerary/${userId}`, {
+      let result = await Axios.post(`/api/itinerary/${userId}`, {
         places: this.props.selected
       })
-      // NEED TO REDIRECT TO HOME ONCE THEY CLICK
-      // this.props.history.push('/home')
+
+      if (result) {
+        //try props.history.push
+        props.history.push('/home')
+      }
     } catch (err) {
       console.error(err)
     }
