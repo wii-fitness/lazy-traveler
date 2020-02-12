@@ -43,6 +43,7 @@ router.post('/:userId', async (req, res, next) => {
   try {
     const data = req.body.places
     console.log('req.body.place', data)
+    console.log('req.params.userId', req.params.userId)
 
     // creates new instance in the Itinerary table
     const itinerary = await Itinerary.create({
