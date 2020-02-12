@@ -15,12 +15,10 @@ const Container = styled.div`
 `
 const Title = styled.h2`
   position: relative;
-  line-height: 0;
 `
 const Description = styled.h5`
   position: relative;
   font-weight: 500;
-  line-height: 0;
 `
 
 class ItineraryCard extends React.Component {

@@ -15,12 +15,12 @@ const Container = styled.div`
 `
 const Title = styled.h4`
   position: relative;
-  line-height: 0;
+  line-height: 1;
 `
 const Description = styled.h5`
   position: relative;
   font-weight: 500;
-  line-height: 0;
+  line-height: 1;
 `
 
 class Card extends React.Component {
@@ -44,8 +44,10 @@ class Card extends React.Component {
 
   componentWillUnmount() {
     localStorage.setItem(this.props.place.id, this.state.photo)
+    //document bug-fix for rendering images
   }
 
+  //move to thunk
   async getPhoto() {
     if (this.props.place.photos) {
       const {data} = await axios.post('/api/places/photo', {

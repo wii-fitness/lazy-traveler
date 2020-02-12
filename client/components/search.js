@@ -53,7 +53,7 @@ class LocationSearch extends React.Component {
                       opacity: '.75',
                       cursor: 'pointer'
                     }
-                  : {backgroundColor: '#ffffff', cursor: 'pointer'}
+                  : {backgroundColor: 'white', cursor: 'pointer'}
                 return (
                   <div
                     key={suggestion.id}

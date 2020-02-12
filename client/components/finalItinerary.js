@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
-import places from '../dummyData/dummy' //DUMMY DATA MUST DELETE AND REPLACE!
+import Axios from 'axios'
+import history from '../history'
 
 const Container = styled.div`
   margin: 8pm;
@@ -15,11 +16,7 @@ const Container = styled.div`
   position: absolute;
   left: 2%;
 `
-// bottom: 67%; not sure why this was there
 
-const Title = styled.h3`
-  padding: 8px;
-`
 const LeftList = styled.div`
   padding: 8px;
 `
@@ -28,15 +25,40 @@ class FinalItinerary extends React.Component {
   constructor() {
     super()
     this.state = {}
+    this.userSaveItinerary = this.userSaveItinerary.bind(this)
+  }
+
+  // saves itinerary by userId
+  async userSaveItinerary(event) {
+    event.preventDefault()
+    try {
+      const userId = this.props.user.id
+
+      // this.props.userId
+      let result = await Axios.post(`/api/itinerary/${userId}`, {
+        places: this.props.selected
+      })
+
+      if (result) {
+        //try props.history.push
+        this.props.history.push('/home')
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   render() {
+    console.log('this.props', this.props)
     return (
       <div className="itinerary-maps-container">
         <div className="final-itinerary-container">
+          <button type="button" onClick={this.userSaveItinerary}>
+            Save Itinerary
+          </button>
           <DragDropContext>
+            <h1 className="title">Final Itinerary</h1>
             <Container>
-              <Title>Final Itinerary</Title>
               <Droppable droppableId="final-itinerary">
                 {provided => (
                   <LeftList
@@ -79,17 +101,10 @@ class FinalItinerary extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     places: state.places,
     itinerary: state.itinerary
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {}
-// }
-
-export default connect(mapStateToProps)(FinalItinerary)
-
-// {places.map(place => {//DUMMY DATA
-//   return <ItineraryCard key={place.id} place={place} />
-// })}
+export default connect(mapStateToProps, null)(FinalItinerary)

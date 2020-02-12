@@ -25,35 +25,49 @@ export const refreshAll = places => ({type: REFRESH_ALL, places})
  */
 
 function orderRecommendations(placesObject) {
-  // WIP
-  console.log('Ordering recommendations')
+  // console.log('Ordering recommendations')
   var orderedArray = []
   // count # of places
   var count = 0
+  var cache = {}
+  var uniqueCache = {}
+
   for (var interest of Object.keys(placesObject)) {
     for (var type of Object.keys(placesObject[interest])) {
-      console.log('interest', interest)
-      console.log('type', type)
-      console.log('Array', placesObject[interest][type])
+      // console.log('interest', interest)
+      // console.log('type', type)
+      // console.log('Array', placesObject[interest][type])
+
+      //need to create a uniqueCache
       for (var place of placesObject[interest][type]) {
-        count++
+        if (!uniqueCache[place.id]) {
+          count++
+          uniqueCache[place.id] = place
+        }
       }
     }
   }
-
+  // console.log('FINAL COUNT', count)
   // push one element from each places array into the orderedArray until all the elements are in
   var i = 0
-  while (orderedArray.length < count) {
+  while (orderedArray.length < Object.keys(uniqueCache).length) {
     for (var interest2 of Object.keys(placesObject)) {
       for (var type2 of Object.keys(placesObject[interest2])) {
         if (placesObject[interest2][type2][i]) {
-          orderedArray.push(placesObject[interest2][type2][i])
+          //checks for duplicates before updating cache
+          if (!cache[placesObject[interest2][type2][i].id]) {
+            cache[placesObject[interest2][type2][i].id] =
+              placesObject[interest2][type2][i]
+            //pushes only unique places into array
+            orderedArray.push(placesObject[interest2][type2][i])
+          }
         }
       }
     }
     i++
   }
   console.log('Final ordered array:', orderedArray)
+  console.log('count', count)
   return orderedArray
 }
 

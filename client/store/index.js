@@ -6,14 +6,16 @@ import user from './user'
 import places from './places'
 import coordinates from './coordinates'
 import selected from './selectplaces'
-import itinerary from './itinerary'
 import dates from './dates'
+import itinerary from './itinerary'
+import itineraryHistory from './itineraryhistory'
 
 const reducer = combineReducers({
   user,
   places,
   coordinates,
   selected,
+  itineraryHistory,
   itinerary,
   dates
 })

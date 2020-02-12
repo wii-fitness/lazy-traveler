@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getPlaces} from '../store/places'
 import LocationSearch from './search'
+import PropTypes from 'prop-types'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
 import {getDates} from '../store/dates'
+import Navbar from './navbar'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
@@ -60,29 +62,19 @@ class Home extends React.Component {
     console.log('Dates', this.state.startDate, this.state.endDate)
     this.props.getDates(this.state.startDate, this.state.endDate)
     // need to check if req was successful
+    console.log('HISTORYYYY', this.props)
     this.props.history.push('/builder')
   }
 
   render() {
+    const {email} = this.props
     return (
       <div className="homeImage">
-        {/* <div className= "home-content-1">
-        <Form>
-          <Form.Group controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          </Form>
-          </div> */}
-
+        <h3 className="welcome">{email ? `Welcome, ${email}` : ''}</h3>
         <div className="home-content-1">
           <div className="home-content">
             <div className="home-title">
-              <h1 className="title">Let us plan your trip</h1>
+              <h1 className="image-title">Let us plan your trip</h1>
               <h3>Create a fully customized itinerary</h3>
             </div>
           </div>
@@ -90,17 +82,13 @@ class Home extends React.Component {
           <form id="planning-form" onSubmit={this.handleSubmit}>
             <div className="steps">
               <div className="title">Itinerary Planner</div>
-              <div className="destination">
-                <label htmlFor="location">Location:</label>
-                <div className="auto-search-container">
-                  <LocationSearch />
+              <div className="destination-search">
+                <div className="destination">
+                  <label htmlFor="location" />
+                  <div className="auto-search-container">
+                    <LocationSearch />
+                  </div>
                 </div>
-                {/* <input
-                      type="text"
-                      name="location"
-                      value={this.state.location}
-                      onChange={this.handleChange}
-                    /> */}
               </div>
               <div>
                 <label htmlFor="start">Start Date:</label>
@@ -189,7 +177,8 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    coordinates: state.coordinates
+    coordinates: state.coordinates,
+    email: state.user.email
   }
 }
 
@@ -208,5 +197,9 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
+
+HomeContainer.propTypes = {
+  email: PropTypes.string
+}
 
 export default HomeContainer

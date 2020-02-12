@@ -48,7 +48,7 @@ class SimpleMap extends Component {
                 key={place.id}
                 lat={place.geometry.location.lat}
                 lng={place.geometry.location.lng}
-                text="my marker"
+                // text="my marker"
               />
             )
           })}
