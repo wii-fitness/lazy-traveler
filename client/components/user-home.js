@@ -10,19 +10,21 @@ import PastItinerary from './pastItinerary'
  */
 class UserHome extends React.Component {
   componentDidMount() {
-    this.props.getPastItineraries(this.props.user.id)
+    this.props.getPastItineraries(
+      '3'
+      // this.props.user.id
+    )
   }
 
   render() {
+    console.log('hello', this.props)
     return (
-      <div>
+      <div className="user-home-container">
         <h2>Welcome, {this.props.user.email}</h2>
-        <div>
-          <h3>Saved Itineraries:</h3>
-          {this.props.itineraryHistory.map(itinerary => {
-            return <PastItinerary itinerary={itinerary} key={itinerary.id} />
-          })}
-        </div>
+        <h3>Saved Itineraries:</h3>
+        {this.props.itineraryHistory.map(itinerary => {
+          return <PastItinerary itinerary={itinerary} key={itinerary.id} />
+        })}
       </div>
     )
   }

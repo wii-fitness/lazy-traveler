@@ -7,10 +7,10 @@ const Itinerary = db.define('itinerary', {
     type: Sequelize.STRING
   },
   arrival: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   departure: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   timeOfStay: {
     type: Sequelize.INTEGER
