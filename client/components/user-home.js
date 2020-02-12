@@ -10,10 +10,14 @@ import PastItinerary from './pastItinerary'
  */
 class UserHome extends React.Component {
   componentDidMount() {
-    this.props.getPastItineraries(this.props.user.id)
+    this.props.getPastItineraries(
+      '3'
+      // this.props.user.id
+    )
   }
 
   render() {
+    console.log('hello', this.props)
     return (
       <div className="user-home-container">
         <h2>Welcome, {this.props.user.email}</h2>
