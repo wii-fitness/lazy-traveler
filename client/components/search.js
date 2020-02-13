@@ -12,12 +12,30 @@ class LocationSearch extends React.Component {
     this.state = {address: ''}
   }
 
+  // if(this.state.selectedAddress && this.state.address !== this.state.selectedAddress){
+  //   this.setState((state) => {
+  //     return {
+  //       ...state,
+  //       selectedAddress: ''
+  //     }})
+  //   this.props.getCoordinates({})
+  // }
+
   handleChange = address => {
-    this.setState({address})
+    this.setState(state => {
+      return {
+        ...state,
+        address: address
+      }
+    })
   }
 
   handleSelect = address => {
-    this.setState({address})
+    this.setState(() => {
+      return {
+        address: address
+      }
+    })
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => this.props.getCoordinates(latLng))

@@ -6,7 +6,8 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
-  opacity: 0.9;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
