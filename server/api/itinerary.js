@@ -363,7 +363,8 @@ router.post('/:userId', async (req, res, next) => {
     console.log('REC.BODY.SELECTED', selected)
     // console.log('req.params.userId', req.params.userId)
 
-    const title = selected[0].name + ' and ' + selected.length + ' more...'
+    const title =
+      selected[0].name + ' and ' + (selected.length - 1) + ' more...'
     // creates new instance in the Itinerary table
     const itinerary = await Itinerary.create({
       city: title,
@@ -383,10 +384,10 @@ router.post('/:userId', async (req, res, next) => {
         // console.log('PLACE IN API', place)
         await Place.findOrCreate({
           where: {
-            id: place.id
+            id: place.place_id
           },
           defaults: {
-            id: place.id,
+            id: place.place_id,
             name: place.name,
             city: 'Default',
             latitude: place.geometry.location.lat,
@@ -402,7 +403,7 @@ router.post('/:userId', async (req, res, next) => {
         })
         await ItineraryPlace.create({
           itineraryId: itinerary.dataValues.id,
-          placeId: place.id,
+          placeId: place.place_id,
           dayIndicator: day,
           timeIndicator: time
         })
@@ -439,6 +440,7 @@ router.post('/:userId', async (req, res, next) => {
     // })
     res.sendStatus(201)
   } catch (err) {
+    console.log(err)
     next(err)
   }
 })
