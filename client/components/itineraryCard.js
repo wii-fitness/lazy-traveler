@@ -6,6 +6,7 @@ import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   opacity: 1;
   display: flex;
   flex-direction: column;
