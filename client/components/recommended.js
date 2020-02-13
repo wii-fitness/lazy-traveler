@@ -105,9 +105,7 @@ class Recommended extends React.Component {
               Recommended Places
             </div>
             <div className="two">
-              <Link to="/itinerary" className="generate">
-                <button>GENERATE ITINERARY</button>
-              </Link>
+              <button onClick={this.handleSubmit}>GENERATE ITINERARY</button>
               Selected Itinerary
             </div>
           </div>
