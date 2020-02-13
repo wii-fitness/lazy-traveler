@@ -68,7 +68,6 @@ class Home extends React.Component {
         coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
       })
       this.props.getDates(this.state.startDate, this.state.endDate)
-      // need to check if req was successful
       this.props.history.push('/builder')
     } else {
       alert('Please enter a location, a start date and an end date')
