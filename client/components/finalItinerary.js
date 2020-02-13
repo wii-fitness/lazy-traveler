@@ -91,7 +91,6 @@ class FinalItinerary extends React.Component {
                                     <ItineraryCard
                                       key={this.props.itinerary[day][time].id}
                                       place={this.props.itinerary[day][time]}
-                                      draggable="false"
                                     />
                                   </div>
                                 )
