@@ -105,6 +105,7 @@ router.post('/', async (req, res, next) => {
       console.log('day', day)
       dayTimes.push(Array.from(times))
     }
+
     console.log('DAYTIMES', dayTimes)
 
     while (placesWithHours.length) {
