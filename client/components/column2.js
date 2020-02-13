@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './card'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
-  opacity: 0.9;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  opacity: 1;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
