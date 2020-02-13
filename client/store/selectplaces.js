@@ -32,6 +32,7 @@ export const saveItineraryThunk = (userId, dates, selected, itinerary) => {
         itinerary: itinerary
       })
       dispatch(saveItinerary(selected))
+      return true
     } catch (error) {
       console.error(error)
     }
