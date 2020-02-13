@@ -6,6 +6,7 @@ import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   opacity: 1;
   display: flex;
   flex-direction: column;
@@ -32,7 +33,8 @@ class ItineraryCard extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({photo: await this.getPhoto()})
+    var photo = await this.getPhoto()
+    this.setState({photo: photo})
   }
 
   async getPhoto() {

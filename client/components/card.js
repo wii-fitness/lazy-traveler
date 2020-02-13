@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import axios from 'axios'
 import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
@@ -11,7 +10,7 @@ import {Draggable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
-  opacity: 1;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   border: 3px solid lightgrey;
@@ -61,7 +60,6 @@ class Card extends React.Component {
 
   async componentDidMount() {
     const photo = localStorage.getItem(this.props.place.id)
-    // console.log('PHOTOOOOOOO: ', photo)
     if (photo) {
       this.setState({photo: photo})
     } else {

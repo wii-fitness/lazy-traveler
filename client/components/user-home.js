@@ -14,6 +14,12 @@ class UserHome extends React.Component {
     this.props.getPastItineraries(this.props.user.id)
   }
 
+  //   componentDidUpdate(prevProps) {
+  //   console.log('PREVIOUS', prevProps)
+  //   // if (this.props.user.id !== prevProps.userID) {
+  //   // this.props.getPastItineraries(this.props.user.id)
+  // }
+
   render() {
     return (
       <div className="user-home-container">

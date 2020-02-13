@@ -26,6 +26,7 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
+    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -55,15 +56,21 @@ class Home extends React.Component {
 
   handleSubmit() {
     event.preventDefault()
-    this.props.getPlaces({
-      ...this.state,
-      coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
-    })
-    console.log('Dates', this.state.startDate, this.state.endDate)
-    this.props.getDates(this.state.startDate, this.state.endDate)
-    // need to check if req was successful
-    console.log('HISTORYYYY', this.props)
-    this.props.history.push('/builder')
+    if (
+      Object.keys(this.props.coordinates).length &&
+      this.state.startDate &&
+      this.state.endDate
+    ) {
+      this.props.getPlaces({
+        ...this.state,
+        coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
+      })
+      this.props.getDates(this.state.startDate, this.state.endDate)
+      // need to check if req was successful
+      this.props.history.push('/builder')
+    } else {
+      alert('Please enter a location, a start date and an end date')
+    }
   }
 
   render() {
@@ -107,7 +114,7 @@ class Home extends React.Component {
                 />
               </div>
               <div className="preference-title">
-                Activities preferences
+                Activities preferences{'(Optional)'}
                 <span className="optional"> </span>
               </div>
               <div className="interests">

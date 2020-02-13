@@ -105,13 +105,14 @@ router.post('/', async (req, res, next) => {
       console.log('day', day)
       dayTimes.push(Array.from(times))
     }
+
     console.log('DAYTIMES', dayTimes)
 
     while (placesWithHours.length) {
       var place = placesWithHours.pop()
       //console.log('Place', place)
       var dayIdx = 0
-      outerloop: while (dayIdx < times.length) {
+      outerloop: while (dayIdx < dayTimes.length) {
         var i = 0
         console.log('dayidx', dayIdx)
         var time = dayTimes[dayIdx]
@@ -354,13 +355,16 @@ router.get('/:userId', async (req, res, next) => {
 // route that saves a user's itinerary
 router.post('/:userId', async (req, res, next) => {
   try {
-    const data = req.body.places
+    const data = req.body.itinerary
+    console.log('Data', data)
     const selected = req.body.selected
-    console.log('ITINERARY (API)', req.body.places)
-    console.log('req.body.place', data)
-    console.log('req.params.userId', req.params.userId)
+    // console.log('ITINERARY (API)', req.body.places)
+    // console.log('req.body.place', data)
+    console.log('REC.BODY.SELECTED', selected)
+    // console.log('req.params.userId', req.params.userId)
 
-    const title = selected[0].name + ' and ' + selected.length + ' more...'
+    const title =
+      selected[0].name + ' and ' + (selected.length - 1) + ' more...'
     // creates new instance in the Itinerary table
     const itinerary = await Itinerary.create({
       city: title,
@@ -370,18 +374,20 @@ router.post('/:userId', async (req, res, next) => {
       userId: req.params.userId
     })
 
-    Object.keys(data).forEach(day => {
-      console.log('DAY IN API', day)
+    // console.log('000000000', req.body)
+
+    Object.keys(data).forEach(async day => {
+      // console.log('DAY IN API', day)
       Object.keys(data[day]).forEach(async time => {
-        console.log('TIME IN API', time)
+        // console.log('TIME IN API', time)
         var place = data[day][time]
-        console.log('PLACE IN API', place)
+        // console.log('PLACE IN API', place)
         await Place.findOrCreate({
           where: {
-            id: place.id
+            id: place.place_id
           },
           defaults: {
-            id: place.id,
+            id: place.place_id,
             name: place.name,
             city: 'Default',
             latitude: place.geometry.location.lat,
@@ -397,12 +403,13 @@ router.post('/:userId', async (req, res, next) => {
         })
         await ItineraryPlace.create({
           itineraryId: itinerary.dataValues.id,
-          placeId: place.id,
+          placeId: place.place_id,
           dayIndicator: day,
           timeIndicator: time
         })
       })
     })
+
     // takes array of selected places and updates
     // (i) findsorCreates places in places table
     // (ii) Itinerary Places table with itineraryId and placesId
@@ -431,8 +438,9 @@ router.post('/:userId', async (req, res, next) => {
     //     placeId: place.id
     //   })
     // })
-    res.status(201)
+    res.sendStatus(201)
   } catch (err) {
+    console.log(err)
     next(err)
   }
 })

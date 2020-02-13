@@ -486,9 +486,6 @@ img {
   box-shadow: 2px 2px rgba(0, 0, 0, 0.35);
   position: relative;
   right: 46%;
-}
-
-.generate button {
   background-color: rgb(23, 37, 82);
   font-weight: bolder;
   color: rgb(190, 87, 87);
@@ -538,6 +535,7 @@ img {
   font-size: 14px;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
+
 .itinerary-history-details-container {
   /* display: flex; */
   flex-direction: column;
