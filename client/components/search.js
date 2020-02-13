@@ -9,10 +9,7 @@ import PlacesAutocomplete, {
 class LocationSearch extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      address: '',
-      selectedAddress: ''
-    }
+    this.state = {address: ''}
   }
 
   // if(this.state.selectedAddress && this.state.address !== this.state.selectedAddress){
@@ -36,8 +33,7 @@ class LocationSearch extends React.Component {
   handleSelect = address => {
     this.setState(() => {
       return {
-        address: address,
-        selectedAddress: address
+        address: address
       }
     })
     geocodeByAddress(address)
