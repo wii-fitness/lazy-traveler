@@ -22,6 +22,7 @@ var interestsMap = {
 
 // route handling homepage form
 router.post('/', async (req, res, next) => {
+  req.body.interests.push('touristAttractions')
   var suggestedLocations = {}
   var coords = req.body.coordinates
   // console.log(req.body)
