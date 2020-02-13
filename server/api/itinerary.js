@@ -105,13 +105,14 @@ router.post('/', async (req, res, next) => {
       console.log('day', day)
       dayTimes.push(Array.from(times))
     }
+
     console.log('DAYTIMES', dayTimes)
 
     while (placesWithHours.length) {
       var place = placesWithHours.pop()
       //console.log('Place', place)
       var dayIdx = 0
-      outerloop: while (dayIdx < times.length) {
+      outerloop: while (dayIdx < dayTimes.length) {
         var i = 0
         console.log('dayidx', dayIdx)
         var time = dayTimes[dayIdx]

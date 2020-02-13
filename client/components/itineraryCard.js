@@ -32,7 +32,8 @@ class ItineraryCard extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({photo: await this.getPhoto()})
+    var photo = await this.getPhoto()
+    this.setState({photo: photo})
   }
 
   async getPhoto() {
