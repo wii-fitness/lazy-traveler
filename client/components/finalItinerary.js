@@ -38,16 +38,15 @@ class FinalItinerary extends React.Component {
       const userId = this.props.user.id
 
       // this.props.userId
-      let result = await Axios.post(`/api/itinerary/${userId}`, {
+      await Axios.post(`/api/itinerary/${userId}`, {
         places: this.props.itinerary,
         dates: this.props.dates,
         selected: this.props.selected
       })
 
-      if (result) {
-        //try props.history.push
-        this.props.history.push('/home')
-      }
+      console.log('RESULTJ!!!!!!!!!')
+      console.log('HISTORY', this.props.history)
+      this.props.history.push('/home')
     } catch (err) {
       console.error(err)
     }
