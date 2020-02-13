@@ -1,6 +1,3 @@
-import axios from 'axios'
-import history from '../history'
-
 /**
  * ACTION TYPES
  */
@@ -9,7 +6,7 @@ const GET_COORDINATES = 'GET_COORDINATES'
 /**
  * INITIAL STATE
  */
-const coordinates = {}
+const initialCoordinates = {}
 
 /**
  * ACTION CREATORS
@@ -22,7 +19,7 @@ export const getCoordinates = coordinates => ({
 /**
  * REDUCER
  */
-export default function(state = coordinates, action) {
+export default function(state = initialCoordinates, action) {
   switch (action.type) {
     case GET_COORDINATES:
       return action.coordinates

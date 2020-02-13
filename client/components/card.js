@@ -35,7 +35,6 @@ class Card extends React.Component {
 
   async componentDidMount() {
     const photo = localStorage.getItem(this.props.place.id)
-    console.log('PHOTOOOOOOO: ', photo)
     if (photo) {
       this.setState({photo: photo})
     } else {
