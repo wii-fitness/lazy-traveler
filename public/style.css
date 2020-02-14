@@ -571,3 +571,21 @@ ul {
 .nav-button-after-login {
   color: white;
 }
+
+.userHomeImage {
+  background-image: url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  /* background-position: center center; */
+  background-repeat: no-repeat;
+
+  /* right: 0%; */
+  background-attachment: fixed;
+  padding-top: 2%;
+  padding-right: 1%;
+  padding-left: 0%;
+  padding-bottom: 2%;
+  position: relative;
+  background-size: cover;
+}

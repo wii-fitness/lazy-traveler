@@ -22,12 +22,14 @@ class UserHome extends React.Component {
 
   render() {
     return (
-      <div className="user-home-container">
-        <h2>Welcome, {this.props.user.email}</h2>
-        <h3>Saved Itineraries:</h3>
-        {this.props.itineraryHistory.map(itinerary => {
-          return <PastItinerary itinerary={itinerary} key={itinerary.id} />
-        })}
+      <div className="userHomeImage">
+        <div className="user-home-container">
+          <h2>Welcome, {this.props.user.email}</h2>
+          <h3>Saved Itineraries:</h3>
+          {this.props.itineraryHistory.map(itinerary => {
+            return <PastItinerary itinerary={itinerary} key={itinerary.id} />
+          })}
+        </div>
       </div>
     )
   }

@@ -89,11 +89,9 @@ class Navbar extends React.Component {
               </Link>
             </Typography>
           ) : (
-            <Link to="/auth/google">
-              <Button variant="contained" size="small">
-                Login
-              </Button>
-            </Link>
+            <a href="/auth/google" className="login-nav">
+              Login with Google
+            </a>
           )}
         </Toolbar>
       </div>
