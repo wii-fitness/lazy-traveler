@@ -2,28 +2,45 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
+// import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
 import Axios from 'axios'
 import history from '../history'
 import {saveItineraryThunk} from '../store/selectplaces'
+import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 const Container = styled.div`
-  background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-  opacity: 0.8;
+  background-color: none;
+  opacity: 0.9;
   margin: 8pm;
-  border: 3px solid lightgrey;
-  border-radius: 2px;
+  border: 5px dotted black;
+  min-height: 775px;
   width: 50%;
-  position: absolute;
+  position: relative;
   left: 2%;
 `
 
 const LeftList = styled.div`
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px;
+  width: 95%;
 `
+
+const useStyles = theme => ({
+  toolbarTitle: {
+    flex: 1,
+    color: 'white',
+    textIndent: '15px',
+    lineHeight: '3em',
+    height: '3em'
+  }
+})
 
 class FinalItinerary extends React.Component {
   constructor() {
@@ -65,63 +82,75 @@ class FinalItinerary extends React.Component {
   }
 
   render() {
-    console.log('this.props', this.props)
+    // console.log('this.props', this.props)
+    const {classes} = this.props
     return (
       <div className="final-it">
-        <div className="itinerary-maps-container">
-          <div className="final-itinerary-container">
-            <DragDropContext>
-              <div className="final-flex">
-                <h1 className="it-title">Final Itinerary</h1>
-                {this.props.isLoggedIn ? (
-                  <button
-                    type="button"
-                    onClick={this.saveItinerary}
-                    className="save"
+        <div className="final-it-header">
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="left"
+            textIndent="10px"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            Your Itinerary!
+          </Typography>
+
+          {/* <DragDropContext> */}
+          {this.props.isLoggedIn ? (
+            <Link to="#" onClick={this.saveItinerary}>
+              <Button variant="contained" size="small">
+                Save Itinerary
+              </Button>
+            </Link>
+          ) : (
+            <Typography
+              component="h2"
+              variant="subtitle2"
+              color="inherit"
+              align="left"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              Login to save your itinerary!
+            </Typography>
+          )}
+        </div>
+        <div className="itineraryPlusMap">
+          <Container>
+            {Object.keys(this.props.itinerary).map(day => {
+              return (
+                <div>
+                  <Typography
+                    component="h2"
+                    // variant="subtitle2"
+                    color="inherit"
+                    align="left"
+                    noWrap
+                    className={classes.toolbarTitle}
                   >
-                    Save Itinerary
-                  </button>
-                ) : (
-                  <h4>Login to save your itinerary!</h4>
-                )}
-              </div>
-              <Container>
-                <Droppable droppableId="final-itinerary">
-                  {provided => (
-                    <LeftList
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                    >
-                      {Object.keys(this.props.itinerary).map(day => {
-                        console.log('DAY', day)
-                        return (
-                          <div>
-                            <h1>Day {parseInt(day) + 1}</h1>
-                            {Object.keys(this.props.itinerary[day]).map(
-                              time => {
-                                console.log('TIME', time)
-                                return (
-                                  <div>
-                                    <h2>{time}</h2>
-                                    <ItineraryCard
-                                      key={this.props.itinerary[day][time].id}
-                                      place={this.props.itinerary[day][time]}
-                                      draggable="false"
-                                    />
-                                  </div>
-                                )
-                              }
-                            )}
-                          </div>
-                        )
-                      })}
-                      {provided.placeholder}
-                    </LeftList>
-                  )}
-                </Droppable>
-              </Container>
-            </DragDropContext>
-          </div>
+                    Day {parseInt(day) + 1}
+                  </Typography>
+                  {Object.keys(this.props.itinerary[day]).map(time => {
+                    return (
+                      // <div >
+                      //   <h2>{time}</h2>
+                      <ItineraryCard
+                        key={this.props.itinerary[day][time].id}
+                        timeSlot={time}
+                        place={this.props.itinerary[day][time]}
+                        draggable="false"
+                      />
+                      // </div>
+                    )
+                  })}
+                </div>
+              )
+            })}
+          </Container>
           <div className="map">
             <SimpleMap />
           </div>
@@ -148,4 +177,6 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FinalItinerary)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(useStyles)(FinalItinerary)
+)

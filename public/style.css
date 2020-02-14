@@ -261,6 +261,10 @@ label {
 
 .container-div {
   display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px;
+  width: 95%;
 }
 
 .description-container {
@@ -286,15 +290,12 @@ img {
   background-image: url(https://media.gettyimages.com/photos/vacation-holidays-background-wallpaper-summer-beach-tourism-vacation-picture-id686947850?s=2048x2048);
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 0.5%;
-  padding-right: 1%;
-  padding-left: 1%;
-  padding-bottom: 2%;
-  position: relative;
-  right: 1%;
+  background-attachment: fixed;
 }
 
 .photo {
@@ -320,11 +321,9 @@ img {
 
 .map {
   position: relative;
-  left: 45%;
-  top: 10px;
+  left: 10%;
   width: 38%;
   height: 25%;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.35);
 }
 
 #app {
@@ -558,6 +557,7 @@ img {
   margin: 10px;
   padding: 5px;
 }
+
 .itinerary-details > img {
   width: 10em;
   height: 90%;
@@ -570,4 +570,32 @@ ul {
 
 .nav-button-after-login {
   color: white;
+}
+
+.final-it {
+  background-image: url('./images/finalitineraryBackground.jpg');
+  /* height: 100%;
+  width: 100%; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.recommend-subtitle {
+  display: flex;
+  align-items: center;
+  line-height: 2em;
+}
+
+.itineraryPlusMap {
+  display: flex;
+}
+
+.final-it-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  text-indent: 10px;
 }
