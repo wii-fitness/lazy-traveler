@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from './card'
+import PlaceCard from './placecard'
 import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
-  opacity: 1;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0.75;
   margin: 8pm;
   border: 3px solid lightgrey;
   border-radius: 2px;
-  width: 50%;
+  width: 47%;
 `
 
 const RightList = styled.div`
@@ -29,7 +29,7 @@ class Column2 extends React.Component {
           {provided => (
             <RightList ref={provided.innerRef} {...provided.droppableProps}>
               {this.props.selected.map((place, index) => {
-                return <Card key={place.id} place={place} index={index} />
+                return <PlaceCard key={place.id} place={place} index={index} />
               })}
               {provided.placeholder}
             </RightList>

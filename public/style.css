@@ -10,13 +10,14 @@ body {
   font-weight: 400;
   line-height: 1.45;
   color: #333;
+  background-color: #121212;
 }
 
 a {
   text-decoration: none;
 }
 
-nav a {
+/* nav a {
   float: left;
   display: flex;
   justify-content: space-evenly;
@@ -29,14 +30,12 @@ nav a {
   text-decoration: none;
   font-size: small;
   border-radius: 10px;
-}
+} */
 
-nav {
-  display: flex;
-  flex-direction: row;
-  margin-top: -10px;
-  margin-bottom: 0px;
-}
+/* .nav {
+  justify-content: space-between;
+  
+} */
 
 /* form {
   display: block;
@@ -280,10 +279,11 @@ img {
 
 .columns {
   display: flex;
+  justify-content: space-between;
 }
 
 .recommended-view {
-  background-image: url(https://www.imore.com/sites/imore.com/files/styles/mediumplus/public/field/image/2017/02/airplane-flight-sunset.jpg?itok=8iUtkHU-);
+  background-image: url(https://media.gettyimages.com/photos/vacation-holidays-background-wallpaper-summer-beach-tourism-vacation-picture-id686947850?s=2048x2048);
   height: 100%;
   width: 100%;
   background-position: center;
@@ -554,7 +554,6 @@ img {
   letter-spacing: 1px;
   font-size: 10px;
   justify-content: space-between;
-  width: 75%;
   height: 100px;
   margin: 10px;
   padding: 5px;
