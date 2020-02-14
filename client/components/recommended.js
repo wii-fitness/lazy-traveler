@@ -11,12 +11,11 @@ import {createItinerary} from '../store/itinerary'
 class Recommended extends React.Component {
   constructor() {
     super()
-    this.state = {
-      interests: []
-    }
+    // this.state = {
+    //   interests: []
+    // }
     this.buttonRefresh = this.buttonRefresh.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    //this.orderRecommendations = this.orderRecommendations.bind(this)
   }
 
   onDragEnd = result => {
