@@ -4,30 +4,42 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store/user'
 
-// import { makeStyles } from '@material-ui/core/styles';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import SearchIcon from '@material-ui/icons/Search';
-// import Typography from '@material-ui/core/Typography';
-// import Link from '@material-ui/core/Link';
+import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
-// const useStyles = makeStyles(theme => ({
-//   toolbar: {
-//     borderBottom: `1px solid ${theme.palette.divider}`,
-//   },
-//   toolbarTitle: {
-//     flex: 1,
-//   },
-//   toolbarSecondary: {
-//     justifyContent: 'space-between',
-//     overflowX: 'auto',
-//   },
-//   toolbarLink: {
-//     padding: theme.spacing(1),
-//     flexShrink: 0,
-//   },
-// }));
+// const newTheme = createMuiTheme({
+//   overrides: {
+//     MuiToolbar: {
+//       regular: {
+//         backgroundColor: "#ffff00",
+//         color: "#000000",
+//         height: "32px",
+//         minHeight: "32px",
+//         '@media (min-width: 600px)': {
+//           minHeight: "48px"
+//         }
+//       }
+//     },
+//   }
+// })
+
+const useStyles = theme => ({
+  toolbar: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    flex: 1
+  },
+  toolbarTitle: {
+    flex: 1,
+    color: 'white'
+  },
+  toolbarLink: {
+    padding: theme.spacing(1),
+    flexShrink: 0,
+    color: 'white'
+  }
+})
 
 class Navbar extends React.Component {
   constructor() {
@@ -40,53 +52,51 @@ class Navbar extends React.Component {
   }
 
   render() {
-    // const classes = useStyles()
+    const classes = this.props
 
     return (
-      //   <React.Fragment>
-      //   <Toolbar className={classes.toolbar}>
-      //     <Button size="small">Subscribe</Button>
-      //     <Typography
-      //       component="h2"
-      //       variant="h5"
-      //       color="inherit"
-      //       align="center"
-      //       noWrap
-      //       className={classes.toolbarTitle}
-      //     >
-      //       theLazyTraveler
-      //     </Typography>
-      //     <Button variant="outlined" size="small">
-      //       Login
-      //     </Button>
-      //   </Toolbar>
-      // </React.Fragment>
-      // <div>
+      <div className="nav">
+        <Toolbar className={classes.toolbar}>
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="left"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            <Link to="/" style={{color: 'white'}}>
+              theLazyTraveler
+            </Link>
+          </Typography>
 
-      //original
-      <nav className="navbar">
-        <Link to="/" style={{color: 'white'}}>
-          <div className="nav-title">theLazyTraveler</div>
-        </Link>
-        {this.props.isLoggedIn ? (
-          <div className="nav-button-after-login">
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">My Itineraries</Link>
-            <a href="#" onClick={this.handleClick} className="logout">
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <a href="/auth/google" className="login-nav">
-              Login with Google
-            </a>
-          </div>
-        )}
-      </nav>
-      /* <hr /> */
-      // </div>
+          {this.props.isLoggedIn ? (
+            <Typography
+              component="h2"
+              variant="subtitle1"
+              color="inherit"
+              align="left"
+              noWrap
+              className={classes.toolbarLink}
+            >
+              <Link to="/home" style={{color: 'white'}}>
+                My Itineraries
+              </Link>
+              <Link to="#" onClick={this.handleClick}>
+                <Button variant="contained" size="small">
+                  Logout
+                </Button>
+              </Link>
+            </Typography>
+          ) : (
+            <Link to="/auth/google">
+              <Button variant="contained" size="small">
+                Login
+              </Button>
+            </Link>
+          )}
+        </Toolbar>
+      </div>
     )
   }
 }
@@ -108,8 +118,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-// const styledNavBar = makeStyles(useStyles)(Navbar)
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(withStyles(useStyles)(Navbar))
 
 /**
  * PROP TYPES

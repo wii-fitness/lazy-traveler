@@ -1,17 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from './card'
+import PlaceCard from './placecard'
 import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
-  background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
-  opacity: 1;
+  background-color: none;
+  opacity: 0.85;
   margin: 8pm;
-  border: 3px solid lightgrey;
-  border-radius: 2px;
-  width: 50%;
+  width: 47%;
 `
 
 const LeftList = styled.div`
@@ -26,7 +23,7 @@ class Column extends React.Component {
           {provided => (
             <LeftList ref={provided.innerRef} {...provided.droppableProps}>
               {this.props.places.slice(0, 6).map((place, index) => {
-                return <Card key={place.id} place={place} index={index} />
+                return <PlaceCard key={place.id} place={place} index={index} />
               })}
               {provided.placeholder}
             </LeftList>

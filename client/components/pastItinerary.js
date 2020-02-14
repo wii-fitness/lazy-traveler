@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Hidden from '@material-ui/core/Hidden'
+import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles({
   card: {
@@ -43,7 +44,7 @@ export default function PastItinerary(props) {
                         {`Rating: ${place.rating}`}
                       </Typography>
                       <Typography variant="subtitle2" color="primary">
-                        <a href={`${place.website}`}>{place.website}</a>
+                        <Link href={`${place.website}`}>{place.website}</Link>
                       </Typography>
                     </CardContent>
                   </div>

@@ -1,27 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import styled from 'styled-components'
-import {Draggable} from 'react-beautiful-dnd'
+// import styled from 'styled-components'
+// import {Draggable} from 'react-beautiful-dnd'
+import {withStyles} from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Hidden from '@material-ui/core/Hidden'
 
-const Container = styled.div`
-  background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-  display: flex;
-  flex-direction: column;
-  border: 3px solid lightgrey;
-  border-radius: 8px;
-  padding: 10px;
-  width: 95%;
-`
-const Title = styled.h2`
-  position: relative;
-`
-const Description = styled.h5`
-  position: relative;
-  font-weight: 500;
-`
+const useStyles = theme => ({
+  card: {
+    display: 'flex',
+    background: '#e3e9ff'
+  },
+  cardDetails: {
+    flex: 1
+  },
+  cardMedia: {
+    width: 160
+  }
+})
 
 class ItineraryCard extends React.Component {
   constructor() {
@@ -47,24 +49,38 @@ class ItineraryCard extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
-      <Container>
-        <div className="container-div">
-          <div className="pic-container">
-            <img src={'https://' + this.state.photo} className="photo" />
-          </div>
-          <div className="description-container">
-            <Title>{this.props.place.name}</Title>
-            <Description>
-              Rating:{' '}
-              {this.props.place.rating ? this.props.place.rating : 'N/A'}
-            </Description>
-            <Description>Address: {this.props.place.vicinity}</Description>
-          </div>
-        </div>
-      </Container>
+      <div className="container-div">
+        <Grid item xs={10} md={true}>
+          <CardActionArea component="a" href="#">
+            <Card className={classes.card}>
+              <Hidden xsDown>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={'https://' + this.state.photo}
+                />
+              </Hidden>
+              <div className={classes.cardDetails}>
+                <CardContent>
+                  <Typography component="h6">
+                    {this.props.place.name}
+                  </Typography>
+                  <Typography variant="subtitle2" color="textSecondary">
+                    Rating:{' '}
+                    {this.props.place.rating ? this.props.place.rating : 'N/A'}
+                  </Typography>
+                  <Typography variant="subtitle2" color="primary">
+                    Address: {this.props.place.vicinity}
+                  </Typography>
+                </CardContent>
+              </div>
+            </Card>
+          </CardActionArea>
+        </Grid>
+      </div>
     )
   }
 }
 
-export default ItineraryCard
+export default withStyles(useStyles)(ItineraryCard)
