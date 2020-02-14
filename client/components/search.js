@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getCoordinates} from '../store/coordinates'
+import {getCoordinates, clearCoordinates} from '../store/coordinates'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -22,6 +22,9 @@ class LocationSearch extends React.Component {
   // }
 
   handleChange = address => {
+    if (address === '') {
+      this.props.clearCoordinates()
+    }
     this.setState(state => {
       return {
         ...state,
@@ -100,7 +103,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCoordinates: coordinates => dispatch(getCoordinates(coordinates))
+    getCoordinates: coordinates => dispatch(getCoordinates(coordinates)),
+    clearCoordinates: () => dispatch(clearCoordinates())
   }
 }
 
