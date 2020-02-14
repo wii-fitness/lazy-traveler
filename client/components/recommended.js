@@ -21,12 +21,24 @@ class Recommended extends React.Component {
   onDragEnd = result => {
     const {source, destination} = result
 
-    if (source.droppableId === destination.droppableId) {
+    if (
+      source.droppableId === destination.droppableId &&
+      source.droppableId === 'left-side'
+    ) {
       const newPlaces = Array.from(this.props.places)
       let placeholder = newPlaces[source.index]
       newPlaces.splice(source.index, 1)
       newPlaces.splice(destination.index, 0, placeholder)
       this.props.updatePlaces(newPlaces)
+    } else if (
+      source.droppableId === destination.droppableId &&
+      source.droppableId === 'right-side'
+    ) {
+      const newPlaces = Array.from(this.props.selected)
+      let placeholder = newPlaces[source.index]
+      newPlaces.splice(source.index, 1)
+      newPlaces.splice(destination.index, 0, placeholder)
+      this.props.updateSelectPlaces(newPlaces)
     } else if (
       source.droppableId === 'left-side' &&
       destination.droppableId === 'right-side'
