@@ -53,7 +53,6 @@ class Navbar extends React.Component {
 
   render() {
     const classes = this.props
-
     return (
       <div className="nav">
         <Toolbar className={classes.toolbar}>
@@ -61,7 +60,6 @@ class Navbar extends React.Component {
             component="h2"
             variant="h5"
             color="inherit"
-            align="left"
             noWrap
             className={classes.toolbarTitle}
           >
@@ -69,27 +67,44 @@ class Navbar extends React.Component {
               theLazyTraveler
             </Link>
           </Typography>
-
           {this.props.isLoggedIn ? (
             <Typography
               component="h2"
               variant="subtitle1"
               color="inherit"
-              align="left"
               noWrap
               className={classes.toolbarLink}
             >
-              <Link to="/home" style={{color: 'white'}}>
-                My Itineraries
-              </Link>
-              <Link to="#" onClick={this.handleClick}>
-                <Button variant="contained" size="small">
-                  Logout
-                </Button>
-              </Link>
+              <div style={{position: 'absolute', left: '90%', top: '30%'}}>
+                <Link
+                  to="/home"
+                  style={{
+                    color: 'white',
+                    position: 'absolute',
+                    right: '170%',
+                    top: '5%'
+                  }}
+                >
+                  My Itineraries
+                </Link>
+                <Link to="#" onClick={this.handleClick}>
+                  <Button variant="contained" size="small">
+                    Logout
+                  </Button>
+                </Link>
+              </div>
             </Typography>
           ) : (
-            <a href="/auth/google" className="login-nav">
+            <a
+              href="/auth/google"
+              className="login-nav"
+              style={{
+                color: 'white',
+                position: 'absolute',
+                right: '4.5%',
+                top: '30%'
+              }}
+            >
               Login with Google
             </a>
           )}
