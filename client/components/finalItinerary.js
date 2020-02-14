@@ -137,7 +137,7 @@ class FinalItinerary extends React.Component {
         </div>
         <div className="itineraryPlusMap">
           <Container>
-            {Object.keys(sortedItineraryitinerary).map(day => {
+            {Object.keys(sortedItinerary).map(day => {
               return (
                 <div>
                   <Typography
@@ -152,8 +152,11 @@ class FinalItinerary extends React.Component {
                   </Typography>
                   {Object.keys(sortedItinerary[day]).map(time => {
                     const formattedTime1 =
-                    time.slice(0, 2) + ':' + time.slice(2)
-                    const formattedTime = formattedTime1.slice(0, 10) + ':' + formattedTime1.slice(10)
+                      time.slice(0, 2) + ':' + time.slice(2)
+                    const formattedTime =
+                      formattedTime1.slice(0, 10) +
+                      ':' +
+                      formattedTime1.slice(10)
                     return (
                       // <div >
                       //   <h2>{time}</h2>
