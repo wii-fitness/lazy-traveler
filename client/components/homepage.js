@@ -26,7 +26,6 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -198,7 +197,6 @@ const mapDispatchToProps = function(dispatch) {
       dispatch(action)
     },
     getDates: function(start, end) {
-      console.log('getting dates', start, end)
       const dates = {start: start, end: end}
       dispatch(getDates(dates))
     }

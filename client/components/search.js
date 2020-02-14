@@ -9,31 +9,40 @@ import PlacesAutocomplete, {
 class LocationSearch extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {address: ''}
+    this.state = {
+      address: '',
+      selectedAddress: ''
+    }
   }
 
-  // if(this.state.selectedAddress && this.state.address !== this.state.selectedAddress){
-  //   this.setState((state) => {
-  //     return {
-  //       ...state,
-  //       selectedAddress: ''
-  //     }})
-  //   this.props.getCoordinates({})
-  // }
-
   handleChange = address => {
-    this.setState(state => {
-      return {
-        ...state,
-        address: address
-      }
-    })
+    if (
+      this.state.selectedAddress &&
+      this.state.address !== this.state.selectedAddress
+    ) {
+      this.props.getCoordinates({})
+      this.setState(state => {
+        return {
+          ...state,
+          address: address,
+          selectedAddress: ''
+        }
+      })
+    } else {
+      this.setState(state => {
+        return {
+          ...state,
+          address: address
+        }
+      })
+    }
   }
 
   handleSelect = address => {
     this.setState(() => {
       return {
-        address: address
+        address: address,
+        selectedAddress: address
       }
     })
     geocodeByAddress(address)

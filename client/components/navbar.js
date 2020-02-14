@@ -16,7 +16,6 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      // <div>
       <nav className="navbar">
         <Link to="/" style={{color: 'white'}}>
           <div className="nav-title">theLazyTraveler</div>
@@ -38,8 +37,6 @@ class Navbar extends React.Component {
           </div>
         )}
       </nav>
-      /* <hr /> */
-      // </div>
     )
   }
 }
@@ -67,6 +64,5 @@ export default connect(mapState, mapDispatch)(Navbar)
  * PROP TYPES
  */
 Navbar.propTypes = {
-  // handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

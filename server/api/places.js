@@ -25,26 +25,6 @@ router.post('/', async (req, res, next) => {
   req.body.interests.push('touristAttractions')
   var suggestedLocations = {}
   var coords = req.body.coordinates
-  // console.log(req.body)
-
-  // await googleMapsClient
-  //   .geocode({address: req.body.location})
-  //   .asPromise()
-  //   .then(response => {
-  //     console.log('GEOCODE', response.json.results)
-  //     console.log('GEOMETRY', response.json.results[0].geometry)
-  //     coords[0] = response.json.results[0].geometry.location.lat
-  //     coords[1] = response.json.results[0].geometry.location.lng
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  //    var coords = []
-
-  // geocoding the text string provided by the user to Lat/Long coordinates
-
-  console.log('COORDS', coords)
-
   // looping over each interest checked by the user
   for (var interest of req.body.interests) {
     //initializing an object with the interest as key on the suggestedLocations object (this will contain arrays corresponding to each type searched under that interest)
@@ -54,7 +34,6 @@ router.post('/', async (req, res, next) => {
       //setting type as a key on the interest object with an empty array as its value (this will contain all the places returned from searching for that type)
       suggestedLocations[interest][type] = []
       // making a nearby search API request for each type
-
       //DON'T NEED AWAIT KEYWORD?
       //can't use await and .then together
       await googleMapsClient
@@ -66,16 +45,14 @@ router.post('/', async (req, res, next) => {
         })
         .asPromise()
         .then(response => {
-          console.log(response.json.results)
           // adding locations from response to the suggestedLocations array to be sent to the client
           suggestedLocations[interest][type] = response.json.results
         })
         .catch(err => {
-          console.log(err)
+          next(err)
         })
     }
   }
-  console.log('Length', suggestedLocations.length)
   // sending back a response to the client with the suggestedLocations object
   res.json(suggestedLocations)
 })
@@ -93,21 +70,10 @@ router.post('/photo', async (req, res, next) => {
       photo = response
     })
     .catch(err => {
-      console.log(err)
+      next(err)
     })
   res.send(photo.req.socket._host + photo.req.path)
 })
-
-// router.get('/', async (req, res, next) => {
-//   try {
-//     const places = await Place.findAll({
-//       order: [['rating', 'DESC']]
-//     })
-//     res.json(places)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
 
 router.get('/:placeId', async (req, res, next) => {
   try {
@@ -117,38 +83,8 @@ router.get('/:placeId', async (req, res, next) => {
       },
       order: [['rating', 'DESC']]
     })
-    // console.log(req.params.location)
     res.json(places)
   } catch (err) {
     next(err)
   }
 })
-
-// router.get(
-//   '/:location',
-//   async (req, res, next) => {
-//     try {
-//       const location = req.params.location
-//       const interest = req.params.interest
-//       const interest2 = req.params.interest2
-//       const interest3 = req.params.interest3
-
-//       const places = await Place.findAll({
-//         where: {
-//           city: location,
-//           interestType: {
-//             [Op.or]: [
-//               {[Op.contains]: [interest]},
-//               {[Op.contains]: [interest2]},
-//               {[Op.contains]: [interest3]}
-//             ]
-//           }
-//         },
-//         order: [['rating', 'DESC']]
-//       })
-//       res.json(places)
-//     } catch (err) {
-//       next(err)
-//     }
-//   }
-// )

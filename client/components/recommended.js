@@ -88,7 +88,6 @@ class Recommended extends React.Component {
       this.props.selected,
       this.props.dates
     )
-    console.log(itinerary)
     this.props.history.push('/itinerary')
   }
 

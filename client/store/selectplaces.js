@@ -14,15 +14,6 @@ const saveItinerary = selected => ({
 })
 
 // user is able to save their itinerary
-// export const savedUserItinerary = (userId, itineraryId) => {
-//   return function() {
-//     Axios.post(`/api/${userId}/${itineraryId}`)
-//     .then(res => res.data)
-//   }
-//   .catch(err => console.error(err))
-// }
-
-// user is able to save their itinerary
 export const saveItineraryThunk = (userId, dates, selected, itinerary) => {
   return async dispatch => {
     try {

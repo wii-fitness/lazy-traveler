@@ -25,7 +25,6 @@ export const refreshAll = places => ({type: REFRESH_ALL, places})
  */
 
 function orderRecommendations(placesObject) {
-  // console.log('Ordering recommendations')
   var orderedArray = []
   // count # of places
   var count = 0
@@ -34,10 +33,6 @@ function orderRecommendations(placesObject) {
 
   for (var interest of Object.keys(placesObject)) {
     for (var type of Object.keys(placesObject[interest])) {
-      // console.log('interest', interest)
-      // console.log('type', type)
-      // console.log('Array', placesObject[interest][type])
-
       //need to create a uniqueCache
       for (var place of placesObject[interest][type]) {
         if (!uniqueCache[place.id]) {
@@ -47,7 +42,7 @@ function orderRecommendations(placesObject) {
       }
     }
   }
-  // console.log('FINAL COUNT', count)
+
   // push one element from each places array into the orderedArray until all the elements are in
   var i = 0
   while (orderedArray.length < Object.keys(uniqueCache).length) {
@@ -66,15 +61,13 @@ function orderRecommendations(placesObject) {
     }
     i++
   }
-  console.log('Final ordered array:', orderedArray)
-  console.log('count', count)
+
   return orderedArray
 }
 
 export const getPlaces = formData => {
   return async dispatch => {
     try {
-      console.log('In Thunk', formData)
       const {data} = await axios.post(`/api/places/`, {
         // location: formData.location,
         coordinates: formData.coordinates,

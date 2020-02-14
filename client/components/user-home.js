@@ -10,15 +10,8 @@ import PastItinerary from './pastItinerary'
  */
 class UserHome extends React.Component {
   componentDidMount() {
-    // console.log('componentdidmount', this.props)
     this.props.getPastItineraries(this.props.user.id)
   }
-
-  //   componentDidUpdate(prevProps) {
-  //   console.log('PREVIOUS', prevProps)
-  //   // if (this.props.user.id !== prevProps.userID) {
-  //   // this.props.getPastItineraries(this.props.user.id)
-  // }
 
   render() {
     return (
