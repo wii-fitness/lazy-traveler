@@ -47,6 +47,7 @@ class FinalItinerary extends React.Component {
     super()
     this.state = {}
     this.saveItinerary = this.saveItinerary.bind(this)
+    this.sortItinerary = this.sortItinerary.bind(this)
   }
 
   // // saves itinerary by userId
@@ -81,9 +82,24 @@ class FinalItinerary extends React.Component {
     this.props.history.push('./home')
   }
 
+  sortItinerary(itinerary) {
+    const sortedItinerary = {}
+    Object.keys(itinerary).forEach(function(day) {
+      sortedItinerary[day] = {}
+      Object.keys(itinerary[day])
+        .sort()
+        .forEach(function(time) {
+          sortedItinerary[day][time] = itinerary[day][time]
+        })
+    })
+    return sortedItinerary
+  }
+
   render() {
     // console.log('this.props', this.props)
     const {classes} = this.props
+    console.log('this.props', this.props)
+    const sortedItinerary = this.sortItinerary(this.props.itinerary)
     return (
       <div className="final-it">
         <div className="final-it-header">
@@ -121,7 +137,7 @@ class FinalItinerary extends React.Component {
         </div>
         <div className="itineraryPlusMap">
           <Container>
-            {Object.keys(this.props.itinerary).map(day => {
+            {Object.keys(sortedItineraryitinerary).map(day => {
               return (
                 <div>
                   <Typography
@@ -134,13 +150,16 @@ class FinalItinerary extends React.Component {
                   >
                     Day {parseInt(day) + 1}
                   </Typography>
-                  {Object.keys(this.props.itinerary[day]).map(time => {
+                  {Object.keys(sortedItinerary[day]).map(time => {
+                    const formattedTime1 =
+                    time.slice(0, 2) + ':' + time.slice(2)
+                    const formattedTime = formattedTime1.slice(0, 10) + ':' + formattedTime1.slice(10)
                     return (
                       // <div >
                       //   <h2>{time}</h2>
                       <ItineraryCard
                         key={this.props.itinerary[day][time].id}
-                        timeSlot={time}
+                        timeSlot={formattedTime}
                         place={this.props.itinerary[day][time]}
                         draggable="false"
                       />
