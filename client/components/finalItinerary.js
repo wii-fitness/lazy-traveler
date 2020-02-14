@@ -113,10 +113,15 @@ class FinalItinerary extends React.Component {
                           <div>
                             <h1>Day {parseInt(day) + 1}</h1>
                             {Object.keys(sortedItinerary[day]).map(time => {
-                              console.log('TIME', time)
+                              const formattedTime1 =
+                                time.slice(0, 2) + ':' + time.slice(2)
+                              const formattedTime =
+                                formattedTime1.slice(0, 10) +
+                                ':' +
+                                formattedTime1.slice(10)
                               return (
                                 <div>
-                                  <h2>{time}</h2>
+                                  <h2>{formattedTime}</h2>
                                   <ItineraryCard
                                     key={this.props.itinerary[day][time].id}
                                     place={this.props.itinerary[day][time]}
