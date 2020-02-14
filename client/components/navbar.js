@@ -9,21 +9,21 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-// const newTheme = createMuiTheme({
-//   overrides: {
-//     MuiToolbar: {
-//       regular: {
-//         backgroundColor: "#ffff00",
-//         color: "#000000",
-//         height: "32px",
-//         minHeight: "32px",
-//         '@media (min-width: 600px)': {
-//           minHeight: "48px"
-//         }
-//       }
-//     },
-//   }
-// })
+const newTheme = createMuiTheme({
+  overrides: {
+    MuiToolbar: {
+      regular: {
+        backgroundColor: '#ffff00',
+        color: '#000000',
+        height: '32px',
+        minHeight: '32px',
+        '@media (min-width: 600px)': {
+          minHeight: '48px'
+        }
+      }
+    }
+  }
+})
 
 const useStyles = theme => ({
   toolbar: {
@@ -61,7 +61,6 @@ class Navbar extends React.Component {
             component="h2"
             variant="h5"
             color="inherit"
-            align="left"
             noWrap
             className={classes.toolbarTitle}
           >
@@ -75,22 +74,40 @@ class Navbar extends React.Component {
               component="h2"
               variant="subtitle1"
               color="inherit"
-              align="left"
               noWrap
               className={classes.toolbarLink}
             >
-              <Link to="/home" style={{color: 'white'}}>
-                My Itineraries
-              </Link>
-              <Link to="#" onClick={this.handleClick}>
-                <Button variant="contained" size="small">
-                  Logout
-                </Button>
-              </Link>
+              <div style={{position: 'absolute', left: '90%', top: '30%'}}>
+                <Link
+                  to="/home"
+                  style={{
+                    color: 'white',
+                    position: 'absolute',
+                    right: '170%',
+                    top: '5%'
+                  }}
+                >
+                  My Itineraries
+                </Link>
+                <Link to="#" onClick={this.handleClick}>
+                  <Button variant="contained" size="small">
+                    Logout
+                  </Button>
+                </Link>
+              </div>
             </Typography>
           ) : (
             <Link to="/auth/google">
-              <Button variant="contained" size="small">
+              <Button
+                variant="contained"
+                size="small"
+                style={{
+                  color: 'white',
+                  position: 'absolute',
+                  right: '4.5%',
+                  top: '30%'
+                }}
+              >
                 Login
               </Button>
             </Link>
