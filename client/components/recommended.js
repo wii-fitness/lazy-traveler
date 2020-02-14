@@ -11,16 +11,25 @@ import {createItinerary} from '../store/itinerary'
 import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
 // import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
-// import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = theme => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    flex: 1
+    flex: 1,
+    display: 'column',
+    justifyContent: 'space-evenly'
   },
   toolbarTitle: {
     flex: 1,
-    color: 'white'
+    color: 'white',
+    textIndent: '15px',
+    lineHeight: '3em',
+    height: '3em'
+  },
+  button: {
+    // width: 150,
+    height: 30
   },
   toolbarLink: {
     padding: theme.spacing(1),
@@ -125,39 +134,60 @@ class Recommended extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
       <div className="recommended-view">
-        <h1 className="create">Create your itinerary here</h1>
-        <h3>Drag and Drop from Our Recommended Places!</h3>
-        <div className="column-2">
-          <div className="three">
-            <div className="one">
-              <Link to="#" onClick={this.buttonRefresh}>
-                <Button variant="contained" size="small">
-                  Refresh
-                </Button>
-              </Link>
-
-              {/* <button onClick={this.buttonRefresh} className="select">
-                REFRESH
-              </button>
-              Recommended Places */}
-            </div>
-            <div className="two">
-              <button onClick={this.handleSubmit} className="generate">
-                GENERATE ITINERARY
-              </button>
-              Selected Itinerary
-            </div>
-          </div>
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          align="left"
+          textIndent="10px"
+          noWrap
+          className={classes.toolbarTitle}
+        >
+          Create your itinerary here! (Drag and Drop from the Recommendations)
+        </Typography>
+        <div className="recommend-subtitle">
+          <Typography
+            component="h2"
+            variant="h6"
+            color="inherit"
+            align="left"
+            textIndent="10px"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            Recommendations
+          </Typography>
+          <Link to="#" onClick={this.buttonRefresh}>
+            <Button variant="contained" size="small" className={classes.button}>
+              Refresh
+            </Button>
+          </Link>
+          <Typography
+            component="h2"
+            variant="h6"
+            color="inherit"
+            align="left"
+            textIndent="10px"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            Selected Places
+          </Typography>
+          <Link to="#" onClick={this.handleSubmit}>
+            <Button variant="contained" size="small" className={classes.button}>
+              Generate Itinerary
+            </Button>
+          </Link>
         </div>
-        <div id="left-div">
-          <div className="columns">
-            <DragDropContext onDragEnd={this.onDragEnd}>
-              <Column columnId="left-column" />
-              <Column2 columnId="right-column" />
-            </DragDropContext>
-          </div>
+
+        <div className="columns">
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Column columnId="left-column" />
+            <Column2 columnId="right-column" />
+          </DragDropContext>
         </div>
       </div>
     )

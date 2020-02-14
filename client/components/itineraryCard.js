@@ -50,6 +50,12 @@ class ItineraryCard extends React.Component {
 
   render() {
     const {classes} = this.props
+    const time = this.props.timeSlot
+    const formattedTime = `${time.slice(0, 2)}:${time.slice(
+      2,
+      4
+    )} to ${time.slice(7, 9)}:${time.slice(9, 11)}`
+
     return (
       <div className="container-div">
         <Grid item xs={10} md={true}>
@@ -63,6 +69,9 @@ class ItineraryCard extends React.Component {
               </Hidden>
               <div className={classes.cardDetails}>
                 <CardContent>
+                  <Typography component="subtitle2" color="textSecondary">
+                    Time: {formattedTime}
+                  </Typography>
                   <Typography component="h6">
                     {this.props.place.name}
                   </Typography>

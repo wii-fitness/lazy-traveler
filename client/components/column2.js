@@ -5,18 +5,16 @@ import {connect} from 'react-redux'
 import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
-  background-color: white;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
-  opacity: 0.75;
+  background-color: none;
+  opacity: 0.9;
   margin: 8pm;
-  border: 3px solid lightgrey;
-  border-radius: 2px;
-  width: 47%;
+  border: 5px dotted black;
+  width: 50%;
 `
 
 const RightList = styled.div`
-  padding: 8px;
   min-height: 775px;
+  align-items: center;
   flex-grow: 1;
 `
 
