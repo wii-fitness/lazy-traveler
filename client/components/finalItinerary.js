@@ -30,6 +30,7 @@ class FinalItinerary extends React.Component {
     super()
     this.state = {}
     this.saveItinerary = this.saveItinerary.bind(this)
+    this.sortItinerary = this.sortItinerary.bind(this)
   }
 
   // // saves itinerary by userId
@@ -64,8 +65,22 @@ class FinalItinerary extends React.Component {
     this.props.history.push('./home')
   }
 
+  sortItinerary(itinerary) {
+    const sortedItinerary = {}
+    Object.keys(itinerary).forEach(function(day) {
+      sortedItinerary[day] = {}
+      Object.keys(itinerary[day])
+        .sort()
+        .forEach(function(time) {
+          sortedItinerary[day][time] = itinerary[day][time]
+        })
+    })
+    return sortedItinerary
+  }
+
   render() {
     console.log('this.props', this.props)
+    const sortedItinerary = this.sortItinerary(this.props.itinerary)
     return (
       <div className="final-it">
         <div className="itinerary-maps-container">
@@ -92,26 +107,24 @@ class FinalItinerary extends React.Component {
                       ref={provided.innerRef}
                       {...provided.droppableProps}
                     >
-                      {Object.keys(this.props.itinerary).map(day => {
+                      {Object.keys(sortedItinerary).map(day => {
                         console.log('DAY', day)
                         return (
                           <div>
                             <h1>Day {parseInt(day) + 1}</h1>
-                            {Object.keys(this.props.itinerary[day]).map(
-                              time => {
-                                console.log('TIME', time)
-                                return (
-                                  <div>
-                                    <h2>{time}</h2>
-                                    <ItineraryCard
-                                      key={this.props.itinerary[day][time].id}
-                                      place={this.props.itinerary[day][time]}
-                                      draggable="false"
-                                    />
-                                  </div>
-                                )
-                              }
-                            )}
+                            {Object.keys(sortedItinerary[day]).map(time => {
+                              console.log('TIME', time)
+                              return (
+                                <div>
+                                  <h2>{time}</h2>
+                                  <ItineraryCard
+                                    key={this.props.itinerary[day][time].id}
+                                    place={this.props.itinerary[day][time]}
+                                    draggable="false"
+                                  />
+                                </div>
+                              )
+                            })}
                           </div>
                         )
                       })}
