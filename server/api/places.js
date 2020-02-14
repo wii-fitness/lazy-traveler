@@ -86,7 +86,7 @@ router.post('/photo', async (req, res, next) => {
   await googleMapsClient
     .placesPhoto({
       photoreference: photoreference,
-      maxwidth: 200
+      maxheight: 200
     })
     .asPromise()
     .then(response => {
@@ -95,6 +95,7 @@ router.post('/photo', async (req, res, next) => {
     .catch(err => {
       console.log(err)
     })
+  console.log(photo)
   res.send(photo.req.socket._host + photo.req.path)
 })
 
