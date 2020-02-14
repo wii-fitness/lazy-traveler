@@ -95,6 +95,7 @@ class Navbar extends React.Component {
               </div>
             </Typography>
           ) : (
+
             <a
               href="/auth/google"
               className="login-nav"
@@ -107,6 +108,7 @@ class Navbar extends React.Component {
             >
               Login with Google
             </a>
+
           )}
         </Toolbar>
       </div>

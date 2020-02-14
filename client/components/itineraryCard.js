@@ -50,6 +50,7 @@ class ItineraryCard extends React.Component {
 
   render() {
     const {classes} = this.props
+    const time = this.props.timeSlot
     return (
       <div className="container-div">
         <Grid item xs={10} md={true}>
@@ -63,6 +64,9 @@ class ItineraryCard extends React.Component {
               </Hidden>
               <div className={classes.cardDetails}>
                 <CardContent>
+                  <Typography component="subtitle2" color="textSecondary">
+                    Time: {time}
+                  </Typography>
                   <Typography component="h6">
                     {this.props.place.name}
                   </Typography>

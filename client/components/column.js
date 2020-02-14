@@ -6,13 +6,14 @@ import {Droppable} from 'react-beautiful-dnd'
 
 const Container = styled.div`
   background-color: none;
-  opacity: 0.85;
+  opacity: 0.9;
   margin: 8pm;
-  width: 47%;
+  width: 50%;
 `
 
 const LeftList = styled.div`
   padding: 8px;
+  align-items: center;
 `
 
 class Column extends React.Component {
