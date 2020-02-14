@@ -11,7 +11,7 @@ export const updateSelectPlaces = places => ({
 
 const saveItinerary = selected => ({
   type: SAVE_ITINERARY,
-  places
+  selected
 })
 
 // user is able to save their itinerary
@@ -45,7 +45,7 @@ export default function(state = [], action) {
     case UPDATE_SELECTED_PLACES:
       return action.places
     case SAVE_ITINERARY:
-      return action.places
+      return action.selected
     case CLEAR_ALL:
       return []
     default:
