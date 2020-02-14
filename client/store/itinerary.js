@@ -4,6 +4,7 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const CREATE_ITINERARY = 'CREATE_ITINERARY'
+const CLEAR_ALL = 'CLEAR_ALL'
 
 /**
  * INITIAL STATE
@@ -43,6 +44,8 @@ export default function(state = initialItinerary, action) {
         'Just hit the Create Itinerary reducer which means this is working'
       )
       return action.itinerary
+    case CLEAR_ALL:
+      return initialItinerary
     default:
       return state
   }

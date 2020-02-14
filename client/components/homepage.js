@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import {Form} from 'react-bootstrap'
 import {daysConverter} from '../utilities/utilities'
 import {getDates} from '../store/dates'
+import {clearAll} from '../store/places'
 import Navbar from './navbar'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -61,12 +62,12 @@ class Home extends React.Component {
       this.state.startDate &&
       this.state.endDate
     ) {
+      this.props.clearAll()
       this.props.getPlaces({
         ...this.state,
         coordinates: [this.props.coordinates.lat, this.props.coordinates.lng]
       })
       this.props.getDates(this.state.startDate, this.state.endDate)
-      // need to check if req was successful
       this.props.history.push('/builder')
     } else {
       alert('Please enter a location, a start date and an end date')
@@ -201,6 +202,9 @@ const mapDispatchToProps = function(dispatch) {
       console.log('getting dates', start, end)
       const dates = {start: start, end: end}
       dispatch(getDates(dates))
+    },
+    clearAll: function() {
+      dispatch(clearAll())
     }
   }
 }

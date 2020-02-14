@@ -2,6 +2,7 @@ import Axios from 'axios'
 
 const UPDATE_SELECTED_PLACES = 'UPDATE_SELECTED_PLACES'
 const SAVE_ITINERARY = 'SAVE_ITINERARY'
+const CLEAR_ALL = 'CLEAR_ALL'
 
 export const updateSelectPlaces = places => ({
   type: UPDATE_SELECTED_PLACES,
@@ -45,6 +46,8 @@ export default function(state = [], action) {
       return action.places
     case SAVE_ITINERARY:
       return action.places
+    case CLEAR_ALL:
+      return []
     default:
       return state
   }
