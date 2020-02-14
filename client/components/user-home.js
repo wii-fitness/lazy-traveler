@@ -47,7 +47,8 @@ const mapState = state => {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    getPastItineraries: userId => dispatch(getPastItineraries(userId))
+    getPastItineraries: async userId =>
+      await dispatch(getPastItineraries(userId))
   }
 }
 

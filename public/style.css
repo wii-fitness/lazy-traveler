@@ -63,6 +63,7 @@ a {
 }
 .homeImage {
   background-image: url(https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+
   height: 100%;
   width: 100%;
   opacity: 1;
@@ -287,7 +288,8 @@ img {
 }
 
 .recommended-view {
-  background-image: url(https://media.gettyimages.com/photos/vacation-holidays-background-wallpaper-summer-beach-tourism-vacation-picture-id686947850?s=2048x2048);
+  background-image: url(https://wallpaperstream.com/wallpapers/full/beach/Beach-Photography-Sunset-View.jpg);
+
   height: 100%;
   width: 100%;
   display: flex;
@@ -572,9 +574,9 @@ ul {
   color: white;
 }
 
-
 .userHomeImage {
   background-image: url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+
   height: 100%;
   width: 100%;
   opacity: 1;
@@ -589,6 +591,7 @@ ul {
   padding-bottom: 2%;
   position: relative;
   background-size: cover;
+}
 
 .final-it {
   background-image: url('./images/finalitineraryBackground.jpg');
@@ -616,5 +619,4 @@ ul {
   align-items: center;
   width: 50%;
   text-indent: 10px;
-
 }
