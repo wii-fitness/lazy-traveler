@@ -2,13 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-// import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import ItineraryCard from './itineraryCard'
 import SimpleMap from './map'
-import Axios from 'axios'
-import history from '../history'
 import {saveItineraryThunk} from '../store/selectplaces'
-import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
@@ -50,28 +47,6 @@ class FinalItinerary extends React.Component {
     this.sortItinerary = this.sortItinerary.bind(this)
   }
 
-  // // saves itinerary by userId
-  // async userSaveItinerary(event) {
-  //   event.preventDefault()
-  //   try {
-  //     const userId = this.props.user.id
-
-  //     // this.props.userId
-  //     let result = await Axios.post(`/api/itinerary/${userId}`, {
-  //       places: this.props.itinerary,
-  //       dates: this.props.dates,
-  //       selected: this.props.selected
-  //     })
-
-  //     if (result) {
-  //       //try props.history.push
-  //       this.props.history.push('/home')
-  //     }
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
-
   async saveItinerary() {
     await this.props.saveItinerary(
       this.props.user.id,
@@ -96,9 +71,7 @@ class FinalItinerary extends React.Component {
   }
 
   render() {
-    // console.log('this.props', this.props)
     const {classes} = this.props
-    console.log('this.props', this.props)
     const sortedItinerary = this.sortItinerary(this.props.itinerary)
     return (
       <div className="final-it">
@@ -114,8 +87,6 @@ class FinalItinerary extends React.Component {
           >
             Your Itinerary!
           </Typography>
-
-          {/* <DragDropContext> */}
           {this.props.isLoggedIn ? (
             <Link to="#" onClick={this.saveItinerary}>
               <Button variant="contained" size="small">
@@ -142,7 +113,6 @@ class FinalItinerary extends React.Component {
                 <div>
                   <Typography
                     component="h2"
-                    // variant="subtitle2"
                     color="inherit"
                     align="left"
                     noWrap
@@ -158,15 +128,12 @@ class FinalItinerary extends React.Component {
                       ':' +
                       formattedTime1.slice(10)
                     return (
-                      // <div >
-                      //   <h2>{time}</h2>
                       <ItineraryCard
                         key={this.props.itinerary[day][time].id}
                         timeSlot={formattedTime}
                         place={this.props.itinerary[day][time]}
                         draggable="false"
                       />
-                      // </div>
                     )
                   })}
                 </div>
@@ -194,8 +161,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    saveItinerary: async (userId, dates, selected, itinerary) =>
-      await dispatch(saveItineraryThunk(userId, dates, selected, itinerary))
+    saveItinerary: (userId, dates, selected, itinerary) =>
+      dispatch(saveItineraryThunk(userId, dates, selected, itinerary))
   }
 }
 

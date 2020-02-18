@@ -1,8 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import axios from 'axios'
-// import styled from 'styled-components'
-// import {Draggable} from 'react-beautiful-dnd'
 import {withStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -12,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Hidden from '@material-ui/core/Hidden'
 
-const useStyles = theme => ({
+const useStyles = () => ({
   card: {
     display: 'flex',
     background: '#e3e9ff'

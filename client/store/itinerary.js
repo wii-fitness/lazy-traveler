@@ -28,8 +28,8 @@ export const createItinerary = (places, dates) => {
         dates: dates
       })
       dispatch(createdItinerary(data))
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
     }
   }
 }
@@ -40,9 +40,6 @@ export const createItinerary = (places, dates) => {
 export default function(state = initialItinerary, action) {
   switch (action.type) {
     case CREATE_ITINERARY:
-      console.log(
-        'Just hit the Create Itinerary reducer which means this is working'
-      )
       return action.itinerary
     case CLEAR_ALL:
       return initialItinerary

@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 
 export default function PastItinerary(props) {
   const classes = useStyles()
-  // const { itinerary } = props;
 
   return (
     <div className="itinerary-history-details-container">

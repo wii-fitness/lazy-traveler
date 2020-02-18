@@ -7,9 +7,7 @@ import {DragDropContext} from 'react-beautiful-dnd'
 import {updatePlaces, refreshAll} from '../store/places'
 import {updateSelectPlaces} from '../store/selectplaces'
 import {createItinerary} from '../store/itinerary'
-
-import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
-// import Toolbar from '@material-ui/core/Toolbar';
+import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -28,7 +26,6 @@ const useStyles = theme => ({
     height: '3em'
   },
   button: {
-    // width: 150,
     height: 30
   },
   toolbarLink: {
@@ -41,9 +38,6 @@ const useStyles = theme => ({
 class Recommended extends React.Component {
   constructor() {
     super()
-    // this.state = {
-    //   interests: []
-    // }
     this.buttonRefresh = this.buttonRefresh.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -125,11 +119,7 @@ class Recommended extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const itinerary = this.props.createItinerary(
-      this.props.selected,
-      this.props.dates
-    )
-    console.log(itinerary)
+    this.props.createItinerary(this.props.selected, this.props.dates)
     this.props.history.push('/itinerary')
   }
 

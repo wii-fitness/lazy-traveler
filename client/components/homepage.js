@@ -1,15 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {getPlaces} from '../store/places'
+import {getPlaces, clearAll} from '../store/places'
 import LocationSearch from './search'
 import PropTypes from 'prop-types'
-import {Form} from 'react-bootstrap'
-import {daysConverter} from '../utilities/utilities'
 import {getDates} from '../store/dates'
-import {clearAll} from '../store/places'
-import Navbar from './navbar'
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends React.Component {
   constructor(props) {
@@ -27,7 +21,6 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -115,7 +108,7 @@ class Home extends React.Component {
                 />
               </div>
               <div className="preference-title">
-                Activities preferences{'(Optional)'}
+                Activities preferences(Optional)
                 <span className="optional"> </span>
               </div>
               <div className="interests">
@@ -199,7 +192,6 @@ const mapDispatchToProps = function(dispatch) {
       dispatch(action)
     },
     getDates: function(start, end) {
-      console.log('getting dates', start, end)
       const dates = {start: start, end: end}
       dispatch(getDates(dates))
     },

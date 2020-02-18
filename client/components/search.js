@@ -12,15 +12,6 @@ class LocationSearch extends React.Component {
     this.state = {address: ''}
   }
 
-  // if(this.state.selectedAddress && this.state.address !== this.state.selectedAddress){
-  //   this.setState((state) => {
-  //     return {
-  //       ...state,
-  //       selectedAddress: ''
-  //     }})
-  //   this.props.getCoordinates({})
-  // }
-
   handleChange = address => {
     if (address === '') {
       this.props.clearCoordinates()
