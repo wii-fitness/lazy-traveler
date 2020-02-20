@@ -8,8 +8,7 @@ import {
   UserHome,
   Home,
   Recommended,
-  FinalItinerary,
-  PastItinerary
+  FinalItinerary
 } from './components'
 import {me} from './store'
 

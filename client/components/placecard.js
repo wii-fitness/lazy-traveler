@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
-
 import {withStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -19,17 +18,8 @@ const Container = styled.div`
   padding: 10px;
   width: 95%;
 `
-// const Title = styled.h4`
-//   position: relative;
-//   line-height: 1;
-// `
-// const Description = styled.h5`
-//   position: relative;
-//   font-weight: 500;
-//   line-height: 1;
-// `
 
-const useStyles = theme => ({
+const useStyles = () => ({
   card: {
     display: 'flex',
     background: '#e3e9ff'

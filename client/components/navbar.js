@@ -3,27 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store/user'
-
-import {withStyles, createMuiTheme, makeStyles} from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-
-// const newTheme = createMuiTheme({
-//   overrides: {
-//     MuiToolbar: {
-//       regular: {
-//         backgroundColor: "#ffff00",
-//         color: "#000000",
-//         height: "32px",
-//         minHeight: "32px",
-//         '@media (min-width: 600px)': {
-//           minHeight: "48px"
-//         }
-//       }
-//     },
-//   }
-// })
 
 const useStyles = theme => ({
   toolbar: {
@@ -95,7 +78,6 @@ class Navbar extends React.Component {
               </div>
             </Typography>
           ) : (
-
             <a
               href="/auth/google"
               className="login-nav"
@@ -108,7 +90,6 @@ class Navbar extends React.Component {
             >
               Login with Google
             </a>
-
           )}
         </Toolbar>
       </div>
@@ -139,6 +120,5 @@ export default connect(mapState, mapDispatch)(withStyles(useStyles)(Navbar))
  * PROP TYPES
  */
 Navbar.propTypes = {
-  // handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

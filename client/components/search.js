@@ -12,15 +12,6 @@ class LocationSearch extends React.Component {
     this.state = {address: ''}
   }
 
-  // if(this.state.selectedAddress && this.state.address !== this.state.selectedAddress){
-  //   this.setState((state) => {
-  //     return {
-  //       ...state,
-  //       selectedAddress: ''
-  //     }})
-  //   this.props.getCoordinates({})
-  // }
-
   handleChange = address => {
     if (address === '') {
       this.props.clearCoordinates()
@@ -42,7 +33,6 @@ class LocationSearch extends React.Component {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => this.props.getCoordinates(latLng))
-      .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error))
   }
 
