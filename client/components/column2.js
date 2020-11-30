@@ -26,7 +26,7 @@ class Column2 extends React.Component {
           {provided => (
             <RightList ref={provided.innerRef} {...provided.droppableProps}>
               {this.props.selected.map((place, index) => {
-                return <Card key={place.id} place={place} index={index} />
+                return <Card key={place.place_id} place={place} index={index} />
               })}
               {provided.placeholder}
             </RightList>

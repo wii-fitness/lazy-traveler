@@ -24,7 +24,9 @@ class Column extends React.Component {
           {provided => (
             <LeftList ref={provided.innerRef} {...provided.droppableProps}>
               {this.props.places.slice(0, 6).map((place, index) => {
-                return <PlaceCard key={place.id} place={place} index={index} />
+                return (
+                  <PlaceCard key={place.place_id} place={place} index={index} />
+                )
               })}
               {provided.placeholder}
             </LeftList>

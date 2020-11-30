@@ -21,7 +21,7 @@ function getDates(startDate, stopDate) {
 }
 
 const googleMapsClient = maps.createClient({
-  key: process.env.API_KEY,
+  key: process.env.MAP_API_KEY,
   Promise: Promise
 })
 

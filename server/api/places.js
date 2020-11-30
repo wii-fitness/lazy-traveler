@@ -4,7 +4,7 @@ const maps = require('@google/maps')
 module.exports = router
 
 const googleMapsClient = maps.createClient({
-  key: process.env.API_KEY,
+  key: process.env.MAP_API_KEY,
   Promise: Promise
 })
 
@@ -37,12 +37,12 @@ router.post('/', async (req, res, next) => {
 
       //DON'T NEED AWAIT KEYWORD?
       //can't use await and .then together
-      await googleMapsClient
+      const data = await googleMapsClient
         .placesNearby({
           location: coords,
           type: type,
           rankby: 'prominence',
-          radius: 25000
+          radius: 1000
         })
         .asPromise()
         .then(response => {
@@ -84,6 +84,7 @@ router.get('/:placeId', async (req, res, next) => {
       },
       order: [['rating', 'DESC']]
     })
+    console.log(places, 'GET REQUEST')
     res.json(places)
   } catch (err) {
     next(err)

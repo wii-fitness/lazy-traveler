@@ -45,7 +45,7 @@ class SimpleMap extends Component {
           {this.props.selected.map(place => {
             return (
               <AnyReactComponent
-                key={place.id}
+                key={place.place_id}
                 lat={place.geometry.location.lat}
                 lng={place.geometry.location.lng}
                 // text="my marker"

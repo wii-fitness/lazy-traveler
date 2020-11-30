@@ -81,7 +81,7 @@ class FinalItinerary extends React.Component {
             variant="h5"
             color="inherit"
             align="left"
-            textIndent="10px"
+            // textIndent="10px"
             noWrap
             className={classes.toolbarTitle}
           >

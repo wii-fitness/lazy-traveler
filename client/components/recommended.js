@@ -119,8 +119,12 @@ class Recommended extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.createItinerary(this.props.selected, this.props.dates)
-    this.props.history.push('/itinerary')
+    if (!this.props.selected.length) {
+      alert('Please drag and drop places to create your itinerary!')
+    } else {
+      this.props.createItinerary(this.props.selected, this.props.dates)
+      this.props.history.push('/itinerary')
+    }
   }
 
   render() {

@@ -32,8 +32,8 @@ export default function PastItinerary(props) {
       </h4>
       {props.itinerary.places.map(place => {
         return (
-          <div key={place.id} className="itinerary-details">
-            <Grid key={place.id} item xs={12} md={6}>
+          <div key={place.place_id} className="itinerary-details">
+            <Grid key={place.place_id} item xs={12} md={6}>
               <CardActionArea component="a" href="#">
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>

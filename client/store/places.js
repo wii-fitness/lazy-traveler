@@ -31,21 +31,33 @@ function orderRecommendations(placesObject) {
   var count = 0
   var cache = {}
   var uniqueCache = {}
+  var arraysCombinedLength = 0
 
   for (var interest of Object.keys(placesObject)) {
     for (var type of Object.keys(placesObject[interest])) {
       //need to create a uniqueCache
       for (var place of placesObject[interest][type]) {
-        if (!uniqueCache[place.id]) {
+        arraysCombinedLength++
+        // if (!localStorage.getItem(place.place_id)) {
+        //   if (place.photos) localStorage.setItem(place.place_id, JSON.stringify(place.photos[0].photo_reference))
+        // }
+        if (!uniqueCache[place.place_id]) {
           count++
-          uniqueCache[place.id] = place
+          uniqueCache[place.place_id] = place
+        }
+        if (place.business_status === 'OPERATIONAL') {
+          orderedArray.push(place)
         }
       }
     }
   }
   // push one element from each places array into the orderedArray until all the elements are in
   var i = 0
+  let length = Object.keys(uniqueCache).length
   while (orderedArray.length < Object.keys(uniqueCache).length) {
+    if (i === arraysCombinedLength) {
+      break
+    }
     for (var interest2 of Object.keys(placesObject)) {
       for (var type2 of Object.keys(placesObject[interest2])) {
         if (placesObject[interest2][type2][i]) {

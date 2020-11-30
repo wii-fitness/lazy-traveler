@@ -42,16 +42,35 @@ class PlaceCard extends React.Component {
   }
 
   async componentDidMount() {
-    const photo = localStorage.getItem(this.props.place.id)
-    if (photo) {
-      this.setState({photo: photo})
-    } else {
-      this.setState({photo: await this.getPhoto()})
+    let count = 0
+    try {
+      let photo = localStorage.getItem(this.props.place.place_id)
+      let newReference = ''
+      if (typeof photo === 'string' && photo !== 'undefined') {
+        for (let i = 0; i < photo.length; i++) {
+          if (photo[i] === '\\' || photo[i] === '"') {
+            continue
+          } else {
+            newReference += photo[i]
+          }
+        }
+        localStorage.setItem(this.props.place.place_id, newReference)
+      }
+      if (photo) {
+        this.setState({photo: newReference})
+      } else {
+        this.setState({photo: await this.getPhoto()})
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
   componentWillUnmount() {
-    localStorage.setItem(this.props.place.id, this.state.photo)
+    localStorage.setItem(
+      this.props.place.place_id,
+      JSON.stringify(this.state.photo)
+    )
     //document bug-fix for rendering images
   }
 
@@ -68,7 +87,10 @@ class PlaceCard extends React.Component {
   render() {
     const {classes} = this.props
     return (
-      <Draggable draggableId={this.props.place.id} index={this.props.index}>
+      <Draggable
+        draggableId={this.props.place.place_id}
+        index={this.props.index}
+      >
         {provided => (
           <Container
             {...provided.draggableProps}
