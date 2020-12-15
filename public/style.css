@@ -17,6 +17,37 @@ a {
   text-decoration: none;
 }
 
+.drag-drop-title {
+  position: initial;
+  padding-left: 15px;
+  color: black;
+  text-align: center;
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.2);
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.dAndDTitles {
+  color: black;
+  position: relative;
+  left: 14px;
+}
+
+.login-itinerary {
+  color: black;
+  font-weight: 500;
+  position: relative;
+  right: 4px;
+}
+
+.google-icon {
+  position: relative;
+  right: 0px;
+  top: 16px;
+  height: 24px;
+  width: 24px;
+}
+
 .navbar {
   background: black;
   margin: 0px;
@@ -436,10 +467,27 @@ img {
 }
 
 .user-home-container {
+  position: relative;
+  left: 1%;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 14px;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.saved-h2 {
+  position: relative;
+  left: 1.2%;
+}
+
+.saved-h3 {
+  position: relative;
+  left: 1.2%;
+}
+
+.saved-h4 {
+  position: relative;
+  left: 1.2%;
 }
 
 .itinerary-history-details-container {
@@ -509,12 +557,17 @@ ul {
 
 .itineraryPlusMap {
   display: flex;
+  position: relative;
+  top: 10px;
 }
 
 .final-it-header {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-self: left;
   width: 50%;
   text-indent: 10px;
+  position: relative;
+  top: 5px;
+  left: 13px;
 }

@@ -78,18 +78,25 @@ class Navbar extends React.Component {
               </div>
             </Typography>
           ) : (
-            <a
-              href="/auth/google"
-              className="login-nav"
-              style={{
-                color: 'white',
-                position: 'absolute',
-                right: '4.5%',
-                top: '30%'
-              }}
-            >
-              Login with Google
-            </a>
+            <div>
+              <a
+                href="/auth/google"
+                className="login-nav"
+                style={{
+                  color: 'white',
+                  position: 'absolute',
+                  right: '4.5%',
+                  bottom: '30%'
+                }}
+              >
+                <img
+                  src="https://cdn.icon-icons.com/icons2/2119/PNG/512/google_icon_131222.png"
+                  width="10px"
+                  className="google-icon"
+                />
+                Login with Google
+              </a>
+            </div>
           )}
         </Toolbar>
       </div>

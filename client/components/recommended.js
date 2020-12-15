@@ -42,6 +42,44 @@ class Recommended extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidCatch() {
+    if (!Object.values(this.props.dates).length) {
+      this.props.history.push('/')
+      location.reload()
+    }
+  }
+
+  componentDidMount() {
+    if (!Object.values(this.props.dates).length) {
+      this.props.history.push('/')
+      location.reload()
+    }
+    let start = ''
+    let end = ''
+    let wrongOrder = false
+    for (let i = 0; i < this.props.dates.start.length; i++) {
+      if (this.props.dates.start[i] !== '-') start += this.props.dates.start[i]
+      if (this.props.dates.end[i] !== '-') end += this.props.dates.end[i]
+      if (start.length === 4) {
+        if (Number(start) > Number(end)) {
+          wrongOrder = true
+        } else {
+          if (i === 3 && Number(start) < Number(end)) {
+            break
+          }
+          start = ''
+          end = ''
+        }
+      }
+    }
+
+    if (wrongOrder) {
+      alert('The start date must come before the end date!')
+      this.props.history.push('/')
+      
+    }
+  }
+
   onDragEnd = result => {
     const {source, destination} = result
 
@@ -135,12 +173,12 @@ class Recommended extends React.Component {
           component="h2"
           variant="h5"
           color="inherit"
-          align="left"
+          align="center"
           textIndent="10px"
           noWrap
           className={classes.toolbarTitle}
         >
-          Create your itinerary here! (Drag and Drop from the Recommendations)
+          <h2 className="drag-drop-title">Drag & Drop</h2>
         </Typography>
         <div className="recommend-subtitle">
           <Typography
@@ -152,7 +190,7 @@ class Recommended extends React.Component {
             noWrap
             className={classes.toolbarTitle}
           >
-            Recommendations
+            <div className="dAndDTitles">Recommendations</div>
           </Typography>
           <Link to="#" onClick={this.buttonRefresh}>
             <Button variant="contained" size="small" className={classes.button}>
@@ -168,7 +206,7 @@ class Recommended extends React.Component {
             noWrap
             className={classes.toolbarTitle}
           >
-            Selected Places
+            <div className="dAndDTitles">Selected Places</div>
           </Typography>
           <Link to="#" onClick={this.handleSubmit}>
             <Button variant="contained" size="small" className={classes.button}>

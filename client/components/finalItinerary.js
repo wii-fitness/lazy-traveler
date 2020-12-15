@@ -47,6 +47,13 @@ class FinalItinerary extends React.Component {
     this.sortItinerary = this.sortItinerary.bind(this)
   }
 
+  componentDidCatch() {
+    if (!Object.values(this.props.dates).length) {
+      this.props.history.push('/')
+      location.reload()
+    }
+  }
+
   async saveItinerary() {
     await this.props.saveItinerary(
       this.props.user.id,
@@ -76,34 +83,30 @@ class FinalItinerary extends React.Component {
     return (
       <div className="final-it">
         <div className="final-it-header">
-          <Typography
-            component="h2"
-            variant="h5"
-            color="inherit"
-            align="left"
-            // textIndent="10px"
-            noWrap
-            className={classes.toolbarTitle}
-          >
-            Your Itinerary!
-          </Typography>
-          {this.props.isLoggedIn ? (
-            <Link to="#" onClick={this.saveItinerary}>
+          {!this.props.isLoggedIn ? (
+            <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              align="left"
+              // textIndent="10px"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              <div className="login-itinerary">
+                Login to save your itinerary
+              </div>
+            </Typography>
+          ) : (
+            <Link
+              to="#"
+              onClick={this.saveItinerary}
+              className="save-it-button"
+            >
               <Button variant="contained" size="small">
                 Save Itinerary
               </Button>
             </Link>
-          ) : (
-            <Typography
-              component="h2"
-              variant="subtitle2"
-              color="inherit"
-              align="left"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Login to save your itinerary!
-            </Typography>
           )}
         </div>
         <div className="itineraryPlusMap">

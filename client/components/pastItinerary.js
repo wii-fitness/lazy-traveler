@@ -26,7 +26,7 @@ export default function PastItinerary(props) {
 
   return (
     <div className="itinerary-history-details-container">
-      <h4>
+      <h4 className="saved-h4">
         {`${props.itinerary.city} 
       (${props.itinerary.arrival} to ${props.itinerary.departure})`}
       </h4>

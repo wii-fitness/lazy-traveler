@@ -80,7 +80,6 @@ export const getPlaces = formData => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/places/`, {
-        // location: formData.location,
         coordinates: formData.coordinates,
         interests: formData.interests
       })

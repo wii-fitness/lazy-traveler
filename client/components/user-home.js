@@ -16,8 +16,8 @@ class UserHome extends React.Component {
     return (
       <div className="userHomeImage">
         <div className="user-home-container">
-          <h2>Welcome, {this.props.user.email}</h2>
-          <h3>Saved Itineraries:</h3>
+          <h2 className="saved-h2">Welcome, {this.props.user.email}</h2>
+          <h3 className="saved-h3">Saved Itineraries:</h3>
           {this.props.itineraryHistory.map(itinerary => {
             return <PastItinerary itinerary={itinerary} key={itinerary.id} />
           })}

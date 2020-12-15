@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getPlaces, clearAll} from '../store/places'
 import LocationSearch from './search'
-import PropTypes from 'prop-types'
+import PropTypes, {number} from 'prop-types'
 import {getDates} from '../store/dates'
 
 class Home extends React.Component {
