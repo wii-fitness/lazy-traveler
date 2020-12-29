@@ -13,7 +13,7 @@ A user is able to input their trip by location, duration and include their inter
 * Interest checkbox will generate first iteration of recommendations.
 * Users will interactively choose whether they like the recommended places we have provided them based on certain criterias (e.g., users will be able to click and drag each activity which will determine whether they like the recommendations or not).
 
-## TechStack
+## Tech Stack
 
 Our tech stack includes React, Redux, Express, Sequelize, PostgreSQL, Google Places/Maps/Geocoding API and Node.js.
 
