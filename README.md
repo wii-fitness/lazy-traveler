@@ -15,8 +15,8 @@ A user is able to input their trip by location, duration and include their inter
 
 ![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 ![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/aTIQasNa0GTzW3imR0/giphy.gif)
-![TheLazyTraveler Screen 3 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
-![TheLazyTraveler Screen 4 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
+![TheLazyTraveler Screen 3 Demo]()
+![TheLazyTraveler Screen 4 Demo]()
 
 ## Tech Stack
 
