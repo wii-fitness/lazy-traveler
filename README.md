@@ -13,8 +13,10 @@ A user is able to input their trip by location, duration and include their inter
 * Interest checkbox will generate first iteration of recommendations.
 * Users will interactively choose whether they like the recommended places we have provided them based on certain criterias (e.g., users will be able to click and drag each activity which will determine whether they like the recommendations or not).
 
-![TheLazyTraveler Screen Demo](https://media.giphy.com/media/r6tYPVyGI4qoTIkbxP/giphy.gif)
-![TheLazyTraveler Screen Demo](https://media.giphy.com/media/r6tYPVyGI4qoTIkbxP/giphy.gif)
+![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
+![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/r6tYPVyGI4qoTIkbxP/giphy.gif)
+![TheLazyTraveler Screen 3 Demo](https://media.giphy.com/media/r6tYPVyGI4qoTIkbxP/giphy.gif)
+![TheLazyTraveler Screen 4 Demo](https://media.giphy.com/media/r6tYPVyGI4qoTIkbxP/giphy.gif)
 
 ## Tech Stack
 
