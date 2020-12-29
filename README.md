@@ -13,6 +13,8 @@ A user is able to input their trip by location, duration and include their inter
 * Interest checkbox will generate first iteration of recommendations.
 * Users will interactively choose whether they like the recommended places we have provided them based on certain criterias (e.g., users will be able to click and drag each activity which will determine whether they like the recommendations or not).
 
+![TheLazyTraveler Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
+
 ## Tech Stack
 
 Our tech stack includes React, Redux, Express, Sequelize, PostgreSQL, Google Places/Maps/Geocoding API and Node.js.
@@ -36,6 +38,6 @@ TheLazyTraveler uses the following APIs:
 * Google Geocoding API and
 * Google Maps Javascript API
 
-## VideoLink
+## Video Link
 
 https://www.youtube.com/watch?v=XXnbfUNUM6w&list=PLx0iOsdUOUmkGPFdAt5kHKxGQw_YseAQI&index=14
