@@ -12,11 +12,11 @@ An automated trip planner that generates an itinerary with dates and times for a
 * A user can customize their itinerary through a drag and drop feature.
 * A user is able to save their itinerary.
 
-![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
+![Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 
-![](https://media.giphy.com/media/41dcXyKqCy7kFwjBoz/giphy.gif)
+![Screen 2 Demo](https://media.giphy.com/media/41dcXyKqCy7kFwjBoz/giphy.gif)
 
-![](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
+![Screen 3 Demo](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
 
 ## Tech Stack
 
