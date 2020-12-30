@@ -18,6 +18,8 @@ An automated trip planner that generates an itinerary with dates and times for a
 
 ![Screen 3 Demo](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
 
+![] (https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
+
 ## Tech Stack
 
 Our tech stack includes React, Redux, Express, Sequelize, PostgreSQL, Google Places/Maps/Geocoding API and Node.js.
