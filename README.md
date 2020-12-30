@@ -14,6 +14,8 @@ An automated trip planner that generates an itinerary with dates and times for a
 
 ![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 
+![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/41dcXyKqCy7kFwjBoz/giphy.gif)
+
 ![TheLazyTraveler Screen 3 Demo](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
 
 ## Tech Stack
@@ -23,7 +25,7 @@ Our tech stack includes React, Redux, Express, Sequelize, PostgreSQL, Google Pla
 Major packages used include: Material-UI React and React Beautiful DnD.
 
 Aspects of the project we found interesting were:
-![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/41dcXyKqCy7kFwjBoz/giphy.gif)
+
 * Creating an interactive drag and drop feature for the user to control which places they would like to include in their itinerary.
 * Designing an algorithm using Google Places API to create a recommendation list of places for the user based on where they are traveling to (i.e. location), dates of travel and their interested preferences. We scoped those preferences by the following categories: arts, museums, fine dining, nightlife, shopping and family friendly activities.
 
