@@ -4,7 +4,7 @@
 
 Project URL: https://lazy-traveler.herokuapp.com/
 
-![Test] (https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
+![Test](https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
 
 ## Description
 
