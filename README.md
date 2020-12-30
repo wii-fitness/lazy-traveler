@@ -4,8 +4,6 @@
 
 Project URL: https://lazy-traveler.herokuapp.com/
 
-![Test](https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
-
 ## Description
 
 An automated trip planner that generates an itinerary with dates and times for a traveler. The automated itinerary is based on user inputs (such as location to where they are traveling to, duration of the trip and any specific areas of interest.
