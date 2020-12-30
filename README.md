@@ -14,7 +14,7 @@ An automated trip planner that generates an itinerary with dates and times for a
 
 ![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 ![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
-![TheLazyTraveler Screen 3 Demo](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
+![TheLazyTraveler Screen 3 Demo](https://gph.is/g/aNVDz8M)
 
 ## Tech Stack
 
