@@ -8,10 +8,9 @@ Project URL: https://lazy-traveler.herokuapp.com/
 
 An automated trip planner that generates an itinerary with dates and times for a traveler. The automated itinerary is based on user inputs (such as location to where they are traveling to, duration of the trip and any specific areas of interest.
 
-A user is able to input their trip by location, duration and include their interest(s).
-
-* Interest checkbox will generate first iteration of recommendations.
-* Users will interactively choose whether they like the recommended places we have provided them based on certain criterias (e.g., users will be able to click and drag each activity which will determine whether they like the recommendations or not).
+* A user is able to input their trip by location, duration and include their interest(s).
+* A user can customize their itinerary through a drag and drop feature.
+* A user is able to save their itinerary.
 
 ![TheLazyTraveler Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 ![TheLazyTraveler Screen 2 Demo](https://media.giphy.com/media/R43Q42JzDULsYdN2aL/giphy.gif)
