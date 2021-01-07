@@ -14,7 +14,7 @@ An automated trip planner that generates an itinerary with dates and times for a
 
 ![Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
 
-![Screen 2 Demo](https://media.giphy.com/media/f0CzmyOOe4Hb4wWT33/giphy.gif)
+![Screen 2 Demo](https://media.giphy.com/media/7L4U3FxL2HPEDDgLdK/giphy.gif)
 
 ![Screen 3 Demo](https://media.giphy.com/media/IXpHe6ACMz5Wgbo3jM/giphy.gif)
 
