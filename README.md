@@ -16,7 +16,7 @@ An automated trip planner that generates an itinerary with dates and times for a
 
 ![Screen 2 Demo](https://media.giphy.com/media/F89jHc7KHiuYGR9xkf/giphy.gif)
 
-![Screen 3 Demo](https://media.giphy.com/media/xeb040BgzTzsNY7ZoF/giphy.gif)
+![Screen 3 Demo](https://media.giphy.com/media/BXPEicFeMsGiCPI6RS/giphy.gif)
 
 ## Tech Stack
 
