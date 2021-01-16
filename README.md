@@ -4,6 +4,14 @@
 
 Project URL: https://lazy-traveler.herokuapp.com/
 
+## Demo
+
+![Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
+
+![Screen 2 Demo](https://media.giphy.com/media/F89jHc7KHiuYGR9xkf/giphy.gif)
+
+![Screen 3 Demo](https://media.giphy.com/media/BXPEicFeMsGiCPI6RS/giphy.gif)
+
 ## Description
 
 An automated trip planner that generates an itinerary with dates and times for a traveler. The automated itinerary is based on user inputs (such as location to where they are traveling to, duration of the trip and any specific areas of interest.
@@ -26,14 +34,6 @@ Aspects of the project we found interesting were:
 ## Technical Challenges
 
 One of our main challenges was managing the usage of our premium API calls.  We noticed fairly quickly that our usage of the Google Places API would soon reach our limit.  To slow the rate of request in the API, we decided to cache the photos to local storage.  This helped decrease our request in the Google Places API by 33%. 
-
-## Demo
-
-![Screen 1 Demo](https://media.giphy.com/media/37gHOTTmCp5nZ1LW9K/giphy.gif)
-
-![Screen 2 Demo](https://media.giphy.com/media/F89jHc7KHiuYGR9xkf/giphy.gif)
-
-![Screen 3 Demo](https://media.giphy.com/media/BXPEicFeMsGiCPI6RS/giphy.gif)
 
 ## Notes
 
